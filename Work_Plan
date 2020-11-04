@@ -1,0 +1,31 @@
+Plan
+Nov 4: by midnight: refactoring and individual simulations completed
+
+Nov 8: team meeting on microsoft teams to resolve any issues or complications
+
+Nov 10: team meeting on microsoft before live review
+
+Nov 11: by class/midnight: Video recording of code review and should be completed by midnight the latest
+
+Code Structure
+Simulation - superclass
+The two simulations inherit from the simulation super class (will probably be most involved with controller)
+
+State and Controller hierarchy
+
+Tasks priorities
+States
+Controller/Model
+View
+
+
+Responsibilities
+Grant and Kim (maybe Chris)
+Model combining, working on state hierarchy
+Jazz, Grant, and Camryn
+Controller combination
+will probably also involve simulation superclass
+Jazz and Chris
+View combination
+Kim and Camryn
+Testing work
