@@ -22,10 +22,10 @@ public abstract class GameOfLifeMutables extends MutableState {
 		neighbors.add(SOUTH_NEIGHBOR, allStates[currentStateRow+1][currentStateColumn]);
 		neighbors.add(WEST_NEIGHBOR, allStates[currentStateRow][currentStateColumn-1]);
 		neighbors.add(EAST_NEIGHBOR, allStates[currentStateRow][currentStateColumn+1]);
-		neighbors.add(NORTH_WEST_NEIGHBOR, allStates[currentStateRow-1][currentStateColumn+1]);
-		neighbors.add(NORTH_EAST_NEIGHBOR, allStates[currentStateRow-1][currentStateColumn-1]);
-		neighbors.add(SOUTH_WEST_NEIGHBOR, allStates[currentStateRow+1][currentStateColumn+1]);
-		neighbors.add(SOUTH_EAST_NEIGHBOR, allStates[currentStateRow+1][currentStateColumn-1]);
+		neighbors.add(NORTH_WEST_NEIGHBOR, allStates[currentStateRow-1][currentStateColumn-1]);
+		neighbors.add(NORTH_EAST_NEIGHBOR, allStates[currentStateRow-1][currentStateColumn+1]);
+		neighbors.add(SOUTH_WEST_NEIGHBOR, allStates[currentStateRow+1][currentStateColumn-1]);
+		neighbors.add(SOUTH_EAST_NEIGHBOR, allStates[currentStateRow+1][currentStateColumn+1]);
 	}
 
 }

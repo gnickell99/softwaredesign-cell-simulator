@@ -22,8 +22,6 @@ public abstract class State {
 	Shape state;
 	public Paint cellColor;
 	private static final int CELL_SIZE = 10;
-	
-	
 
 	public final int NORTH_NEIGHBOR = 0;
 	public final int SOUTH_NEIGHBOR = 1;

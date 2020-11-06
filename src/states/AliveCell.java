@@ -1,15 +1,14 @@
 package states;
 
 import java.util.Random;
-
-import javafx.scene.paint.Paint;
+import javafx.scene.paint.Color;
 
 public class AliveCell extends GameOfLifeMutables{
 	Random RNG = new Random();
 
 	public AliveCell(int currentStateRow, int currentStateColumn, State[][] allStates) {
 		super(currentStateRow, currentStateColumn, allStates);
-		// TODO Auto-generated constructor stub
+		cellColor = Color.LIGHTBLUE;
 	}
 
 	@Override
