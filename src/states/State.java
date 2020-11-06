@@ -23,11 +23,7 @@ public abstract class State {
 	public Paint cellColor;
 	private static final int CELL_SIZE = 10;
 	
-	final String LIVE_TREE = "live tree";
-	final String BURNING_TREE = "burning tree";
-	final String BURNT_DOWN_TREE = "burnt down tree";
-	final String EMPTY_CELL = "empty cell";
-	final String EDGE = "edge";
+	
 
 	public final int NORTH_NEIGHBOR = 0;
 	public final int SOUTH_NEIGHBOR = 1;

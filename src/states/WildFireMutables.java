@@ -2,6 +2,8 @@ package states;
 
 public abstract class WildFireMutables extends MutableState {
 
+	final String LIVE_TREE = "live tree";
+	final String BURNING_TREE = "burning tree";
 	int burnTimer;
 	double chanceToBurn;
 	

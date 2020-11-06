@@ -11,6 +11,11 @@ package states;
 
 public abstract class ImmutableState extends State{
 
+	final String BURNT_DOWN_TREE = "burnt down tree";
+	final String EMPTY_CELL = "empty cell";
+	final String EDGE = "edge";
+	final String DEAD_CELL = "dead cell";
+	
 	public ImmutableState() {
 		super();
 	}
