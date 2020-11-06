@@ -13,7 +13,6 @@ public abstract class GameOfLifeMutables extends MutableState {
 	
 	public GameOfLifeMutables(int currentStateRow, int currentStateColumn, State[][] allStates) {
 		super(currentStateRow, currentStateColumn, allStates);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
