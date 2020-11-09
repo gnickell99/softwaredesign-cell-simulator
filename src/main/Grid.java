@@ -1,7 +1,6 @@
 package main;
 
 
-
 import java.awt.Point;
 import javafx.scene.Group;
 import javafx.scene.shape.Rectangle;
