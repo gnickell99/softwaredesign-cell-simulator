@@ -14,4 +14,6 @@ public class Empty extends ImmutableState{
 		return this.EMPTY_CELL;
 	}
 
+
 }
+
