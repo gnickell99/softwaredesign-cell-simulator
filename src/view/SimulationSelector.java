@@ -20,6 +20,7 @@ public class SimulationSelector {
 		setupGrid.setPadding(new Insets(10, 10, 10, 10));
 		setupGrid.setVgap(10);
 		setupGrid.setHgap(10);
+		InputParser parser = new InputParser();
 		
 		final TextField gridWidth = new TextField();
 		gridWidth.setPromptText("(4.0 = Default) Enter Grid Width.");
@@ -41,19 +42,15 @@ public class SimulationSelector {
 		GridPane.setConstraints(gameOfLife, 0, 4);
 		setupGrid.getChildren().add(gameOfLife);
 		
-		
 		wildFire.setOnAction((ActionEvent e) -> {
-			//WildFireSimulation wildFireSim = new WildFireSimulation(gridWidth.getText(), gridHeight.getText());
+			//WildFireSimulation wildFireSim = new WildFireSimulation(parser.parseIntegerValue(gridWidth), parser.parseIntegerValue(gridHeight));
 		});
 		
 		gameOfLife.setOnAction((ActionEvent e) -> {
-			//GameOfLIfe gameOfLifeSim = new GameOfLife(gridWidth.getText(), gridHeight.getText());
+			//GameOfLIfe gameOfLifeSim = new GameOfLife(parser.parseIntegerValue(gridWidth), parser.parseIntegerValue(gridHeight));
 		});
 		
 		Scene scene = new Scene(setupGrid, SIZE, SIZE, background);
 		return scene;
 	}
-	
-	
-
 }
