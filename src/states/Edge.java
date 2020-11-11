@@ -23,4 +23,5 @@ public class Edge extends ImmutableState{
 		return this.EDGE;
 	}
 
+
 }
