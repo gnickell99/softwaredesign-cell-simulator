@@ -1,6 +1,12 @@
 package view;
 
 import javafx.scene.control.TextField;
+/***
+ * 
+ * @author Chris
+ * InputParser - validates user input for an integers, doubles value 
+ *
+ */
 
 public class InputParser {
 	

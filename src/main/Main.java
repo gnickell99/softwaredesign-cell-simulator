@@ -7,6 +7,15 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import view.SimulationSelector;
 
+
+
+/***
+ * 
+ * @author Kim Jones, Jazz Harris, Grant Nickell, Chris Ramierz and Camryn Williams
+ * 
+ * Based on MazeLabMVC Lab code, and previous cell simulation code
+ *
+ */
 public class Main extends Application {
 
 	
@@ -16,7 +25,7 @@ public class Main extends Application {
 	
 	
 	/*
-	 * Starts the program that simulates Conway's Game of Life.  
+	 * Starts the program that simulates Conway's Game of Life and Wild Fire Simulations.  
 	 */
 	public static void main(String[] args) {
 		launch(args);

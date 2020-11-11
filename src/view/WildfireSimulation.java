@@ -11,6 +11,13 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import controller.*;
 
+/***
+ * 
+ * @author Chris 
+ * WildfireSimulation - Set up for Wildfire Simulation display
+ *
+ */
+
 public class WildfireSimulation {
 	
 	GridPane setUpFireScene = new GridPane();

@@ -1,8 +1,18 @@
 package controller;
 
 import javafx.scene.layout.GridPane;
+
 import javafx.scene.shape.Rectangle;
 import states.*;
+
+/***
+ * 
+ * @author Grant, Camyrn, Chris and Jazz
+ * Controller - Acts as the super class for the game of life and wildfire sub class controllers
+ * 
+ * Based on MazeLabMVC Lab code and previous cell simulations code for each simulation
+ *
+ */
 
 public abstract class Controller {
 	public State[][] grid;
@@ -15,6 +25,7 @@ public abstract class Controller {
 	public Controller(int height, int width) {	
 		grid = new State[height + VALUE_OF_TWO][width + VALUE_OF_TWO];
 		originalGridPane = new GridPane();
+		generateGrid(originalGridPane);
 	}
 
 	/** updateGrid
@@ -72,11 +83,7 @@ public abstract class Controller {
 	 */
 	protected abstract void setupCells(int currentRow, int currentColumn);
 
-	/** makeStep
-	 * 
-	 * The make step method takes a single step in either of the simulations as long as the simulation is paused
-	 * 
-	 */
+	
 	
 	
 

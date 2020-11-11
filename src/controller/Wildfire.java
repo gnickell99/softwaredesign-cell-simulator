@@ -6,6 +6,15 @@ import states.*;
 
 public class Wildfire extends Controller {
 
+	/***
+	 * 
+	 * @author Camyrn and Grant
+	 * Wildfire - Sub class controller for wildfire
+	 * 
+	 * Based on previous wildfire cell simulation code
+	 *
+	 */
+	
 	//Constants
 	private static final double BURN_CHANCE = 0.40;
 	private static final double DEFAULT_SPREADPROBABILITY = .40;

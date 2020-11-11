@@ -2,9 +2,16 @@ package controller;
 
 import java.util.Random;
 
-import javafx.scene.layout.GridPane;
 import states.*;
 
+/***
+ * 
+ * @author  Jazz Harris
+ * GameOfLife - Sub Class Controller for Game of Life
+ * 
+ * Based on wildfire's cell simulation previous code merged with the use of states for GOL simulation code
+ *
+ */
 public class GameOfLife extends Controller {
 
 	//Constants

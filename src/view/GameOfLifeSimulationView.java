@@ -1,6 +1,7 @@
 package view;
 
 import controller.GameOfLife;
+
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -10,7 +11,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-
+/***
+ * 
+ * @author Jazz 
+ * GameOfLifeSimulationView - Set up for Game of Life Simulation display
+ *
+ */
 public class GameOfLifeSimulationView {
 
 	GridPane setUpLifeScene = new GridPane();
@@ -19,14 +25,18 @@ public class GameOfLifeSimulationView {
 	public static final int COLUMNSPAN = 20;
 	private boolean paused = false;		
 	private Button pauseButton;
+	public int gridWidth;
+	public int gridHeight;
 	private Button stepButton;
 	private Color BACKGROUND = Color.LIGHTSLATEGRAY;
-	GameOfLife game = new GameOfLife(0 , 0);
+	InputParser validator = new InputParser();
+	public GameOfLife gameOfLifeController;
 
 	InputParser validateUserInput = new InputParser();
 	public GameOfLifeSimulationView(int gridWidth, int gridHeight) {
-		GameOfLife game = new GameOfLife(gridWidth , gridHeight);
-		game.generateGrid();
+		this.gridWidth = gridWidth;
+		this.gridHeight = gridHeight;
+
 	}
 
 
@@ -38,9 +48,9 @@ public class GameOfLifeSimulationView {
 	 * 
 	 */
 	public void setUpGameOfLifeScene(Paint background ) {
-		
-		
-		
+
+
+
 		Scene secondScene = setupWindow();
 		Stage newWindow = new Stage();
 		newWindow.setTitle("GameOfLife Simulation");
@@ -63,7 +73,10 @@ public class GameOfLifeSimulationView {
 		GridPane.setConstraints(newSimulationButton, 0 , 3);
 		setUpLifeScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
-			setupNewSimulation();
+			this.gridHeight = validator.parseIntegerValue(gridHeight);
+			this.gridWidth = validator.parseIntegerValue(gridWidth);
+			gameOfLifeController = new GameOfLife(this.gridHeight, this.gridWidth);
+			setUpNewSimulation(gameOfLifeController);
 
 		});
 
@@ -74,29 +87,19 @@ public class GameOfLifeSimulationView {
 			pressPause();
 
 		});
-		
+
 		stepButton = new Button("Step");
 		GridPane.setConstraints(stepButton, 0, 5);
 		setUpLifeScene.getChildren().add(stepButton);
+
 		stepButton.setOnAction((ActionEvent e) -> {
-		
-			game.updateGrid(setUpLifeScene);;
+
+			step(0);
 
 		});
-		
-		
-		
 
 		newWindow.show();
 
-
-	}
-
-	
-
-	private void setupNewSimulation() {
-		
-		
 	}
 
 
@@ -114,6 +117,16 @@ public class GameOfLifeSimulationView {
 		}
 
 	}
+
+	/** setUpNewSimulation
+	 * 
+	 * Sets up a new simulation with inputs from gridWith and gridHeight
+	 * @param wildFireController 
+	 */
+	private void setUpNewSimulation(GameOfLife gameOfLifeController ) {
+		gameOfLifeController.generateGrid(setUpLifeScene);
+	}
+
 
 	/** pauseIt
 	 * 
@@ -141,7 +154,7 @@ public class GameOfLifeSimulationView {
 	public void doOneStep(double elapsedTime){
 		//controller.makeStep();
 	}
-	
+
 
 	/*
 	 * sets up a new window when Game of Life simulation button is first pressed and whenever the new simulation button is pressed withing ame of life

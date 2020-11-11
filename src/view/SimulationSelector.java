@@ -8,6 +8,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 
+/***
+ * 
+ * @author Chris  and Jazz
+ * SimulationSelector - Set up for view hierarchy to choose between simulations
+ *
+ */
 public class SimulationSelector {
 
 	
