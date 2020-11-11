@@ -21,10 +21,8 @@ public class DeadCell extends GameOfLifeMutables{
 			}
 		}
 		if (liveNeighbors == 3) {
-			toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
 			return new AliveCell(currentStateRow, currentStateColumn, this.allCells);
 		}
-		toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
 		return this;
 	}
 	
