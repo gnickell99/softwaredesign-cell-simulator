@@ -1,13 +1,20 @@
-package main;
+package controller;
 
 import java.util.Random;
 
-import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Rectangle;
 import states.*;
 
 public class Wildfire extends Controller {
+
+	//Constants
 	private static final double BURN_CHANCE = 0.40;
+	private static final double DEFAULT_SPREADPROBABILITY = .40;
+	private static final int VALUE_OF_ZERO = 0;
+	private static final int VALUE_OF_ONE = 1;
+	private static final double VALUE_OF_ZERO_DOUBLE = 0.0;
+	private static final double VALUE_OF_ONE_DOUBLE = 1.0;
+	private static final int  VALUE_OF_TWO = 2;
+	private static final int VALUE_OF_A_HUNDRED = 100;
 	public int burnTime;
 	public double spreadProbability;
 	public double forestDensity;
@@ -18,85 +25,71 @@ public class Wildfire extends Controller {
 	}
 
 	/**
-	 * generateForest the generate forest method begins the instantiation of the 2D
-	 * forest array
-	 */
-
-	/**
-	 * placeEdgeOrTree
+	 * setupCells
 	 * 
-	 * The placeEdgeOrTree method checks if the current index is the border of the
-	 * forest, in which case it places an edge, otherwise a tree is setup via the
-	 * setupTrees method
-	 * 
-	 * @param currentRow
-	 * @param currentColumn
-	 */
-	
-	/**
-	 * setupTrees
-	 * 
-	 * The setupTrees method places a state object at the given index The state can
+	 * The setupCells method places a state object at the given index The state can
 	 * be either a live tree, a burning tree, or an empty space
 	 * 
 	 * @param currentRow
 	 * @param currentColumn
 	 */
-	
+
 	@Override
 	protected void setupCells(int currentRow, int currentColumn) {
 		Random random = new Random();
 		// checks forest density to determine if a tree should spawn
-		if (random.nextInt(100) < (forestDensity * 100)) {
+		if (random.nextInt(VALUE_OF_A_HUNDRED) < (forestDensity * VALUE_OF_A_HUNDRED)) {
 			// These are the mutable states
 			// checks if the tree is should tree should be on fire
-			if (burningTrees != 0 && random.nextDouble() < BURN_CHANCE) {
-				State burningTree = new BurningTree(currentRow, currentColumn, burnTime, this.board);
+			if (burningTrees != VALUE_OF_ZERO && random.nextDouble() < BURN_CHANCE) {
+				State burningTree = new BurningTree(currentRow, currentColumn, burnTime, this.grid);
 				burningTrees--;
-				board[currentRow][currentColumn] = burningTree;
+				grid[currentRow][currentColumn] = burningTree;
 			}
 			// If not then spawn a normal tree
 			else {
-				State liveTree = new LiveTree(currentRow, currentColumn, burnTime, spreadProbability, this.board);
-				board[currentRow][currentColumn] = liveTree;
+				State liveTree = new LiveTree(currentRow, currentColumn, burnTime, spreadProbability, this.grid);
+				grid[currentRow][currentColumn] = liveTree;
 			}
 		}
 		// If forest density is < 1 then it sometimes spawns an empty space
 		else {
 			State empty = new Empty();
-			board[currentRow][currentColumn] = empty;
+			grid[currentRow][currentColumn] = empty;
 		}
 	}
 
 	public void setBurnTime(int burnTime) {
-		if (burnTime > 0) {
+		if (burnTime > VALUE_OF_ZERO) {
 			this.burnTime = burnTime;
 		} else {
-			this.burnTime = 1;
+			this.burnTime = VALUE_OF_ONE;
 		}
 	}
 
 	public void setSpreadProbability(double spreadProbability) {
-		if (spreadProbability <= 1.0 && spreadProbability >= 0.0) {
+		if (spreadProbability <= VALUE_OF_ONE_DOUBLE && spreadProbability >= VALUE_OF_ZERO_DOUBLE) {
 			this.spreadProbability = spreadProbability;
 		} else {
-			this.spreadProbability = 0.4;
+			this.spreadProbability = DEFAULT_SPREADPROBABILITY;
 		}
 	}
 
 	public void setForestDensity(double forestDensity) {
-		if (forestDensity <= 1.0 && forestDensity >= 0.0) {
+		if (forestDensity <= VALUE_OF_ONE_DOUBLE && forestDensity >= VALUE_OF_ZERO_DOUBLE) {
 			this.forestDensity = forestDensity;
 		} else {
-			this.forestDensity = 1.0;
+			this.forestDensity = VALUE_OF_ONE_DOUBLE;
 		}
 	}
 
 	public void setBurningTrees(int burningTrees) {
-		if (burningTrees > 0 && burningTrees <= (board.length - 2) * (board[0].length - 2)) {
+		if (burningTrees > VALUE_OF_ZERO && burningTrees <= (grid.length - VALUE_OF_TWO) * (grid[VALUE_OF_ONE].length - VALUE_OF_TWO)) {
 			this.burningTrees = burningTrees;
 		} else {
-			this.burningTrees = 1;
+			this.burningTrees = VALUE_OF_ONE;
 		}
 	}
+
+	
 }

@@ -1,51 +1,52 @@
-package main;
-
-import java.util.Random;
+package controller;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 import states.*;
 
 public abstract class Controller {
-	public State[][] board;
-	public GridPane orig;
-	public GridPane mirror;
-	
-	
+	public State[][] grid;
+	public GridPane originalGridPane;
+	//	public GridPane mirrorGridPane;
+	private static final int VALUE_OF_ZERO = 0;
+	private static final int VALUE_OF_ONE = 1;
+	private static final int  VALUE_OF_TWO = 2;
+
 	public Controller(int height, int width) {	
-		board = new State[height + 2][width + 2];
-		orig = new GridPane();
+		grid = new State[height + VALUE_OF_TWO][width + VALUE_OF_TWO];
+		originalGridPane = new GridPane();
 	}
-	
-  /**
-   * Updates the board by redrawing the states in the board double array
-   * @param grid
-   */
-  public void updateGrid(GridPane grid) {
-	  for(int i = 0; i < board.length; i++)	{
-			for(int j = 0; j < board[i].length; j++) {
-				board[i][j] = board[i][j].act(i, j);
-				Rectangle cell = (Rectangle) board[i][j].getRectangle();
-				grid.add(cell, i, j);
+
+	/** updateGrid
+	 * 
+	 * The update grid method updates the grid by redrawing the states in the grid double array
+	 * @param grid
+	 */
+	public void updateGrid(GridPane gridPane) {
+		for(int i = 0; i < grid.length; i++)	{
+			for(int j = 0; j < grid[i].length; j++) {
+				grid[i][j] = grid[i][j].act(i, j);
+				Rectangle cell = (Rectangle) grid[i][j].getRectangle();
+				gridPane.add(cell, i, j);
 			}
 		}
 	}
-	
+
 	/** generateGrid
+	 * 
 	 * the generate forest method begins the instantiation of the 2D forest array
 	 */
 	public void generateGrid() {
-		for (int i = 0; i < board.length; i++) 	{
-			for (int j = 0; j < board[0].length; j++)	{
+		for (int i = 0; i < grid.length; i++) 	{
+			for (int j = 0; j < grid[VALUE_OF_ONE].length; j++)	{
 				placeEdgeOrCell(i,j);
 			}
 		}
 	}
-	
-	/**
-	 * placeEdgeOrCell
+
+	/** placeEdgeOrCell
 	 * 
-	 * The placeEdgeOrTree method checks if the current index is the border of the
+	 * The placeEdgeOrCell method checks if the current index is the border of the
 	 * forest, in which case it places an edge, otherwise a tree is setup via the
 	 * setupTrees method
 	 * 
@@ -53,16 +54,29 @@ public abstract class Controller {
 	 * @param currentColumn
 	 */
 	protected void placeEdgeOrCell(int currentRow, int currentColumn) {
-		if ((currentRow == 0 || currentRow == board.length - 1)
-				|| (currentColumn == 0 || currentColumn == board[0].length - 1)) {
+		if ((currentRow == VALUE_OF_ZERO || currentRow == grid.length - VALUE_OF_ONE )
+				|| (currentColumn == VALUE_OF_ZERO || currentColumn == grid[VALUE_OF_ONE].length - VALUE_OF_ONE )) {
 			State edge = new Edge();
-			board[currentRow][currentColumn] = edge;
+			grid[currentRow][currentColumn] = edge;
 		}
-    else {
+		else {
 			setupCells(currentRow, currentColumn);
 		}
 	}
-	
+
+	/** setUpCells
+	 * 
+	 * The set up cell method sets up the cells in the inner grid that are manipulated by the user and either of the simulations rules
+	 * 
+	 */
 	protected abstract void setupCells(int currentRow, int currentColumn);
+
+	/** makeStep
+	 * 
+	 * The make step method takes a single step in either of the simulations as long as the simulation is paused
+	 * 
+	 */
 	
+//	protected abstract void makeStep();
+
 }
