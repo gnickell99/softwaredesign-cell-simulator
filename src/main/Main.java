@@ -1,10 +1,11 @@
-package view;
+package main;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import view.SimulationSelector;
 
 public class Main extends Application {
 
