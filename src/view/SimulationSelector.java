@@ -49,7 +49,6 @@ public class SimulationSelector {
 		gameOfLife.setOnAction((ActionEvent e) -> {
 			GameOfLife gameOfLifeSimulation = new GameOfLife(parser.parseIntegerValue(gridWidth), parser.parseIntegerValue(gridHeight));
 			gameOfLifeSimulation.setUpGameOfLifeScene(background);
-			
 		});
 		
 		Scene scene = new Scene(setupGrid, SIZE, SIZE, background);

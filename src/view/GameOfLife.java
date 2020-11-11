@@ -9,7 +9,7 @@ import javafx.scene.paint.Paint;
 
 public class GameOfLife {
 
-	GridPane setUpGrid = new GridPane();
+	GridPane setUpLifeScene = new GridPane();
 	public static final int SIZE = 600;
 	public static final String TITLE = "Game Of Life Simulator";
 	public static final int COLUMNSPAN = 20;
@@ -17,7 +17,7 @@ public class GameOfLife {
 	private Button pauseButton;
 
 	InputParser validateUserInput = new InputParser();
-	public GameOfLife(int gridWidth, int gridHeight) {
+	public GameOfLife(int i, int j) {
 	
 
 	}
@@ -36,18 +36,18 @@ public class GameOfLife {
 		gridWidth.setPromptText("(4.0 = Default) Enter Grid Width.");
 		GridPane.setConstraints(gridWidth, 0, 0);
 		GridPane.setColumnSpan(gridWidth, COLUMNSPAN);
-		setUpGrid.getChildren().add(gridWidth);
+		setUpLifeScene.getChildren().add(gridWidth);
 
 		final TextField gridHeight = new TextField();
 		gridHeight.setPromptText("(4.0 = Default) Enter Grid Height.");
 		GridPane.setConstraints(gridHeight, 0, 1);
 		GridPane.setColumnSpan(gridHeight, COLUMNSPAN);
-		setUpGrid.getChildren().add(gridHeight);
+		setUpLifeScene.getChildren().add(gridHeight);
 
 
 		Button newSimulationButton = new Button("New Simulation");
 		GridPane.setConstraints(newSimulationButton, 0 , 3);
-		setUpGrid.getChildren().add(newSimulationButton);
+		setUpLifeScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
 			setUpNewSimulation();
 
@@ -55,13 +55,13 @@ public class GameOfLife {
 
 		Button pauseButton = new Button("Pause Simulation");
 		GridPane.setConstraints(pauseButton, 0, 3);
-		setUpGrid.getChildren().add(pauseButton);
+		setUpLifeScene.getChildren().add(pauseButton);
 		pauseButton.setOnAction((ActionEvent e) -> {
 			pressPause();
 
 		});
 		
-		Scene scene = new Scene(setUpGrid, SIZE, SIZE, background);
+		Scene scene = new Scene(setUpLifeScene, SIZE, SIZE, background);
 		return scene;
 
 	}
