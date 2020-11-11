@@ -29,18 +29,12 @@ public class GameOfLifeControllerTest {
 		golControl.generateGrid(gp); //Make a new Grid
 		
 		//Manually make a testing scenario
-		System.out.println("Color: " + golControl.grid[1][1].cellColor + " type: " + golControl.grid[1][1].getType());
-		golControl.grid[1][1].cellColor = Color.LIGHTBLUE;
-		golControl.grid[1][1].getRectangle();
-		System.out.println("Color: " + golControl.grid[1][1].cellColor + " type: " + golControl.grid[1][1].getType());
-		
-		//Print out all cells for confirmation
-//		System.out.println(golControl.grid[1][1].getType());
-//		for(int i = 1; i < golControl.grid.length-1; i++) {
-//			for(int j = 1; j < golControl.grid.length-1; j++) {
-//				System.out.println(i +"," + j + ": " + golControl.grid[i][j].getType());
-//			}
-//		}
+//		System.out.println("Color: " + golControl.grid[1][1].cellColor + " type: " + golControl.grid[1][1].getType());
+//		golControl.grid[1][1].cellColor = Color.LIGHTBLUE;
+//		golControl.grid[1][1].getRectangle();
+//		System.out.println("Color: " + golControl.grid[1][1].cellColor + " type: " + golControl.grid[1][1].getType());
+//		golControl.updateGrid(gridPane);
+
 		
 		//Test prints:
 //		System.out.println(golControl.grid[0][1].getType());
@@ -49,9 +43,16 @@ public class GameOfLifeControllerTest {
 //			System.out.println(golControl.grid[i][lastRow].getType());
 //		}
 		
-		
+		//Print out all cells for confirmation
+//		System.out.println(golControl.grid[1][1].getType());
+//		for(int i = 1; i < golControl.grid.length-1; i++) {
+//			for(int j = 1; j < golControl.grid.length-1; j++) {
+//				System.out.println(i +"," + j + ": " + golControl.grid[i][j].getType());
+//			}
+//		}
 	}
-
+	
+	//Test of edge pieces
 	//Make sure the top row is all edge cells
 	@Test
 	public void topEdgeTest() {
@@ -105,5 +106,10 @@ public class GameOfLifeControllerTest {
 			}
 		}
 	}
-
+	
+	
+	//
+	
+	
+	
 }
