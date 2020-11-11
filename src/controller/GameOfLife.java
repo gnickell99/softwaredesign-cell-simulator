@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.Random;
+
+import javafx.scene.layout.GridPane;
 import states.*;
 
 public class GameOfLife extends Controller {
@@ -10,9 +12,9 @@ public class GameOfLife extends Controller {
 	public static final int BACTERIA_PROBABILITY = 40;	// set bacteria probability
 	public static final int RATE_OF_INFECTION_PROBABILITY = 100;	// spread rate of bacteria probability
 
-	public GameOfLife(int height, int width) {
-		super(height, width);
-		
+	public GameOfLife(int gridHeight, int gridWidth) {
+		super(gridHeight, gridWidth);
+
 	}
 
 
@@ -46,7 +48,9 @@ public class GameOfLife extends Controller {
 		}
 
 	}
+
 	
+
 
 }
 

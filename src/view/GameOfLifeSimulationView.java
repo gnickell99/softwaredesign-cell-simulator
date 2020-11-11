@@ -1,8 +1,7 @@
 package view;
 
-import javafx.application.Platform;
+import controller.GameOfLife;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,11 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
-public class GameOfLife {
+public class GameOfLifeSimulationView {
 
 	GridPane setUpLifeScene = new GridPane();
 	public static final int SIZE = 600;
@@ -22,15 +19,17 @@ public class GameOfLife {
 	public static final int COLUMNSPAN = 20;
 	private boolean paused = false;		
 	private Button pauseButton;
+	private Button stepButton;
 	private Color BACKGROUND = Color.LIGHTSLATEGRAY;
+	GameOfLife game = new GameOfLife(0 , 0);
 
 	InputParser validateUserInput = new InputParser();
-	public GameOfLife(int i, int j) {
-	
-
+	public GameOfLifeSimulationView(int gridWidth, int gridHeight) {
+		GameOfLife game = new GameOfLife(gridWidth , gridHeight);
+		game.generateGrid();
 	}
 
-	
+
 	/** setUpGameOfLifeScene
 	 * 
 	 * Creates each button need for the game of life simulation
@@ -38,12 +37,15 @@ public class GameOfLife {
 	 * @returns scene for game of life visuals
 	 * 
 	 */
-	public void setUpGameOfLifeScene(Paint background) {
-		 Scene secondScene = setupWindow();
-	     Stage newWindow = new Stage();
-	     newWindow.setTitle("GameOfLife Simulation");
-	     newWindow.setScene(secondScene);
+	public void setUpGameOfLifeScene(Paint background ) {
 		
+		
+		
+		Scene secondScene = setupWindow();
+		Stage newWindow = new Stage();
+		newWindow.setTitle("GameOfLife Simulation");
+		newWindow.setScene(secondScene);
+
 		final TextField gridWidth = new TextField();
 		gridWidth.setPromptText("(4.0 = Default) Enter Grid Width.");
 		GridPane.setConstraints(gridWidth, 0, 0);
@@ -61,7 +63,7 @@ public class GameOfLife {
 		GridPane.setConstraints(newSimulationButton, 0 , 3);
 		setUpLifeScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
-			setUpNewSimulation();
+			setupNewSimulation();
 
 		});
 
@@ -73,22 +75,31 @@ public class GameOfLife {
 
 		});
 		
+		stepButton = new Button("Step");
+		GridPane.setConstraints(stepButton, 0, 5);
+		setUpLifeScene.getChildren().add(stepButton);
+		stepButton.setOnAction((ActionEvent e) -> {
 		
-		 newWindow.show();
-//		Scene scene = new Scene(setUpLifeScene, SIZE, SIZE, background);
-//		scene.setRoot(scene.getRoot());
+			game.updateGrid(setUpLifeScene);;
+
+		});
+		
+		
+		
+
+		newWindow.show();
+
 
 	}
 
-	/** setUpNewSimulation
-	 * 
-	 * Sets up a new simulation with inputs from gridWith and gridHeight
-	 */
-	private void setUpNewSimulation() {
-		// TODO Auto-generated method stub
-
-	}
 	
+
+	private void setupNewSimulation() {
+		
+		
+	}
+
+
 	/** pressPause
 	 * 
 	 * Toggle the pause button
@@ -122,7 +133,7 @@ public class GameOfLife {
 			doOneStep(elapsedTime);
 		}
 	}
-	
+
 	/*doOneStep
 	 * 
 	 * Does a step in the search regardless of pause status. Uses controller to make step
@@ -131,11 +142,15 @@ public class GameOfLife {
 		//controller.makeStep();
 	}
 	
+
+	/*
+	 * sets up a new window when Game of Life simulation button is first pressed and whenever the new simulation button is pressed withing ame of life
+	 */
 	public Scene setupWindow() {
 		setUpLifeScene.setPadding(new Insets(10, 10, 10, 10));
 		setUpLifeScene.setVgap(10);
 		setUpLifeScene.setHgap(10);
-		
+
 		Scene scene = new Scene(setUpLifeScene, SIZE, SIZE, BACKGROUND);
 		return scene;
 	}

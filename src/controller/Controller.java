@@ -7,7 +7,6 @@ import states.*;
 public abstract class Controller {
 	public State[][] grid;
 	public GridPane originalGridPane;
-	//	public GridPane mirrorGridPane;
 	private static final int VALUE_OF_ZERO = 0;
 	private static final int VALUE_OF_ONE = 1;
 	private static final int  VALUE_OF_TWO = 2;
@@ -77,6 +76,6 @@ public abstract class Controller {
 	 * 
 	 */
 	
-//	protected abstract void makeStep();
+	
 
 }
