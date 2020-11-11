@@ -1,5 +1,8 @@
 package states;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class GameOfLifeMutables extends MutableState {
 
 	public final int NORTH_WEST_NEIGHBOR = 4;
@@ -14,7 +17,8 @@ public abstract class GameOfLifeMutables extends MutableState {
 	}
 
 	@Override
-	void toListNeighbors(int currentStateRow, int currentStateColumn, State[][] allStates) {
+	List<State> toListNeighbors(int currentStateRow, int currentStateColumn, State[][] allStates) {
+		List<State> neighbors = new ArrayList<State>();
 		neighbors.add(NORTH_NEIGHBOR, allStates[currentStateRow-1][currentStateColumn]);
 		neighbors.add(SOUTH_NEIGHBOR, allStates[currentStateRow+1][currentStateColumn]);
 		neighbors.add(WEST_NEIGHBOR, allStates[currentStateRow][currentStateColumn-1]);
@@ -23,6 +27,7 @@ public abstract class GameOfLifeMutables extends MutableState {
 		neighbors.add(NORTH_EAST_NEIGHBOR, allStates[currentStateRow-1][currentStateColumn+1]);
 		neighbors.add(SOUTH_WEST_NEIGHBOR, allStates[currentStateRow+1][currentStateColumn-1]);
 		neighbors.add(SOUTH_EAST_NEIGHBOR, allStates[currentStateRow+1][currentStateColumn+1]);
+		return neighbors;
 	}
 
 }

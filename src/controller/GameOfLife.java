@@ -50,7 +50,7 @@ public class GameOfLife extends Controller {
 
 		// if the cell should not be infected/alive then it will be a dead/empty cell
 		else{ 
-			State DeadCell = new DeadCell();
+			State DeadCell = new DeadCell(currentRow, currentColumn, this.grid);
 			grid[currentRow][currentColumn] = DeadCell;
 		}
 

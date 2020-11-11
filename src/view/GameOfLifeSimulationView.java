@@ -150,7 +150,7 @@ public class GameOfLifeSimulationView {
 	 * Does a step in the search regardless of pause status. Uses controller to make step
 	 */
 	public void doOneStep(double elapsedTime){
-		//controller.makeStep();
+		gameOfLifeController.updateGrid(setUpLifeScene);
 	}
 
 

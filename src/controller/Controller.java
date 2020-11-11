@@ -29,16 +29,16 @@ public abstract class Controller {
 		for(int i = 0; i < grid.length; i++)	{
 			for(int j = 0; j < grid[i].length; j++) {
 				mirrorGrid[i][j] = grid[i][j];
-				mirrorGrid[i][j] = mirrorGrid[i][j].act(i, j);
-				Rectangle cell = (Rectangle) mirrorGrid[i][j].getRectangle();
+				mirrorGrid[i][j] = grid[i][j].act(i, j);
+			}
+		}
+		for(int i = 0; i < grid.length; i++)	{
+			for(int j = 0; j < grid[i].length; j++) {
+				grid[i][j] = mirrorGrid[i][j];
+				Rectangle cell = (Rectangle) grid[i][j].getRectangle();
 				gridPane.add(cell, i+GRID_DISPLACEMENT, j+GRID_DISPLACEMENT);
 			}
 		}
-//		for(int i = 0; i < grid.length; i++)	{
-//			for(int j = 0; j < grid[i].length; j++) {
-//				grid[i][j] = mirrorGrid[i][j];
-//			}
-//		}
 	}
 
 	/** generateGrid
