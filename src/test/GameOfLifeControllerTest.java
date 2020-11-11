@@ -30,14 +30,14 @@ public class GameOfLifeControllerTest {
 		
 		//Manually make a testing scenario
 		System.out.println("Color: " + golControl.grid[1][1].cellColor + " type: " + golControl.grid[1][1].getType());
-		golControl.grid[1][1].cellColor = Color.WHITE;
-		//golControl.grid[1][1].getType();
+		golControl.grid[1][1].cellColor = Color.LIGHTBLUE;
+		golControl.grid[1][1].getRectangle();
 		System.out.println("Color: " + golControl.grid[1][1].cellColor + " type: " + golControl.grid[1][1].getType());
 		
 		//Print out all cells for confirmation
 //		System.out.println(golControl.grid[1][1].getType());
-//		for(int i = 0; i < golControl.grid.length; i++) {
-//			for(int j = 0; j < golControl.grid.length; j++) {
+//		for(int i = 1; i < golControl.grid.length-1; i++) {
+//			for(int j = 1; j < golControl.grid.length-1; j++) {
 //				System.out.println(i +"," + j + ": " + golControl.grid[i][j].getType());
 //			}
 //		}
@@ -97,6 +97,13 @@ public class GameOfLifeControllerTest {
 	}
 	
 	//Make sure there are not edge pieces inside the grid
-	
+	@Test
+	public void noEdgeInside() {
+		for(int i = 1; i < golControl.grid.length-1; i++) {
+			for(int j = 1; j < golControl.grid.length-1; j++) {
+				assertTrue(!golControl.grid[i][j].getType().equals("edge"));
+			}
+		}
+	}
 
 }
