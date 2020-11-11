@@ -41,7 +41,7 @@ public class GameOfLife {
 	public void setUpGameOfLifeScene(Paint background) {
 		 Scene secondScene = setupWindow();
 	     Stage newWindow = new Stage();
-	     newWindow.setTitle("Forest Fire Simulation");
+	     newWindow.setTitle("GameOfLife Simulation");
 	     newWindow.setScene(secondScene);
 		
 		final TextField gridWidth = new TextField();
