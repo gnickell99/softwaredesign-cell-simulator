@@ -6,8 +6,8 @@ import states.*;
 
 public abstract class Controller {
 	public State[][] grid;
+	public State[][] mirrorGrid;
 	public GridPane originalGridPane;
-	//	public GridPane mirrorGridPane;
 	private static final int VALUE_OF_ZERO = 0;
 	private static final int VALUE_OF_ONE = 1;
 	private static final int  VALUE_OF_TWO = 2;
@@ -15,6 +15,7 @@ public abstract class Controller {
 
 	public Controller(int height, int width) {	
 		grid = new State[height + VALUE_OF_TWO][width + VALUE_OF_TWO];
+		mirrorGrid = new State[height + VALUE_OF_TWO][width + VALUE_OF_TWO];
 		originalGridPane = new GridPane();
 		generateGrid(originalGridPane);
 	}
@@ -27,11 +28,17 @@ public abstract class Controller {
 	public void updateGrid(GridPane gridPane) {
 		for(int i = 0; i < grid.length; i++)	{
 			for(int j = 0; j < grid[i].length; j++) {
-				grid[i][j] = grid[i][j].act(i, j);
-				Rectangle cell = (Rectangle) grid[i][j].getRectangle();
+				mirrorGrid[i][j] = grid[i][j];
+				mirrorGrid[i][j] = mirrorGrid[i][j].act(i, j);
+				Rectangle cell = (Rectangle) mirrorGrid[i][j].getRectangle();
 				gridPane.add(cell, i+GRID_DISPLACEMENT, j+GRID_DISPLACEMENT);
 			}
 		}
+//		for(int i = 0; i < grid.length; i++)	{
+//			for(int j = 0; j < grid[i].length; j++) {
+//				grid[i][j] = mirrorGrid[i][j];
+//			}
+//		}
 	}
 
 	/** generateGrid

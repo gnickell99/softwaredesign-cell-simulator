@@ -9,6 +9,7 @@ public class AliveCell extends GameOfLifeMutables{
 	public AliveCell(int currentStateRow, int currentStateColumn, State[][] allStates) {
 		super(currentStateRow, currentStateColumn, allStates);
 		cellColor = Color.LIGHTBLUE;
+		toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
 	}
 
 	@Override

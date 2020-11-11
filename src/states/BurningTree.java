@@ -24,7 +24,6 @@ public class BurningTree extends WildFireMutables{
 	@Override
 	public State act(int currentStateRow, int currentStateColumn) {
 		if (burnTimer == 0) {
-			// System.out.println("a tree burnt down");
 			toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
 			return new BurntDownTree();
 		}
@@ -36,7 +35,7 @@ public class BurningTree extends WildFireMutables{
 
 	@Override
 	public String getType() {
-		return this.BURNING_TREE;
+		return "burning tree";
 	}
 
 }
