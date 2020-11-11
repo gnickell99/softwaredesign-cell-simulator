@@ -16,6 +16,7 @@ public abstract class Controller {
 	public Controller(int height, int width) {	
 		grid = new State[height + VALUE_OF_TWO][width + VALUE_OF_TWO];
 		originalGridPane = new GridPane();
+		generateGrid(originalGridPane);
 	}
 
 	/** updateGrid
