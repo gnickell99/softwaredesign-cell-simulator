@@ -47,7 +47,8 @@ public class SimulationSelector {
 		});
 		
 		gameOfLife.setOnAction((ActionEvent e) -> {
-			//GameOfLIfe gameOfLifeSim = new GameOfLife(parser.parseIntegerValue(gridWidth), parser.parseIntegerValue(gridHeight));
+			GameOfLife gameOfLifeSimulation = new GameOfLife(parser.parseIntegerValue(gridWidth), parser.parseIntegerValue(gridHeight));
+			gameOfLifeSimulation.setUpGameOfLifeScene(background);
 		});
 		
 		Scene scene = new Scene(setupGrid, SIZE, SIZE, background);
