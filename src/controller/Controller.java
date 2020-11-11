@@ -11,6 +11,7 @@ public abstract class Controller {
 	private static final int VALUE_OF_ZERO = 0;
 	private static final int VALUE_OF_ONE = 1;
 	private static final int  VALUE_OF_TWO = 2;
+	private static final int GRID_DISPLACEMENT = 10;
 
 	public Controller(int height, int width) {	
 		grid = new State[height + VALUE_OF_TWO][width + VALUE_OF_TWO];
@@ -27,7 +28,7 @@ public abstract class Controller {
 			for(int j = 0; j < grid[i].length; j++) {
 				grid[i][j] = grid[i][j].act(i, j);
 				Rectangle cell = (Rectangle) grid[i][j].getRectangle();
-				gridPane.add(cell, i, j);
+				gridPane.add(cell, i+GRID_DISPLACEMENT, j+GRID_DISPLACEMENT);
 			}
 		}
 	}
@@ -36,10 +37,11 @@ public abstract class Controller {
 	 * 
 	 * the generate forest method begins the instantiation of the 2D forest array
 	 */
-	public void generateGrid() {
+	public void generateGrid(GridPane gridPane) {
 		for (int i = 0; i < grid.length; i++) 	{
 			for (int j = 0; j < grid[VALUE_OF_ONE].length; j++)	{
 				placeEdgeOrCell(i,j);
+				gridPane.add(grid[i][j].getRectangle(), i+GRID_DISPLACEMENT, j+GRID_DISPLACEMENT);
 			}
 		}
 	}
