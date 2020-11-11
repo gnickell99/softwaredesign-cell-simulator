@@ -12,7 +12,7 @@ public class GameOfLife extends Controller {
 
 	public GameOfLife(int height, int width) {
 		super(height, width);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 

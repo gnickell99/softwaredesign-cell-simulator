@@ -1,4 +1,4 @@
-package states;
+package test;
 
 public class StatesTest {
 
