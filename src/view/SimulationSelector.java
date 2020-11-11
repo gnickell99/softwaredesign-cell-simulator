@@ -43,7 +43,8 @@ public class SimulationSelector {
 		setupGrid.getChildren().add(gameOfLife);
 		
 		wildFire.setOnAction((ActionEvent e) -> {
-			//WildFireSimulation wildFireSim = new WildFireSimulation(parser.parseIntegerValue(gridWidth), parser.parseIntegerValue(gridHeight));
+			WildfireSimulation wildFireSim = new WildfireSimulation(parser.parseIntegerValue(gridWidth), parser.parseIntegerValue(gridHeight));
+			wildFireSim.setUpWildFireScene(background);
 		});
 		
 		gameOfLife.setOnAction((ActionEvent e) -> {
