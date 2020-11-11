@@ -14,10 +14,10 @@ public abstract class WildFireMutables extends MutableState {
 
 	@Override
 	void toListNeighbors(int currentStateRow, int currentStateColumn, State[][] allStates) {
-		neighbors.add(NORTH_NEIGHBOR, allStates[currentStateRow-1][currentStateColumn]);
-		neighbors.add(SOUTH_NEIGHBOR, allStates[currentStateRow+1][currentStateColumn]);
-		neighbors.add(WEST_NEIGHBOR, allStates[currentStateRow][currentStateColumn-1]);
-		neighbors.add(EAST_NEIGHBOR, allStates[currentStateRow][currentStateColumn+1]);
+		neighbors.add(NORTH_NEIGHBOR, this.allCells[currentStateRow-1][currentStateColumn]);
+		neighbors.add(SOUTH_NEIGHBOR, this.allCells[currentStateRow+1][currentStateColumn]);
+		neighbors.add(WEST_NEIGHBOR, this.allCells[currentStateRow][currentStateColumn-1]);
+		neighbors.add(EAST_NEIGHBOR, this.allCells[currentStateRow][currentStateColumn+1]);
 	}
 
 }

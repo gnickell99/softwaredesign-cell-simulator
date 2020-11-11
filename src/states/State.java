@@ -1,8 +1,5 @@
 package states;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.scene.Node;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
