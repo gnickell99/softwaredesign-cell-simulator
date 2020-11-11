@@ -1,4 +1,4 @@
-package tests;
+package test;
 import java.awt.Rectangle;
 import java.awt.TextField;
 
