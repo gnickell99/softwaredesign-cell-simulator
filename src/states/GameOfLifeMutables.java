@@ -1,7 +1,5 @@
 package states;
 
-import java.awt.Point;
-
 public abstract class GameOfLifeMutables extends MutableState {
 
 	public final int NORTH_WEST_NEIGHBOR = 4;
