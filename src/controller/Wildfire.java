@@ -20,8 +20,12 @@ public class Wildfire extends Controller {
 	public double forestDensity;
 	public int burningTrees;
 
-	public Wildfire(int height, int width) {
+	public Wildfire(int height, int width, int burnTime, double spreadProbability, double forestDensity, int burningTrees) {
 		super(height, width);
+		this.burningTrees = burningTrees;
+		this.burnTime = burnTime;
+		this.forestDensity = forestDensity;
+		this.spreadProbability = spreadProbability;
 	}
 
 	/**
