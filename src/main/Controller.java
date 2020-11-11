@@ -57,7 +57,8 @@ public abstract class Controller {
 				|| (currentColumn == 0 || currentColumn == board[0].length - 1)) {
 			State edge = new Edge();
 			board[currentRow][currentColumn] = edge;
-		} else {
+		}
+    else {
 			setupCells(currentRow, currentColumn);
 		}
 	}
@@ -65,4 +66,3 @@ public abstract class Controller {
 	protected abstract void setupCells(int currentRow, int currentColumn);
 	
 }
-	
