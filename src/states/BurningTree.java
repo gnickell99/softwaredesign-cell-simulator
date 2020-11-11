@@ -18,16 +18,13 @@ public class BurningTree extends WildFireMutables{
 	public BurningTree(int currentStateRow, int currentStateColumn, int burnTime, State[][] allStates) {
 		super(currentStateRow, currentStateColumn, burnTime, allStates);
 		cellColor = Color.RED;
-		toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
 	}
 
 	@Override
 	public State act(int currentStateRow, int currentStateColumn) {
 		if (burnTimer == 0) {
-			toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
 			return new BurntDownTree();
 		}
-		toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
 		this.burnTimer--;
 		return this;
 		
