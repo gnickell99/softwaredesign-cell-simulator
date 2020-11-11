@@ -32,12 +32,10 @@ public class LiveTree extends WildFireMutables{
 		for (State neighbor : neighbors) {
 			if (neighbor.cellColor.equals(Color.RED)) {
 				if ((double) RNG.nextDouble() <= chanceToBurn) {
-					//toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
 					return new BurningTree(currentStateRow, currentStateColumn, this.burnTimer, this.allCells);
 				}
 			}
 		}
-		//toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
 		return this;
 	}
 
