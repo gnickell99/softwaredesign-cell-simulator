@@ -1,11 +1,18 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class GameOfLife {
 
@@ -15,6 +22,7 @@ public class GameOfLife {
 	public static final int COLUMNSPAN = 20;
 	private boolean paused = false;		
 	private Button pauseButton;
+	private Color BACKGROUND = Color.LIGHTSLATEGRAY;
 
 	InputParser validateUserInput = new InputParser();
 	public GameOfLife(int i, int j) {
@@ -30,8 +38,12 @@ public class GameOfLife {
 	 * @returns scene for game of life visuals
 	 * 
 	 */
-	public Scene setUpGameOfLifeScene(Paint background) {
-
+	public void setUpGameOfLifeScene(Paint background) {
+		 Scene secondScene = setupWindow();
+	     Stage newWindow = new Stage();
+	     newWindow.setTitle("Forest Fire Simulation");
+	     newWindow.setScene(secondScene);
+		
 		final TextField gridWidth = new TextField();
 		gridWidth.setPromptText("(4.0 = Default) Enter Grid Width.");
 		GridPane.setConstraints(gridWidth, 0, 0);
@@ -53,16 +65,18 @@ public class GameOfLife {
 
 		});
 
-		Button pauseButton = new Button("Pause Simulation");
-		GridPane.setConstraints(pauseButton, 0, 3);
+		pauseButton = new Button("Pause Simulation");
+		GridPane.setConstraints(pauseButton, 0, 4);
 		setUpLifeScene.getChildren().add(pauseButton);
 		pauseButton.setOnAction((ActionEvent e) -> {
 			pressPause();
 
 		});
 		
-		Scene scene = new Scene(setUpLifeScene, SIZE, SIZE, background);
-		return scene;
+		
+		 newWindow.show();
+//		Scene scene = new Scene(setUpLifeScene, SIZE, SIZE, background);
+//		scene.setRoot(scene.getRoot());
 
 	}
 
@@ -115,6 +129,15 @@ public class GameOfLife {
 	 */
 	public void doOneStep(double elapsedTime){
 		//controller.makeStep();
+	}
+	
+	public Scene setupWindow() {
+		setUpLifeScene.setPadding(new Insets(10, 10, 10, 10));
+		setUpLifeScene.setVgap(10);
+		setUpLifeScene.setHgap(10);
+		
+		Scene scene = new Scene(setUpLifeScene, SIZE, SIZE, BACKGROUND);
+		return scene;
 	}
 
 
