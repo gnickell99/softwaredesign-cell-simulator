@@ -6,9 +6,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import controller.GameOfLife;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 /*
- * @author Kim Jones and Camryn Williams
+ * @author Kim Jones
+ * This class test the Game of Life methods, it makes sure everything gets set up properly
  * 
  * */
 
@@ -18,21 +21,33 @@ public class GameOfLifeControllerTest {
 	static int firstRow = 0;
 	static int lastRow = 5;
 	
+	static GridPane gp = new GridPane();
+	
 	@BeforeClass
 	public static void getController() {
 		golControl = new GameOfLife(testGridSize,testGridSize); //Make object
-		golControl.generateGrid(); //Make a new Grid
+		golControl.generateGrid(gp); //Make a new Grid
 		
 		//Manually make a testing scenario
+		System.out.println("Color: " + golControl.grid[1][1].cellColor + " type: " + golControl.grid[1][1].getType());
+		golControl.grid[1][1].cellColor = Color.WHITE;
+		//golControl.grid[1][1].getType();
+		System.out.println("Color: " + golControl.grid[1][1].cellColor + " type: " + golControl.grid[1][1].getType());
 		
+		//Print out all cells for confirmation
+//		System.out.println(golControl.grid[1][1].getType());
+//		for(int i = 0; i < golControl.grid.length; i++) {
+//			for(int j = 0; j < golControl.grid.length; j++) {
+//				System.out.println(i +"," + j + ": " + golControl.grid[i][j].getType());
+//			}
+//		}
 		
 		//Test prints:
 //		System.out.println(golControl.grid[0][1].getType());
 //		System.out.println(golControl.grid[0][0].getType());
-		for(int i = 0; i < golControl.grid.length; i++) {
-			System.out.println(golControl.grid[i][lastRow].getType());
-		}
-		
+//		for(int i = 0; i < golControl.grid.length; i++) {
+//			System.out.println(golControl.grid[i][lastRow].getType());
+//		}
 		
 		
 	}
@@ -81,6 +96,7 @@ public class GameOfLifeControllerTest {
 		}
 	}
 	
+	//Make sure there are not edge pieces inside the grid
 	
 
 }
