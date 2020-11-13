@@ -16,7 +16,6 @@ import java.util.List;
 
 public abstract class MutableState extends State{
 	State[][] allCells;
-	List<State> neighbors = new ArrayList<State>();
 	
 	public MutableState(int currentStateRow, int currentStateColumn, State[][] allStates) {
 		super();
@@ -30,6 +29,6 @@ public abstract class MutableState extends State{
 	 * @param currentStateColumn - the current column for the particular state, used to find neighbors
 	 * @param allStates - the 2D array of all other states
 	 */
-	abstract void toListNeighbors(int currentStateRow, int currentStateColumn, State[][] allStates);
+	abstract List<State> toListNeighbors(int currentStateRow, int currentStateColumn, State[][] allStates);
 	
 }

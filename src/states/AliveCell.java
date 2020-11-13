@@ -1,5 +1,6 @@
 package states;
 
+import java.util.List;
 import java.util.Random;
 import javafx.scene.paint.Color;
 
@@ -13,19 +14,19 @@ public class AliveCell extends GameOfLifeMutables{
 
 	@Override
 	public State act(int currentStateRow, int currentStateColumn) {
+		List<State> neighbors = toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
 		int liveNeighbors = 0;
-		for (State neighbor : this.neighbors) {
+		for (State neighbor : neighbors) {
 			if (neighbor.getType().equals(ALIVE_CELL)) {
 				liveNeighbors++;
 			}
 		}
-		if (liveNeighbors <= 1 || liveNeighbors > 3) {
+		if (liveNeighbors == 2 || liveNeighbors == 3) {
 			toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
-			return new DeadCell();
+			return new DeadCell(currentStateRow, currentStateColumn, this.allCells);
 		}
 		toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
 		return this;
-
 	}
 
 	@Override

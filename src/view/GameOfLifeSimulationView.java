@@ -94,6 +94,7 @@ public class GameOfLifeSimulationView {
 
 		stepButton.setOnAction((ActionEvent e) -> {
 
+
 			step(0);
 
 		});
@@ -103,7 +104,7 @@ public class GameOfLifeSimulationView {
 	}
 
 
-	/** pressPause
+	/**
 	 * 
 	 * Toggle the pause button
 	 */
@@ -152,7 +153,7 @@ public class GameOfLifeSimulationView {
 	 * Does a step in the search regardless of pause status. Uses controller to make step
 	 */
 	public void doOneStep(double elapsedTime){
-		//controller.makeStep();
+		gameOfLifeController.updateGrid(setUpLifeScene);
 	}
 
 
@@ -171,3 +172,4 @@ public class GameOfLifeSimulationView {
 
 
 }
+

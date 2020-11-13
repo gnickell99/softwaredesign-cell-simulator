@@ -1,5 +1,8 @@
 package states;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class WildFireMutables extends MutableState {
 
 	final String LIVE_TREE = "live tree";
@@ -13,11 +16,13 @@ public abstract class WildFireMutables extends MutableState {
 	}
 
 	@Override
-	void toListNeighbors(int currentStateRow, int currentStateColumn, State[][] allStates) {
-		neighbors.add(NORTH_NEIGHBOR, this.allCells[currentStateRow-1][currentStateColumn]);
-		neighbors.add(SOUTH_NEIGHBOR, this.allCells[currentStateRow+1][currentStateColumn]);
-		neighbors.add(WEST_NEIGHBOR, this.allCells[currentStateRow][currentStateColumn-1]);
-		neighbors.add(EAST_NEIGHBOR, this.allCells[currentStateRow][currentStateColumn+1]);
+	List<State> toListNeighbors(int currentStateRow, int currentStateColumn, State[][] allStates) {
+		List<State> neighbors = new ArrayList<State>();
+		neighbors.add(NORTH_NEIGHBOR, allStates[currentStateRow-1][currentStateColumn]);
+		neighbors.add(SOUTH_NEIGHBOR, allStates[currentStateRow+1][currentStateColumn]);
+		neighbors.add(WEST_NEIGHBOR, allStates[currentStateRow][currentStateColumn-1]);
+		neighbors.add(EAST_NEIGHBOR, allStates[currentStateRow][currentStateColumn+1]);
+		return neighbors;
 	}
 
 }
