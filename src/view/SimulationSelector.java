@@ -8,6 +8,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 
+/***
+ * 
+ * @author Chris  and Jazz
+ * SimulationSelector - Set up for view hierarchy to choose between simulations
+ *
+ */
 public class SimulationSelector {
 
 	
@@ -50,6 +56,7 @@ public class SimulationSelector {
 		gameOfLife.setOnAction((ActionEvent e) -> {
 			GameOfLifeSimulationView gameOfLifeSimulation = new GameOfLifeSimulationView(parser.parseIntegerValue(gridWidth), parser.parseIntegerValue(gridHeight));
 			gameOfLifeSimulation.setUpGameOfLifeScene(background);
+			
 		});
 		
 		Scene scene = new Scene(setupGrid, SIZE, SIZE, background);

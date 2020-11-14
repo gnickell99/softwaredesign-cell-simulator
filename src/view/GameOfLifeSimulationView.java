@@ -1,7 +1,8 @@
 package view;
 
 import controller.GameOfLife;
-
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 /***
  * 
  * @author Jazz 
@@ -20,6 +22,7 @@ import javafx.stage.Stage;
 public class GameOfLifeSimulationView {
 
 	GridPane setUpLifeScene = new GridPane();
+	private final int MILLISECOND_DELAY = 150;
 	public static final int SIZE = 600;
 	public static final String TITLE = "Game Of Life Simulator";
 	public static final int COLUMNSPAN = 20;
@@ -27,10 +30,9 @@ public class GameOfLifeSimulationView {
 	private Button pauseButton;
 	public int gridWidth;
 	public int gridHeight;
-	private Button stepButton;
 	private Color BACKGROUND = Color.LIGHTSLATEGRAY;
 	InputParser validator = new InputParser();
-	public GameOfLife gameOfLifeController;
+	private GameOfLife gameOfLifeController = new GameOfLife(0, 0);
 
 	InputParser validateUserInput = new InputParser();
 	public GameOfLifeSimulationView(int gridWidth, int gridHeight) {
@@ -88,20 +90,30 @@ public class GameOfLifeSimulationView {
 
 		});
 
-		stepButton = new Button("Step");
+		Button stepButton = new Button("Step");
 		GridPane.setConstraints(stepButton, 0, 5);
 		setUpLifeScene.getChildren().add(stepButton);
 
 		stepButton.setOnAction((ActionEvent e) -> {
-			step(0);
+
+
+			this.doOneStep(MILLISECOND_DELAY);
+
 		});
+
+		// Makes the animation happen.  Will call "step" method repeatedly.
+		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(MILLISECOND_DELAY));
+		Timeline animation = new Timeline();
+		animation.setCycleCount(Timeline.INDEFINITE);
+		animation.getKeyFrames().add(frame);
+		animation.play();
 
 		newWindow.show();
 
 	}
 
 
-	/** pressPause
+	/**
 	 * 
 	 * Toggle the pause button
 	 */
@@ -169,3 +181,4 @@ public class GameOfLifeSimulationView {
 
 
 }
+
