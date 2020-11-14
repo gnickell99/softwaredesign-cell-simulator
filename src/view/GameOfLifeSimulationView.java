@@ -30,10 +30,9 @@ public class GameOfLifeSimulationView {
 	private Button pauseButton;
 	public int gridWidth;
 	public int gridHeight;
-	private Button stepButton;
 	private Color BACKGROUND = Color.LIGHTSLATEGRAY;
 	InputParser validator = new InputParser();
-	public GameOfLife gameOfLifeController;
+	private GameOfLife gameOfLifeController = new GameOfLife(0, 0);
 
 	InputParser validateUserInput = new InputParser();
 	public GameOfLifeSimulationView(int gridWidth, int gridHeight) {
@@ -83,7 +82,7 @@ public class GameOfLifeSimulationView {
 
 		});
 
-		 pauseButton = new Button("Pause Simulation");
+		pauseButton = new Button("Pause Simulation");
 		GridPane.setConstraints(pauseButton, 0, 4);
 		setUpLifeScene.getChildren().add(pauseButton);
 		pauseButton.setOnAction((ActionEvent e) -> {
@@ -101,13 +100,13 @@ public class GameOfLifeSimulationView {
 			this.doOneStep(MILLISECOND_DELAY);
 
 		});
-		
+
 		// Makes the animation happen.  Will call "step" method repeatedly.
-				KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(MILLISECOND_DELAY));
-				Timeline animation = new Timeline();
-				animation.setCycleCount(Timeline.INDEFINITE);
-				animation.getKeyFrames().add(frame);
-				animation.play();
+		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(MILLISECOND_DELAY));
+		Timeline animation = new Timeline();
+		animation.setCycleCount(Timeline.INDEFINITE);
+		animation.getKeyFrames().add(frame);
+		animation.play();
 
 		newWindow.show();
 

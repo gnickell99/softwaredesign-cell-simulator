@@ -1,5 +1,7 @@
 package view;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -9,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import controller.*;
 
 /***
@@ -19,34 +22,35 @@ import controller.*;
  */
 
 public class WildfireSimulation {
-	
+
 	GridPane setUpFireScene = new GridPane();
 	public static final int SIZE = 600;
+	private final int MILLISECOND_DELAY = 150;
 	public int gridWidth;
 	public int gridHeight;
 	public double spreadProbability;
 	public double forestDensity;
 	public int burningTrees;
 	public int burnTime;
-	public Wildfire wildFireController;
 	public static final String TITLE = "WildFire Simulator";
 	public static final int COLUMNSPAN = 20;
 	private boolean paused = false;		
 	private Button pauseButton;
 	private Color BACKGROUND = Color.LIGHTSLATEGRAY;
 	InputParser validator = new InputParser();
-	
+	private Wildfire wildFireController = new Wildfire(0, 0, 0, 0, 0, 0);
+
 	public WildfireSimulation(int gridWidth, int gridHeight)	{
 		this.gridWidth = gridWidth;
 		this.gridWidth = gridHeight;
 	}
-	
+
 	public void setUpWildFireScene(Paint background) {
-		 Scene secondScene = setupWindow();
-	     Stage newWindow = new Stage();
-	     newWindow.setTitle(TITLE);
-	     newWindow.setScene(secondScene);
-		
+		Scene secondScene = setupWindow();
+		Stage newWindow = new Stage();
+		newWindow.setTitle(TITLE);
+		newWindow.setScene(secondScene);
+
 		final TextField gridWidth = new TextField();
 		gridWidth.setPromptText("(4.0 = Default) Enter Grid Width.");
 		GridPane.setConstraints(gridWidth, 0, 0);
@@ -59,7 +63,7 @@ public class WildfireSimulation {
 		GridPane.setColumnSpan(gridHeight, COLUMNSPAN);
 		setUpFireScene.getChildren().add(gridHeight);
 		final TextField burnTime = new TextField();
-		
+
 		burnTime.setPromptText("(1.0 = Default) Enter Burn Time.");
 		GridPane.setConstraints(burnTime, 0, 2);
 		GridPane.setColumnSpan(burnTime, COLUMNSPAN);
@@ -76,7 +80,7 @@ public class WildfireSimulation {
 		GridPane.setConstraints(forestDensity, 0, 3);
 		GridPane.setColumnSpan(forestDensity, COLUMNSPAN);
 		setUpFireScene.getChildren().add(forestDensity);
-		
+
 		final TextField burningTreesNumber = new TextField();
 		burningTreesNumber.setPromptText("(1.0 = Default) Enter Burning Tree Number.");
 		GridPane.setConstraints(burningTreesNumber, 0, 4);
@@ -106,28 +110,38 @@ public class WildfireSimulation {
 			pressPause();
 
 		});
-		
+
 		Button step = new Button("Step");
 		GridPane.setConstraints(step, 0, 7);
 		GridPane.setColumnSpan(step, 3);
 		setUpFireScene.getChildren().add(step);
-		
+
 		step.setOnAction((ActionEvent s) -> {
-			step(0);
+			this.doOneStep(MILLISECOND_DELAY);
 		});
-		
-		 newWindow.show();
+
+		// Makes the animation happen.  Will call "step" method repeatedly.
+		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(MILLISECOND_DELAY));
+		Timeline animation = new Timeline();
+		animation.setCycleCount(Timeline.INDEFINITE);
+		animation.getKeyFrames().add(frame);
+		animation.play();
+
+		newWindow.show();
+
+
+
 	}
-	
+
 	public Scene setupWindow() {
 		setUpFireScene.setPadding(new Insets(10, 10, 10, 10));
 		setUpFireScene.setVgap(10);
 		setUpFireScene.setHgap(10);
-		
+
 		Scene scene = new Scene(setUpFireScene, SIZE, SIZE, BACKGROUND);
 		return scene;
 	}
-	
+
 	/** setUpNewSimulation
 	 * 
 	 * Sets up a new simulation with inputs from gridWith and gridHeight
@@ -136,7 +150,7 @@ public class WildfireSimulation {
 	private void setUpNewSimulation(Wildfire wildFireController) {
 		wildFireController.generateGrid(setUpFireScene);
 	}
-	
+
 	/** pressPause
 	 * 
 	 * Toggle the pause button
@@ -170,7 +184,7 @@ public class WildfireSimulation {
 			doOneStep(elapsedTime);
 		}
 	}
-	
+
 	/*doOneStep
 	 * 
 	 * Does a step in the search regardless of pause status. Uses controller to make step
