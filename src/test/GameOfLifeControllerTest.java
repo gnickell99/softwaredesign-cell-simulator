@@ -122,7 +122,7 @@ public class GameOfLifeControllerTest {
 	
 	//Test of the rules:
 	
-	//Rule 1: wip
+	//Rule 1: good
 	@Test
 	public void rule1preTest() {
 		setUpRule1(); //Set up cells
@@ -144,8 +144,8 @@ public class GameOfLifeControllerTest {
 		//Set up cells
 		setUpRule1();
 		
-		//Call act method
-		golControl.grid[1][1].act(1, 1);		
+		//Call act method and save the update
+		golControl.grid[1][1] = golControl.grid[1][1].act(1, 1);		
 		
 //		System.out.println(golControl.grid[1][1].getType());
 //		System.out.println(golControl.grid[1][2].getType());
@@ -153,7 +153,7 @@ public class GameOfLifeControllerTest {
 //		System.out.println(golControl.grid[2][2].getType());
 		
 		//Check rule 1 worked
-		assertTrue(golControl.grid[1][1].getType().equals("dead cell")); //Fails- should be killed
+		assertTrue(golControl.grid[1][1].getType().equals("dead cell"));
 		assertTrue(golControl.grid[1][2].getType().equals("dead cell"));
 		assertTrue(golControl.grid[2][1].getType().equals("dead cell"));
 		assertTrue(golControl.grid[2][2].getType().equals("dead cell"));
@@ -182,7 +182,7 @@ public class GameOfLifeControllerTest {
 		setUpRule2(); 
 		
 		//Call act method
-		golControl.grid[1][1].act(1, 1);	
+		golControl.grid[1][1] = golControl.grid[1][1].act(1, 1);	
 		
 //		System.out.println(golControl.grid[1][1].getType());
 //		System.out.println(golControl.grid[1][2].getType());
@@ -219,7 +219,7 @@ public class GameOfLifeControllerTest {
 		setUpRule3(); 
 		
 		//Call act method
-		golControl.grid[1][1].act(1, 1);	
+		golControl.grid[1][1] = golControl.grid[1][1].act(1, 1);	
 		
 //		System.out.println(golControl.grid[1][1].getType());
 //		System.out.println(golControl.grid[1][2].getType());
@@ -258,13 +258,13 @@ public class GameOfLifeControllerTest {
 		setUpRule4(); 
 		
 		//Call act method
-		golControl.grid[1][2].act(1, 2);	
+		golControl.grid[1][2] = golControl.grid[1][2].act(1, 2);	
 		
-		System.out.println(golControl.grid[1][1].getType());
-		System.out.println(golControl.grid[1][2].getType());
-		System.out.println(golControl.grid[1][3].getType());
-		System.out.println(golControl.grid[2][1].getType());
-		System.out.println(golControl.grid[2][2].getType());
+//		System.out.println(golControl.grid[1][1].getType());
+//		System.out.println(golControl.grid[1][2].getType());
+//		System.out.println(golControl.grid[1][3].getType());
+//		System.out.println(golControl.grid[2][1].getType());
+//		System.out.println(golControl.grid[2][2].getType());
 		
 		//Check rule 4 is correct
 		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
