@@ -48,11 +48,10 @@ public class GameOfLifeControllerTest {
 	}
 	
 	//Make 1st cell blue and 3 neighbors blue
-	//Make 1st cell blue and 2 neighbors blue
 	public static void setUpRule3() {
 		golControl.infectCell(1, 1); //blue
 		golControl.infectCell(1, 2); // blue
-		golControl.killCell(2, 1); // white
+		golControl.infectCell(2, 1); // blue
 		golControl.infectCell(2, 2); // blue
 	}
 	
@@ -114,7 +113,7 @@ public class GameOfLifeControllerTest {
 	
 	//Test of the rules:
 	
-	//Rule 1:
+	//Rule 1: wip
 	@Test
 	public void rule1preTest() {
 		setUpRule1(); //Set up cells
@@ -151,7 +150,7 @@ public class GameOfLifeControllerTest {
 		assertTrue(golControl.grid[2][2].getType().equals("dead cell"));
 	}
 	
-	//Rule 2:
+	//Rule 2: good
 	@Test
 	public void rule2preTest() {
 		setUpRule2(); //Set up cells
@@ -188,7 +187,42 @@ public class GameOfLifeControllerTest {
 		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
 	}
 	
-	//Rule 3:
+	//Rule 3: 
+	@Test
+	public void rule3preTest() {
+		setUpRule3(); //Set up cells
+		
+//		System.out.println(golControl.grid[1][1].getType());
+//		System.out.println(golControl.grid[1][2].getType());
+//		System.out.println(golControl.grid[2][1].getType());
+//		System.out.println(golControl.grid[2][2].getType());
+		
+		//Check rule 1 is set up correctly
+		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
+		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
+		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
+		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
+	}
+	
+	@Test
+	public void rule3Test() {
+		//Set up cells
+		setUpRule3(); 
+		
+		//Call act method
+		golControl.grid[1][1].act(1, 1);	
+		
+//		System.out.println(golControl.grid[1][1].getType());
+//		System.out.println(golControl.grid[1][2].getType());
+//		System.out.println(golControl.grid[2][1].getType());
+//		System.out.println(golControl.grid[2][2].getType());
+		
+		//Check rule 2 is set up correctly - should be same
+		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
+		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
+		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
+		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
+	}
 	
 	
 }
