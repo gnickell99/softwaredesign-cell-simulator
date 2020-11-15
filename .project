@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>CellSimulator2</name>
+	<name>CellSim2</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -16,26 +15,3 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
 </projectDescription>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<projectDescription>
-<<<<<<< HEAD
-	<name>CellSimulationPart2Team</name>
-=======
-	<name>CellSimulator2</name>
->>>>>>> refs/remotes/origin/Jazz
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
-	<natures>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
-</projectDescription>
->>>>>>> refs/remotes/origin/main

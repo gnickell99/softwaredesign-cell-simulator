@@ -21,7 +21,9 @@ public class AliveCell extends GameOfLifeMutables{
 				liveNeighbors++;
 			}
 		}
-		if (liveNeighbors == 2 || liveNeighbors == 3) {
+		//If a cell is currently alive and:
+		//If it has 0 or 1 neighbor cell should be dead. If it has 4 or more neighbors it should be dead
+		if (liveNeighbors == 0 || liveNeighbors == 1 || liveNeighbors >= 4) {
 			toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
 			return new DeadCell(currentStateRow, currentStateColumn, this.allCells);
 		}
