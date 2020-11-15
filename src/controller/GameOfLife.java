@@ -56,7 +56,17 @@ public class GameOfLife extends Controller {
 
 	}
 
-
+	
+	//Methods to help test
+	public void infectCell(int currentRow, int currentColumn) {
+		State AliveCell = new AliveCell(currentRow, currentColumn, this.grid);
+		grid[currentRow][currentColumn] = AliveCell;
+	}
+	
+	public void killCell(int currentRow, int currentColumn) {
+		State DeadCell = new DeadCell(currentRow, currentColumn, this.grid);
+		grid[currentRow][currentColumn] = DeadCell;
+	}
 	
 
 
