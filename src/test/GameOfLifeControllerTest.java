@@ -169,7 +169,7 @@ public class GameOfLifeControllerTest {
 //		System.out.println(golControl.grid[2][1].getType());
 //		System.out.println(golControl.grid[2][2].getType());
 		
-		//Check rule 1 is set up correctly
+		//Check rule 2 is set up correctly
 		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
 		assertTrue(golControl.grid[2][1].getType().equals("dead cell"));
@@ -206,7 +206,7 @@ public class GameOfLifeControllerTest {
 //		System.out.println(golControl.grid[2][1].getType());
 //		System.out.println(golControl.grid[2][2].getType());
 		
-		//Check rule 1 is set up correctly
+		//Check rule 3 is set up correctly
 		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
 		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
@@ -226,7 +226,7 @@ public class GameOfLifeControllerTest {
 //		System.out.println(golControl.grid[2][1].getType());
 //		System.out.println(golControl.grid[2][2].getType());
 		
-		//Check rule 2 is set up correctly - should be same
+		//Check rule 3 is correct
 		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
 		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
@@ -244,7 +244,7 @@ public class GameOfLifeControllerTest {
 //		System.out.println(golControl.grid[2][1].getType());
 //		System.out.println(golControl.grid[2][2].getType());
 		
-		//Check rule 1 is set up correctly
+		//Check rule 4 is set up correctly
 		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
 		assertTrue(golControl.grid[1][3].getType().equals("alive cell"));
@@ -266,7 +266,7 @@ public class GameOfLifeControllerTest {
 		System.out.println(golControl.grid[2][1].getType());
 		System.out.println(golControl.grid[2][2].getType());
 		
-		//Check rule 2 is set up correctly - should be same
+		//Check rule 4 is correct
 		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[1][2].getType().equals("dead cell")); //Fails- should be killed
 		assertTrue(golControl.grid[1][3].getType().equals("alive cell"));
