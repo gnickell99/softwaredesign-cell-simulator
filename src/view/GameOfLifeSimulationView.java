@@ -1,7 +1,6 @@
 package view;
 
 import controller.GameOfLife;
-
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

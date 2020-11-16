@@ -15,11 +15,9 @@ import java.util.List;
  */
 
 public abstract class MutableState extends State{
-	State[][] allCells;
 	
-	public MutableState(int currentStateRow, int currentStateColumn, State[][] allStates) {
+	public MutableState(int currentStateRow, int currentStateColumn) {
 		super();
-		this.allCells = allStates;
 	}
 
 	/** toListNeighbors
@@ -29,6 +27,6 @@ public abstract class MutableState extends State{
 	 * @param currentStateColumn - the current column for the particular state, used to find neighbors
 	 * @param allStates - the 2D array of all other states
 	 */
-	abstract List<State> toListNeighbors(int currentStateRow, int currentStateColumn, State[][] allStates);
+	//abstract List<State> toListNeighbors(int currentStateRow, int currentStateColumn, State[][] allStates);
 	
 }

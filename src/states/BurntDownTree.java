@@ -9,9 +9,4 @@ public class BurntDownTree extends ImmutableState{
 		cellColor = Color.YELLOW;
 	}
 
-	@Override
-	public String getType() {
-		return this.BURNT_DOWN_TREE;
-	}
-
 }

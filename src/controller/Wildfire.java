@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import states.*;
@@ -46,13 +48,13 @@ public class Wildfire extends Controller {
 			// These are the mutable states
 			// checks if the tree is should tree should be on fire
 			if (burningTrees != VALUE_OF_ZERO && random.nextDouble() < BURN_CHANCE) {
-				State burningTree = new BurningTree(currentRow, currentColumn, burnTime, this.grid);
+				State burningTree = new BurningTree(currentRow, currentColumn, burnTime);
 				burningTrees--;
 				grid[currentRow][currentColumn] = burningTree;
 			}
 			// If not then spawn a normal tree
 			else {
-				State liveTree = new LiveTree(currentRow, currentColumn, burnTime, spreadProbability, this.grid);
+				State liveTree = new LiveTree(currentRow, currentColumn, burnTime, spreadProbability);
 				grid[currentRow][currentColumn] = liveTree;
 			}
 		}
@@ -93,6 +95,16 @@ public class Wildfire extends Controller {
 		} else {
 			this.burningTrees = VALUE_OF_ONE;
 		}
+	}
+
+	@Override
+	public List<State> getNeighbors(int currentStateRow, int currentStateColumn) {
+		List<State> neighbors = new ArrayList<State>();
+		neighbors.add(NORTH_NEIGHBOR, grid[currentStateRow-1][currentStateColumn]);
+		neighbors.add(SOUTH_NEIGHBOR, grid[currentStateRow+1][currentStateColumn]);
+		neighbors.add(WEST_NEIGHBOR, grid[currentStateRow][currentStateColumn-1]);
+		neighbors.add(EAST_NEIGHBOR, grid[currentStateRow][currentStateColumn+1]);
+		return neighbors;
 	}
 
 	

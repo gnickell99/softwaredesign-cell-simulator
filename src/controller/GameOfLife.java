@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import states.*;
@@ -21,7 +23,6 @@ public class GameOfLife extends Controller {
 
 	public GameOfLife(int gridHeight, int gridWidth) {
 		super(gridHeight, gridWidth);
-
 	}
 
 
@@ -34,7 +35,6 @@ public class GameOfLife extends Controller {
 	 * @param currentRow
 	 * @param currentColumn
 	 */
-
 	@Override
 	protected void setupCells(int currentRow, int currentColumn) {
 		Random randomInfectedCellsProbability = new Random();
@@ -44,15 +44,30 @@ public class GameOfLife extends Controller {
 
 		// Logic for determining which cells start as infected
 		if(infectedCellProbability < BACTERIA_PROBABILITY) {
-			State AliveCell = new AliveCell(currentRow, currentColumn, this.grid);
+			State AliveCell = new AliveCell(currentRow, currentColumn);
 			grid[currentRow][currentColumn] = AliveCell;
 		}
 
 		// if the cell should not be infected/alive then it will be a dead/empty cell
 		else{ 
-			State DeadCell = new DeadCell(currentRow, currentColumn, this.grid);
+			State DeadCell = new DeadCell(currentRow, currentColumn);
 			grid[currentRow][currentColumn] = DeadCell;
 		}
 
+	}
+
+
+	@Override
+	public List<State> getNeighbors(int currentStateRow, int currentStateColumn) {
+		List<State> neighbors = new ArrayList<State>();
+		neighbors.add(NORTH_NEIGHBOR, grid[currentStateRow-1][currentStateColumn]);
+		neighbors.add(SOUTH_NEIGHBOR, grid[currentStateRow+1][currentStateColumn]);
+		neighbors.add(WEST_NEIGHBOR, grid[currentStateRow][currentStateColumn-1]);
+		neighbors.add(EAST_NEIGHBOR, grid[currentStateRow][currentStateColumn+1]);
+		neighbors.add(NORTH_WEST_NEIGHBOR, grid[currentStateRow-1][currentStateColumn-1]);
+		neighbors.add(NORTH_EAST_NEIGHBOR, grid[currentStateRow-1][currentStateColumn+1]);
+		neighbors.add(SOUTH_WEST_NEIGHBOR, grid[currentStateRow+1][currentStateColumn-1]);
+		neighbors.add(SOUTH_EAST_NEIGHBOR, grid[currentStateRow+1][currentStateColumn+1]);
+		return neighbors;
 	}
 }

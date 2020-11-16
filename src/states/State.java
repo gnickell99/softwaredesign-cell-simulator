@@ -19,11 +19,6 @@ public abstract class State {
 	Shape state;
 	public Paint cellColor;
 	private static final int CELL_SIZE = 10;
-
-	public final int NORTH_NEIGHBOR = 0;
-	public final int SOUTH_NEIGHBOR = 1;
-	public final int WEST_NEIGHBOR = 2;
-	public final int EAST_NEIGHBOR = 3;
 	
 	public State() {
 		state = new Rectangle(CELL_SIZE, CELL_SIZE);
@@ -40,12 +35,6 @@ public abstract class State {
 	 * @return act will return a new state if the conditions for a change are met, otherwise it will return the current state
 	 */
 	public abstract State act(int currentStateRow, int currentStateColumn);
-	
-	/** getType
-	 * 
-	 * @return - returns the name of the state as a string, see constants above
-	 */
-	public abstract String getType();
 
 	public Node getState() {
 		return state;

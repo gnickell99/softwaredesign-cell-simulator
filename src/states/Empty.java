@@ -9,11 +9,5 @@ public class Empty extends ImmutableState{
 		cellColor = Color.BROWN;
 	}
 
-	@Override
-	public String getType() {
-		return this.EMPTY_CELL;
-	}
-
-
 }
 

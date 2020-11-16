@@ -13,10 +13,10 @@ import javafx.scene.paint.Color;
  *
  */
 
-public class BurningTree extends WildFireMutables{
-
-	public BurningTree(int currentStateRow, int currentStateColumn, int burnTime, State[][] allStates) {
-		super(currentStateRow, currentStateColumn, burnTime, allStates);
+public class BurningTree extends WildFireMutables {
+	
+	public BurningTree(int currentStateRow, int currentStateColumn, int burnTime) {
+		super(currentStateRow, currentStateColumn, burnTime);
 		cellColor = Color.RED;
 	}
 
@@ -28,11 +28,6 @@ public class BurningTree extends WildFireMutables{
 		this.burnTimer--;
 		return this;
 		
-	}
-
-	@Override
-	public String getType() {
-		return "burning tree";
 	}
 
 }

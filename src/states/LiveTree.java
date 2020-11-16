@@ -20,29 +20,24 @@ import javafx.scene.paint.Color;
 public class LiveTree extends WildFireMutables{
 	Random RNG = new Random();
 	
-	public LiveTree(int currentStateRow, int currentStateColumn, int burnTime, double burnProbability, State[][] allStates) {
-		super(currentStateRow, currentStateColumn, burnTime, allStates);
+	public LiveTree(int currentStateRow, int currentStateColumn, int burnTime, double burnProbability) {
+		super(currentStateRow, currentStateColumn, burnTime);
 		cellColor = Color.GREEN;
 		chanceToBurn = burnProbability;
 	}
 
 	@Override
 	public State act(int currentStateRow, int currentStateColumn) {
-		List<State> neighbors = toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
+		List<State> neighbors = null;
 		for (State neighbor : neighbors) {
 			if (neighbor.cellColor.equals(Color.RED)) {
 				if ((double) RNG.nextDouble() <= chanceToBurn) {
-					return new BurningTree(currentStateRow, currentStateColumn, this.burnTimer, this.allCells);
+					return new BurningTree(currentStateRow, currentStateColumn, this.burnTimer);
 				}
 			}
 		}
 		return this;
 	}
 
-	@Override
-	public String getType() {
-		return "live tree";
-	}
 	
-
 }

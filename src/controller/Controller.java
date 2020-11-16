@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 import states.*;
@@ -8,10 +10,20 @@ public abstract class Controller {
 	public State[][] grid;
 	public State[][] mirrorGrid;
 	public GridPane originalGridPane;
+	
 	private static final int VALUE_OF_ZERO = 0;
 	private static final int VALUE_OF_ONE = 1;
 	private static final int  VALUE_OF_TWO = 2;
 	private static final int GRID_DISPLACEMENT = 10;
+	
+	public final int NORTH_NEIGHBOR = 0;
+	public final int SOUTH_NEIGHBOR = 1;
+	public final int WEST_NEIGHBOR = 2;
+	public final int EAST_NEIGHBOR = 3;
+	public final int NORTH_WEST_NEIGHBOR = 4;
+	public final int NORTH_EAST_NEIGHBOR = 5;
+	public final int SOUTH_WEST_NEIGHBOR = 6;
+	public final int SOUTH_EAST_NEIGHBOR = 7;
 
 	public Controller(int height, int width) {	
 		grid = new State[height + VALUE_OF_TWO][width + VALUE_OF_TWO];
@@ -81,12 +93,13 @@ public abstract class Controller {
 	 */
 	protected abstract void setupCells(int currentRow, int currentColumn);
 
-	/** makeStep
+	/** toListNeighbors
+	 * This method creates an array list of neighbors for a mutable state
 	 * 
-	 * The make step method takes a single step in either of the simulations as long as the simulation is paused
-	 * 
+	 * @param currentStateRow - the current row for the particular state, used to find neighbors
+	 * @param currentStateColumn - the current column for the particular state, used to find neighbors
+	 * @return - returns a list of neighbors which are defined in inherited methods
 	 */
-	
-//	protected abstract void makeStep();
+	public abstract List<State> getNeighbors(int currentStateRow, int currentStateColumn);
 
 }
