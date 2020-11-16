@@ -1,28 +1,29 @@
-package states.GameOfLife;
+package states.RockPaperScissors;
 
 import java.util.List;
 
 import javafx.scene.paint.Color;
 import states.MutableState;
 import states.State;
+import states.GameOfLife.DeadCell;
 
-public class DeadCell extends MutableState{
+public abstract class RPSMutables extends MutableState {
+
+	int winThreshold;
 	
-	public DeadCell(int currentStateRow, int currentStateColumn) {
+	public RPSMutables(int currentStateRow, int currentStateColumn, int threshold) {
 		super(currentStateRow, currentStateColumn);
-		cellColor = Color.WHITE;
+		winThreshold = threshold;
 	}
-
+	
+	
 	@Override
 	public State act(List<State> neighbors) {
-		int liveNeighbors = 0;
+		int weaknessCount = 0;
 		for (State neighbor : neighbors) {
 			if (neighbor.cellColor.equals(Color.LIGHTBLUE)) {
-				liveNeighbors++;
+				weaknessCount++;
 			}
-		}
-		if (liveNeighbors == 3) {
-			return new AliveCell(this.currentRow, this.currentColumn);
 		}
 		return this;
 	}

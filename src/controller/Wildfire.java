@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 import states.*;
+import states.Wildfire.BurningTree;
+import states.Wildfire.Empty;
+import states.Wildfire.LiveTree;
 
 public class Wildfire extends Controller {
 

@@ -1,9 +1,10 @@
-package states;
+package states.Wildfire;
 
 import java.util.List;
 
 //import controller.Controller;
 import javafx.scene.paint.Color;
+import states.State;
 
 /***
  * 

@@ -1,10 +1,12 @@
-package states;
+package states.GameOfLife;
 
 import java.util.List;
 import java.util.Random;
 
 import controller.GameOfLife;
 import javafx.scene.paint.Color;
+import states.MutableState;
+import states.State;
 
 public class AliveCell extends MutableState{
 

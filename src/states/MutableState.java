@@ -16,8 +16,8 @@ import java.util.List;
 
 public abstract class MutableState extends State{
 	
-	int currentRow;
-	int currentColumn;
+	protected int currentRow;
+	protected int currentColumn;
 	
 	public MutableState(int currentStateRow, int currentStateColumn) {
 		super();

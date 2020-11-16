@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 import states.*;
+import states.GameOfLife.AliveCell;
+import states.GameOfLife.DeadCell;
 
 /***
  * 
