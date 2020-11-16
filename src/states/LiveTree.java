@@ -27,12 +27,11 @@ public class LiveTree extends WildFireMutables{
 	}
 
 	@Override
-	public State act(int currentStateRow, int currentStateColumn) {
-		List<State> neighbors = null;
+	public State act(List<State> neighbors) {
 		for (State neighbor : neighbors) {
 			if (neighbor.cellColor.equals(Color.RED)) {
 				if ((double) RNG.nextDouble() <= chanceToBurn) {
-					return new BurningTree(currentStateRow, currentStateColumn, this.burnTimer);
+					return new BurningTree(this.currentRow, this.currentColumn, this.burnTimer);
 				}
 			}
 		}

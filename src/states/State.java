@@ -1,5 +1,7 @@
 package states;
 
+import java.util.List;
+
 import javafx.scene.Node;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -34,7 +36,7 @@ public abstract class State {
 	 * @param allStates - the 2D array of all other states
 	 * @return act will return a new state if the conditions for a change are met, otherwise it will return the current state
 	 */
-	public abstract State act(int currentStateRow, int currentStateColumn);
+	public abstract State act(List<State> neighbors);
 
 	public Node getState() {
 		return state;

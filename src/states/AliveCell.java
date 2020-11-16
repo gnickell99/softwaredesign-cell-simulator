@@ -14,8 +14,7 @@ public class AliveCell extends MutableState{
 	}
 
 	@Override
-	public State act(int currentStateRow, int currentStateColumn) {
-		List<State> neighbors = null;
+	public State act(List<State> neighbors) {
 		int liveNeighbors = 0;
 		for (State neighbor : neighbors) {
 			if (neighbor.cellColor.equals(Color.LIGHTBLUE)) {
@@ -24,7 +23,7 @@ public class AliveCell extends MutableState{
 		}
 		
 		if (liveNeighbors <= 1 || liveNeighbors >= 4) {
-			return new DeadCell(currentStateRow, currentStateColumn);
+			return new DeadCell(this.currentRow, this.currentColumn);
 		} else { return this; }
 	}
 

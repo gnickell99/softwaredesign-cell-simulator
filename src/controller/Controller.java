@@ -25,9 +25,9 @@ public abstract class Controller {
 	public final int SOUTH_WEST_NEIGHBOR = 6;
 	public final int SOUTH_EAST_NEIGHBOR = 7;
 
+	//height width flipped?
 	public Controller(int height, int width) {	
 		grid = new State[height + VALUE_OF_TWO][width + VALUE_OF_TWO];
-		mirrorGrid = new State[height + VALUE_OF_TWO][width + VALUE_OF_TWO];
 		originalGridPane = new GridPane();
 		generateGrid(originalGridPane);
 	}
@@ -38,14 +38,16 @@ public abstract class Controller {
 	 * @param grid
 	 */
 	public void updateGrid(GridPane gridPane) {
-		for(int i = 0; i < grid.length; i++)	{
-			for(int j = 0; j < grid[i].length; j++) {
+		mirrorGrid = new State[grid.length + VALUE_OF_TWO][grid[0].length + VALUE_OF_TWO];
+		for(int i = 1; i < grid.length - 1; i++)	{
+			for(int j = 1; j < grid[i].length - 1; j++) {
 				mirrorGrid[i][j] = grid[i][j];
-				mirrorGrid[i][j] = grid[i][j].act(i, j);
+				List<State> neighbors = getNeighbors(i,j);
+				mirrorGrid[i][j] = grid[i][j].act(neighbors);
 			}
 		}
-		for(int i = 0; i < grid.length; i++)	{
-			for(int j = 0; j < grid[i].length; j++) {
+		for(int i = 1; i < grid.length - 1; i++)	{
+			for(int j = 1; j < grid[i].length - 1; j++) {
 				grid[i][j] = mirrorGrid[i][j];
 				Rectangle cell = (Rectangle) grid[i][j].getRectangle();
 				gridPane.add(cell, i+GRID_DISPLACEMENT, j+GRID_DISPLACEMENT);

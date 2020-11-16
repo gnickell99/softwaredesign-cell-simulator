@@ -16,8 +16,13 @@ import java.util.List;
 
 public abstract class MutableState extends State{
 	
+	int currentRow;
+	int currentColumn;
+	
 	public MutableState(int currentStateRow, int currentStateColumn) {
 		super();
+		currentRow = currentStateRow;
+		currentColumn = currentStateColumn;
 	}
 
 	/** toListNeighbors

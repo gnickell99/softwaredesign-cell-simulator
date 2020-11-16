@@ -39,7 +39,6 @@ public class Wildfire extends Controller {
 	 * @param currentRow
 	 * @param currentColumn
 	 */
-
 	@Override
 	protected void setupCells(int currentRow, int currentColumn) {
 		Random random = new Random();

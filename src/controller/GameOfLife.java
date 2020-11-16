@@ -25,7 +25,6 @@ public class GameOfLife extends Controller {
 		super(gridHeight, gridWidth);
 	}
 
-
 	/**
 	 * setupCells
 	 * 
@@ -56,7 +55,11 @@ public class GameOfLife extends Controller {
 
 	}
 
-
+	/** getNeighbors
+	 * 
+	 * 
+	 * 
+	 */
 	@Override
 	public List<State> getNeighbors(int currentStateRow, int currentStateColumn) {
 		List<State> neighbors = new ArrayList<State>();

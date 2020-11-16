@@ -1,5 +1,7 @@
 package states;
 
+import java.util.List;
+
 //import controller.Controller;
 import javafx.scene.paint.Color;
 
@@ -21,7 +23,7 @@ public class BurningTree extends WildFireMutables {
 	}
 
 	@Override
-	public State act(int currentStateRow, int currentStateColumn) {
+	public State act(List<State> neighbors) {
 		if (burnTimer == 0) {
 			return new BurntDownTree();
 		}
