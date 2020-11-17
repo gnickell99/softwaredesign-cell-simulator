@@ -1,31 +1,42 @@
 package states.RockPaperScissors;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javafx.scene.paint.Color;
 import states.MutableState;
 import states.State;
-import states.GameOfLife.DeadCell;
 
 public abstract class RPSMutables extends MutableState {
 
 	int winThreshold;
+	private HashMap<String, Color> weaknessColors = new HashMap<String, Color>();
 	
 	public RPSMutables(int currentStateRow, int currentStateColumn, int threshold) {
 		super(currentStateRow, currentStateColumn);
 		winThreshold = threshold;
+		setupWeaknessColors();
 	}
 	
 	
-	@Override
-	public State act(List<State> neighbors) {
+	int countEnemyNeighbors(List<State> neighbors) {
 		int weaknessCount = 0;
 		for (State neighbor : neighbors) {
-			if (neighbor.cellColor.equals(Color.LIGHTBLUE)) {
+			if (neighbor.cellColor.equals(this.weaknessColors.get(this.getType()))) {
 				weaknessCount++;
 			}
 		}
-		return this;
+		return weaknessCount;
 	}
+	
+	
+	void setupWeaknessColors() {
+		weaknessColors.put("rock", Color.WHITE);
+		weaknessColors.put("paper", Color.BLUE);
+		weaknessColors.put("scissors", Color.RED);
+	}
+	
+	
+	abstract String getType();
 
 }

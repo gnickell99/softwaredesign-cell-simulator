@@ -14,7 +14,15 @@ public class Rock extends RPSMutables {
 
 	@Override
 	public State act(List<State> neighbors) {
-		return null;
+		if (countEnemyNeighbors(neighbors) >= winThreshold) {
+			return new Paper(this.currentRow, this.currentColumn, this.winThreshold);
+		}
+		return this;
+	}
+
+	@Override
+	String getType() {
+		return "rock";
 	}
 
 }

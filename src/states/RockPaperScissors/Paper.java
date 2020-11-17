@@ -14,8 +14,15 @@ public class Paper extends RPSMutables {
 
 	@Override
 	public State act(List<State> neighbors) {
-		// TODO Auto-generated method stub
-		return null;
+		if (countEnemyNeighbors(neighbors) >= winThreshold) {
+			return new Scissors(this.currentRow, this.currentColumn, this.winThreshold);
+		}
+		return this;
+	}
+
+	@Override
+	String getType() {
+		return "paper";
 	}
 
 }

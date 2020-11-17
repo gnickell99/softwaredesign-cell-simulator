@@ -14,8 +14,15 @@ public class Scissors extends RPSMutables {
 
 	@Override
 	public State act(List<State> neighbors) {
-		// TODO Auto-generated method stub
-		return null;
+		if (countEnemyNeighbors(neighbors) >= winThreshold) {
+			return new Rock(this.currentRow, this.currentColumn, this.winThreshold);
+		}
+		return this;
+	}
+
+	@Override
+	String getType() {
+		return "scissors";
 	}
 
 }
