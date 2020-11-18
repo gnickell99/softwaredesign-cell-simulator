@@ -2,13 +2,25 @@ package test;
 
 import static org.junit.Assert.*;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import javafx.scene.layout.GridPane;
 
 public class RPSControllerTest {
 
-	@Test
+	//static RockPaperScissors rpsControl; //not yet added
+
+	static int testGridSize = 4;
+	static int firstRow = 0;
+	static int lastRow = 5;
+	
+	static GridPane gp = new GridPane();
+	
+	@BeforeClass
 	public void test() {
-		fail("Not yet implemented");
+		//rpsControl = new RockPaperScissors(testGridSize,testGridSize); //Make object
+		//rpsControl.generateGrid(gp); //Make a new Grid
 	}
 
 	//Test for rock below:
