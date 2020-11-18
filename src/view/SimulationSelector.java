@@ -49,12 +49,12 @@ public class SimulationSelector {
 		setupGrid.getChildren().add(gameOfLife);
 		
 		wildFire.setOnAction((ActionEvent e) -> {
-			WildfireSimulation wildFireSim = new WildfireSimulation(parser.parseIntegerValue(gridWidth), parser.parseIntegerValue(gridHeight));
+			WildfireSimulation wildFireSim = new WildfireSimulation(parser.parseIntValue(gridWidth), parser.parseIntValue(gridHeight));
 			wildFireSim.setUpWildFireScene(background);
 		});
 		
 		gameOfLife.setOnAction((ActionEvent e) -> {
-			GameOfLifeSimulationView gameOfLifeSimulation = new GameOfLifeSimulationView(parser.parseIntegerValue(gridWidth), parser.parseIntegerValue(gridHeight));
+			GameOfLifeSimulationView gameOfLifeSimulation = new GameOfLifeSimulationView(parser.parseIntValue(gridWidth), parser.parseIntValue(gridHeight));
 			gameOfLifeSimulation.setUpGameOfLifeScene(background);
 			
 		});

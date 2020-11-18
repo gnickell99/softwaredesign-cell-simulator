@@ -75,8 +75,8 @@ public class GameOfLifeSimulationView {
 		GridPane.setConstraints(newSimulationButton, 0 , 3);
 		setUpLifeScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
-			this.gridHeight = validator.parseIntegerValue(gridHeight);
-			this.gridWidth = validator.parseIntegerValue(gridWidth);
+			this.gridHeight = validator.parseIntValue(gridHeight);
+			this.gridWidth = validator.parseIntValue(gridWidth);
 			gameOfLifeController = new GameOfLife(this.gridHeight, this.gridWidth);
 			setUpNewSimulation(gameOfLifeController);
 
