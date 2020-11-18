@@ -37,10 +37,24 @@ public class WaTorWorldControllerTest {
 		fail("Not yet implemented");
 	}
 	
-	//Test 1: Current cell should turn blue and shark should move to either: (2,1),(2,2),(1,2) (Color will be yellow)
+	//Test 2: Current cell should turn blue and shark should move to either: (1,2) (Color will be yellow)
 	//shark at point (1,1) Water at point (1,2) Edges at point (2,1), (2,2)
 	@Test
 	public void sharkTest2() {
+		fail("Not yet implemented");
+	}
+	
+	//Test 3: Current cell should stay yellow and fish should turn blue 
+	//shark at point (1,1) Water at point (1,2),(2,2) fish at point (2,2)
+	@Test
+	public void sharkTest3() {
+		fail("Not yet implemented");
+	}
+	
+	//Test 4: Current cell should stay yellow and one fish should turn blue 
+	//shark at point (1,1) Water at point (1,2) fish at point (2,2),(2,2)
+	@Test
+	public void sharkTest4() {
 		fail("Not yet implemented");
 	}
 	
