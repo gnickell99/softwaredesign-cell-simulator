@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -9,6 +11,7 @@ import controller.GameOfLife;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import states.AliveCell;
+import states.State;
 
 /*
  * @author Kim Jones
@@ -180,7 +183,9 @@ public class GameOfLifeControllerTest {
 		setUpRule1();
 		
 		//Call act method and save the update
-		golControl.grid[1][1] = golControl.grid[1][1].act(1, 1);		
+		//Note - after merge with refactoring change (1,1) to golControl.grid
+		golControl.grid[1][1] = golControl.grid[1][1].act(1, 1);	
+		
 		
 //		System.out.println(golControl.grid[1][1].getType());
 //		System.out.println(golControl.grid[1][2].getType());

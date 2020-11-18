@@ -68,7 +68,7 @@ public class GameOfLife extends Controller {
 		grid[currentRow][currentColumn] = DeadCell;
 	}
 	
-
+	
 
 }
 
