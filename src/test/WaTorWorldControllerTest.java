@@ -38,8 +38,8 @@ public class WaTorWorldControllerTest {
 	public static void setUpRule2() {
 //		wwControl.plantFish(1, 1); //green
 //		wwControl.makeWater(1, 2); // blue
-//		wwControl.makeWater(2, 1); // blue
-//		wwControl.makeWater(2, 2); // blue
+//		wwControl.makeEdge(2, 1); // black
+//		wwControl.makeEdge(2, 2); // black
 	}
 	
 
@@ -53,21 +53,32 @@ public class WaTorWorldControllerTest {
 	public void fishTest1() {
 		setUpRule1();
 		
+		//run act method
 		//wwControl.grid[1][1] = wwControl.grid[1][1].act(wwControl.grid);	
 		
-		fail("Not yet implemented");
-		//Check rule 1 worked
-//		assertTrue(wwControl.grid[1][1].getType().equals("dead cell"));
-//		assertTrue(wwControl.grid[1][2].getType().equals("dead cell"));
-//		assertTrue(wwControl.grid[2][1].getType().equals("dead cell"));
-//		assertTrue(wwControl.grid[2][2].getType().equals("dead cell"));
+		//Check rule
+		//Make sure start is now water
+//		assertTrue(wwControl.grid[1][1].getType().equals("water cell"));
+		//Make sure one of neighbors is a fish
+//		assertTrue(wwControl.grid[1][2].getType().equals("fish cell") || wwControl.grid[2][1].getType().equals("fish cell") || wwControl.grid[2][2].getType().equals("fish cell"));
+
 	}
 	
 	//Test 2: Current cell should turn blue and fish should move to: (1,2) (Color will be green)
 	//Fish at point (1,1) Water at point (1,2) Edges at point (2,1), (2,2)
 	@Test
 	public void fishTest2() {
-		fail("Not yet implemented");
+		setUpRule2();
+		
+		//run act method
+		//wwControl.grid[1][1] = wwControl.grid[1][1].act(wwControl.grid);	
+		
+		//Check rule
+//		assertTrue(golControl.grid[1][1].getType().equals("water cell"));
+//		assertTrue(golControl.grid[1][2].getType().equals("fish cell"));
+//		assertTrue(golControl.grid[2][1].getType().equals("edge cell"));
+//		assertTrue(golControl.grid[2][2].getType().equals("edge cell"));
+		
 	}
 	
 	//Breeding test
@@ -75,7 +86,15 @@ public class WaTorWorldControllerTest {
 	//Fish at point (1,1) Water at point (1,2), (2,1), (2,2)
 	@Test
 	public void fishTest3() {
-		fail("Not yet implemented");
+		setUpRule1();
+		
+		//run act method
+		//wwControl.grid[1][1] = wwControl.grid[1][1].act(wwControl.grid);	
+		
+		//Make sure start is still fish
+//		assertTrue(wwControl.grid[1][1].getType().equals("fish cell"));
+//		/Make sure one of neighbors is a fish
+//		assertTrue(wwControl.grid[1][2].getType().equals("fish cell") || wwControl.grid[2][1].getType().equals("fish cell") || wwControl.grid[2][2].getType().equals("fish cell"));
 	}
 	
 	//Test 3: Current cell stay green and fish should give birth at either: (1,2) (Color will be green)
