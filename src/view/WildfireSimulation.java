@@ -42,7 +42,7 @@ public class WildfireSimulation {
 
 	public WildfireSimulation(int gridWidth, int gridHeight)	{
 		this.gridWidth = gridWidth;
-		this.gridWidth = gridHeight;
+		this.gridHeight = gridHeight;
 	}
 
 	public void setUpWildFireScene(Paint background) {
