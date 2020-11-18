@@ -5,12 +5,43 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+
+import javafx.scene.layout.GridPane;
+
 public class WaTorWorldControllerTest {
+	
+	//static WaterWorld wwControl; //not yet added
+
+	static int testGridSize = 4;
+	static int firstRow = 0;
+	static int lastRow = 5;
+	
+	static GridPane gp = new GridPane();
 
 	@BeforeClass
 	public static void test() {
-		fail("Not yet implemented");
+		//wwControl = new WaterWorld(testGridSize,testGridSize); //Make object
+		//wwControl.generateGrid(gp); //Make a new Grid
 	}
+	
+	//Helper methods to setup
+	
+	//Make 1st cell green and all neighbors blue
+	public static void setUpRule1() {
+//		wwControl.plantFish(1, 1); //green
+//		wwControl.makeWater(1, 2); // blue
+//		wwControl.makeWater(2, 1); // blue
+//		wwControl.makeWater(2, 2); // blue
+	}
+	
+	//Make 1st cell green and 2 neighbors edges
+	public static void setUpRule2() {
+//		wwControl.plantFish(1, 1); //green
+//		wwControl.makeWater(1, 2); // blue
+//		wwControl.makeWater(2, 1); // blue
+//		wwControl.makeWater(2, 2); // blue
+	}
+	
 
 	//Test for fish below:
 	
@@ -20,7 +51,16 @@ public class WaTorWorldControllerTest {
 	//Fish at point (1,1) Water at point (2,1),(2,2),(1,2)
 	@Test
 	public void fishTest1() {
+		setUpRule1();
+		
+		//wwControl.grid[1][1] = wwControl.grid[1][1].act(wwControl.grid);	
+		
 		fail("Not yet implemented");
+		//Check rule 1 worked
+//		assertTrue(wwControl.grid[1][1].getType().equals("dead cell"));
+//		assertTrue(wwControl.grid[1][2].getType().equals("dead cell"));
+//		assertTrue(wwControl.grid[2][1].getType().equals("dead cell"));
+//		assertTrue(wwControl.grid[2][2].getType().equals("dead cell"));
 	}
 	
 	//Test 2: Current cell should turn blue and fish should move to: (1,2) (Color will be green)

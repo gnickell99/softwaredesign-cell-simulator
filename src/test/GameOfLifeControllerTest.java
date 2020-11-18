@@ -183,7 +183,7 @@ public class GameOfLifeControllerTest {
 		setUpRule1();
 		
 		//Call act method and save the update
-		//Note - after merge with refactoring change (1,1) to golControl.grid
+		//Note - after merge with refactoring change (1,1) to .act(golControl.grid)
 		golControl.grid[1][1] = golControl.grid[1][1].act(1, 1);	
 		
 		
