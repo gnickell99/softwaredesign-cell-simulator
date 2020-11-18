@@ -42,6 +42,21 @@ public class WaTorWorldControllerTest {
 //		wwControl.makeEdge(2, 2); // black
 	}
 	
+	//Make 1st cell yellow and all neighbors blue
+	public static void setUpRule3() {
+//		wwControl.plantShark(1, 1); //yellow
+//		wwControl.makeWater(1, 2); // blue
+//		wwControl.makeWater(2, 1); // blue
+//		wwControl.makeWater(2, 2); // blue
+	}
+	
+	//Make 1st cell yellow and 2 neighbors edges
+	public static void setUpRule4() {
+//		wwControl.plantShark(1, 1); //yellow
+//		wwControl.makeWater(1, 2); // blue
+//		wwControl.makeEdge(2, 1); // black
+//		wwControl.makeEdge(2, 2); // black
+	}
 
 	//Test for fish below:
 	
@@ -82,7 +97,7 @@ public class WaTorWorldControllerTest {
 	}
 	
 	//Breeding test
-	//Test 2: Current cell stay green and fish should give birth at either: (1,2), (2,1), (2,2) (Color will be green)
+	//Test 3: Current cell stay green and fish should give birth at either: (1,2), (2,1), (2,2) (Color will be green)
 	//Fish at point (1,1) Water at point (1,2), (2,1), (2,2)
 	@Test
 	public void fishTest3() {
@@ -97,11 +112,20 @@ public class WaTorWorldControllerTest {
 //		assertTrue(wwControl.grid[1][2].getType().equals("fish cell") || wwControl.grid[2][1].getType().equals("fish cell") || wwControl.grid[2][2].getType().equals("fish cell"));
 	}
 	
-	//Test 3: Current cell stay green and fish should give birth at either: (1,2) (Color will be green)
+	//Test 4: Current cell stay green and fish should give birth at: (1,2) (Color will be green)
 	//Fish at point (1,1) Water at point (1,2) Edges at point (2,1), (2,2)
 	@Test
 	public void fishTest4() {
-		fail("Not yet implemented");
+		setUpRule2();
+		
+		//run act method
+		//wwControl.grid[1][1] = wwControl.grid[1][1].act(wwControl.grid);	
+		
+		//Check rule
+//		assertTrue(golControl.grid[1][1].getType().equals("fish cell"));
+//		assertTrue(golControl.grid[1][2].getType().equals("fish cell"));
+//		assertTrue(golControl.grid[2][1].getType().equals("edge cell"));
+//		assertTrue(golControl.grid[2][2].getType().equals("edge cell"));
 	}
 	
 	//Test for sharks below:
@@ -111,14 +135,32 @@ public class WaTorWorldControllerTest {
 	//shark at point (1,1) Water at point (2,1),(2,2),(1,2)
 	@Test
 	public void sharkTest1() {
-		fail("Not yet implemented");
+		setUpRule3();
+		
+		//run act method
+		//wwControl.grid[1][1] = wwControl.grid[1][1].act(wwControl.grid);	
+				
+		//Check rule
+		//Make sure start is now water
+//		assertTrue(wwControl.grid[1][1].getType().equals("water cell"));
+		//Make sure one of neighbors is a shark
+//		assertTrue(wwControl.grid[1][2].getType().equals("shark cell") || wwControl.grid[2][1].getType().equals("shark cell") || wwControl.grid[2][2].getType().equals("shark cell"));
 	}
 	
-	//Test 2: Current cell should turn blue and shark should move to either: (1,2) (Color will be yellow)
+	//Test 2: Current cell should turn blue and shark should move to: (1,2) (Color will be yellow)
 	//shark at point (1,1) Water at point (1,2) Edges at point (2,1), (2,2)
 	@Test
 	public void sharkTest2() {
-		fail("Not yet implemented");
+		setUpRule4();
+		
+		//run act method
+		//wwControl.grid[1][1] = wwControl.grid[1][1].act(wwControl.grid);	
+		
+		//Check rule
+//		assertTrue(golControl.grid[1][1].getType().equals("water cell"));
+//		assertTrue(golControl.grid[1][2].getType().equals("shark cell"));
+//		assertTrue(golControl.grid[2][1].getType().equals("edge cell"));
+//		assertTrue(golControl.grid[2][2].getType().equals("edge cell"));
 	}
 	
 	//Eating test
