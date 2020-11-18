@@ -40,8 +40,8 @@ public class GameOfLifeSimulationView extends View {
 	{
 		super();
 		
-		gridHeightText =  getHeightInput(gridHeightText);
-		gridWidthText = getWidthInput(gridWidthText);
+		this.gridWidth = gridWidth;
+		this.gridHeight = gridHeight;
 	}
 	
 	/** setUpGameOfLifeScene
@@ -55,23 +55,25 @@ public class GameOfLifeSimulationView extends View {
 	 * 
 	 */
 	public void setUpGameOfLifeScene(Paint background) {
-
-		Button newSimulationButton = new Button("New Simulation");
-		GridPane.setConstraints(newSimulationButton, 2 , 3);
-		setUpLifeScene.getChildren().add(newSimulationButton);
-		newSimulationButton.setOnAction((ActionEvent e) -> {
-			
-			this.gridHeight = validator.parseIntegerValue(gridHeightText);
-			this.gridWidth = validator.parseIntegerValue(gridWidthText);
-			gameOfLifeController = new GameOfLife(gridHeight, gridWidth);
-			setUpNewSimulation(gameOfLifeController);
-
-		});
 		
 		Scene secondScene = setUpScene(setUpLifeScene);
 		Stage newWindow = new Stage();
 		newWindow.setTitle("GameOfLife Simulation");
 		newWindow.setScene(secondScene);
+
+		Button newSimulationButton = new Button("New Simulation");
+		GridPane.setConstraints(newSimulationButton, 2 , 3);
+		setUpLifeScene.getChildren().add(newSimulationButton);
+		newSimulationButton.setOnAction((ActionEvent e) -> {
+			this.gridHeight = validator.parseIntValue(gridHeightText);
+			this.gridWidth = validator.parseIntValue(gridWidthText);
+			gameOfLifeController = new GameOfLife(20, this.gridWidth);
+
+			setUpNewSimulation(gameOfLifeController);
+
+		});
+		
+		
 		
 		
 		// Makes the animation happen.  Will call "step" method repeatedly.

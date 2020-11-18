@@ -15,22 +15,22 @@ import javafx.scene.paint.Paint;
  */
 public class SimulationSelector  {
 
-	
+
 	GridPane setupGrid = new GridPane();
 	public static final int SIZE = 600;
 	public static final String TITLE = "Cell Simulator";
 	public static final int COLUMNSPAN = 20;
 	InputParser parser = new InputParser();
-	
-	
-	
+
+
+
 	public Scene setupScene(Paint background) {
 		setupGrid.setPadding(new Insets(10, 10, 10, 10));
 		setupGrid.setVgap(10);
 		setupGrid.setHgap(10);
-		
 
-		
+
+
 		Button wildFire = new Button("WildFire");
 		GridPane.setConstraints(wildFire, 1, 0);
 		setupGrid.getChildren().add(wildFire);
@@ -38,20 +38,24 @@ public class SimulationSelector  {
 		Button gameOfLife = new Button("Game Of Life");
 		GridPane.setConstraints(gameOfLife, 2, 0);
 		setupGrid.getChildren().add(gameOfLife);
-		
+
 		wildFire.setOnAction((ActionEvent e) -> {
-			WildfireSimulation wildFireSim = new WildfireSimulation(0, 0);
+
+			WildfireSimulation wildFireSim = new WildfireSimulation(10,10);
+
 			wildFireSim.setUpWildFireScene(background);
 		});
-		
+
 		gameOfLife.setOnAction((ActionEvent e) -> {
-			GameOfLifeSimulationView gameOfLifeSimulation = new GameOfLifeSimulationView(0,0);
+
+			GameOfLifeSimulationView gameOfLifeSimulation = new GameOfLifeSimulationView(10,10);
+
 			gameOfLifeSimulation.setUpGameOfLifeScene(background);
-			
+
 		});
-		
-		
-		
+
+
+
 		Scene scene = new Scene(setupGrid, SIZE, SIZE, background);
 		return scene;
 	}

@@ -77,26 +77,26 @@ public class WildfireSimulation {
 
 		final TextField forestDensity = new TextField();
 		forestDensity.setPromptText("(1.0 = Default) Enter Forest Density.");
-		GridPane.setConstraints(forestDensity, 0, 3);
+		GridPane.setConstraints(forestDensity, 0, 4);
 		GridPane.setColumnSpan(forestDensity, COLUMNSPAN);
 		setUpFireScene.getChildren().add(forestDensity);
 
 		final TextField burningTreesNumber = new TextField();
 		burningTreesNumber.setPromptText("(1.0 = Default) Enter Burning Tree Number.");
-		GridPane.setConstraints(burningTreesNumber, 0, 4);
+		GridPane.setConstraints(burningTreesNumber, 0, 5);
 		GridPane.setColumnSpan(burningTreesNumber, COLUMNSPAN);
 		setUpFireScene.getChildren().add(burningTreesNumber);
 
 
 		Button newSimulationButton = new Button("New Simulation");
-		GridPane.setConstraints(newSimulationButton, 0 , 5);
+		GridPane.setConstraints(newSimulationButton, 0 , 6);
 		setUpFireScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
-			this.gridHeight = validator.parseIntegerValue(gridHeight);
-			this.gridWidth = validator.parseIntegerValue(gridWidth);
-			this.burningTrees = validator.parseIntegerValue(burningTreesNumber);
+			this.gridHeight = validator.parseIntValue(gridHeight);
+			this.gridWidth = validator.parseIntValue(gridWidth);
+			this.burningTrees = validator.parseIntValue(burningTreesNumber);
 			this.spreadProbability = validator.parseDoubleValue(spreadProbability);
-			this.burnTime = validator.parseIntegerValue(burnTime);
+			this.burnTime = validator.parseIntValue(burnTime);
 			this.forestDensity = validator.parseDoubleValue(forestDensity);
 			wildFireController = new Wildfire(this.gridHeight, this.gridWidth, this.burnTime, this.spreadProbability, this.forestDensity, this.burningTrees);
 			setUpNewSimulation(wildFireController);
@@ -104,7 +104,7 @@ public class WildfireSimulation {
 		});
 
 		pauseButton = new Button("Pause Simulation");
-		GridPane.setConstraints(pauseButton, 0, 6);
+		GridPane.setConstraints(pauseButton, 0, 7);
 		setUpFireScene.getChildren().add(pauseButton);
 		pauseButton.setOnAction((ActionEvent e) -> {
 			pressPause();
@@ -112,7 +112,7 @@ public class WildfireSimulation {
 		});
 
 		Button step = new Button("Step");
-		GridPane.setConstraints(step, 0, 7);
+		GridPane.setConstraints(step, 0, 8);
 		GridPane.setColumnSpan(step, 3);
 		setUpFireScene.getChildren().add(step);
 
