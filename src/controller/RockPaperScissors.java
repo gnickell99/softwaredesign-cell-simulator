@@ -5,16 +5,23 @@ import java.util.List;
 
 import states.State;
 
+/***
+ * 
+ * @author Grant Nickell
+ * 
+ * The Rock Paper Scissors controller
+ * Handles the specific setup of an rps cell simulator grid
+ *
+ */
+
 public class RockPaperScissors extends Controller {
 
 	public RockPaperScissors(int height, int width) {
 		super(height, width);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void setupCells(int currentRow, int currentColumn) {
-		// TODO Auto-generated method stub
 
 	}
 

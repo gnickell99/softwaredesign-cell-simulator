@@ -5,6 +5,16 @@ import java.util.List;
 import javafx.scene.paint.Color;
 import states.State;
 
+/***
+ * 
+ * @author Grant Nickell
+ * 
+ * The Rock class is a state for the rock paper scissors cell simulator
+ * It is beaten by paper and will change to the paper state when it loses
+ * to too many of its neighbors
+ *
+ */
+
 public class Rock extends RPSMutables {
 
 	public Rock(int currentStateRow, int currentStateColumn, int threshold) {
@@ -21,8 +31,8 @@ public class Rock extends RPSMutables {
 	}
 
 	@Override
-	String getType() {
-		return "rock";
+	boolean losesTo(State state) {
+		return state.cellColor.equals(Color.WHITE);
 	}
 
 }

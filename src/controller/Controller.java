@@ -6,6 +6,19 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 import states.*;
 
+/***
+ * 
+ * @author Grant Nickell
+ * @author Jazz Harris
+ * @author Camryn Williams
+ * 
+ * The Controller abstract class is the super class to all controller objects
+ * This takes the data from the view and gives it the necessary information to
+ * create and setup the simulation's visualization. Likewise, it loops through 
+ * the grid and calls the cell to act through the model
+ *
+ */
+
 public abstract class Controller {
 	public State[][] grid;
 	public State[][] mirrorGrid;
@@ -88,10 +101,12 @@ public abstract class Controller {
 		}
 	}
 
-	/** setUpCells
+	/** setupCells
 	 * 
-	 * The set up cell method sets up the cells in the inner grid that are manipulated by the user and either of the simulations rules
+	 * The setupCells method places a state object at the given index
 	 * 
+	 * @param currentRow
+	 * @param currentColumn
 	 */
 	protected abstract void setupCells(int currentRow, int currentColumn);
 
