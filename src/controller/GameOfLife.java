@@ -58,6 +58,7 @@ public class GameOfLife extends Controller {
 
 	
 	//Methods to help test
+	//Given a point position they will make the need state for testing
 	public void infectCell(int currentRow, int currentColumn) {
 		State AliveCell = new AliveCell(currentRow, currentColumn, this.grid);
 		grid[currentRow][currentColumn] = AliveCell;
