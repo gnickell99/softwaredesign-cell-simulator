@@ -7,6 +7,12 @@ import org.junit.Test;
 
 import javafx.scene.layout.GridPane;
 
+/*
+ * @author Kim Jones
+ * This class test the Rock Paper Scissors methods, it makes sure everything gets set up properly and rules are accurate
+ * 
+ * */
+
 public class RPSControllerTest {
 
 	//static RockPaperScissors rpsControl; //not yet added

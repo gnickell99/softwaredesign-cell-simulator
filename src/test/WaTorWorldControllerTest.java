@@ -8,6 +8,12 @@ import org.junit.Test;
 
 import javafx.scene.layout.GridPane;
 
+/*
+ * @author Kim Jones
+ * This class test the Water world methods, it makes sure rules are accurate
+ * 
+ * */
+
 public class WaTorWorldControllerTest {
 	
 	//static WaterWorld wwControl; //not yet added
