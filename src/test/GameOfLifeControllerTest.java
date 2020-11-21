@@ -266,7 +266,7 @@ public class GameOfLifeControllerTest {
 		//Check rule 4 is set up correctly
 		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
-		assertTrue(golControl.grid[1][3].getType().equals("alive cell"));
+		assertTrue(golControl.grid[1][COL3].getType().equals("alive cell"));
 		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
 	}
@@ -282,7 +282,7 @@ public class GameOfLifeControllerTest {
 		//Check rule 4 is correct
 		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[1][2].getType().equals("dead cell")); //Fails- should be killed
-		assertTrue(golControl.grid[1][3].getType().equals("alive cell"));
+		assertTrue(golControl.grid[1][COL3].getType().equals("alive cell"));
 		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
 	}
@@ -379,7 +379,7 @@ public class GameOfLifeControllerTest {
 		//Check rule 4 is set up correctly
 		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[1][2].getType().equals("dead cell"));
-		assertTrue(golControl.grid[1][3].getType().equals("alive cell"));
+		assertTrue(golControl.grid[1][COL3].getType().equals("alive cell"));
 		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
 	}
@@ -395,7 +395,7 @@ public class GameOfLifeControllerTest {
 		//Check rule 4 worked
 		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[1][2].getType().equals("dead cell"));
-		assertTrue(golControl.grid[1][3].getType().equals("alive cell"));
+		assertTrue(golControl.grid[1][COL3].getType().equals("alive cell"));
 		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
 		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
 	}
