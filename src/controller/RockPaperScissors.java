@@ -3,7 +3,10 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import states.State;
+import states.*;
+import states.RockPaperScissors.Rock;
+import states.RockPaperScissors.Paper;
+import states.RockPaperScissors.Scissors;
 
 /***
  * 
@@ -16,15 +19,43 @@ import states.State;
 
 public class RockPaperScissors extends Controller {
 
-	public RockPaperScissors(int height, int width) {
+	private int threshold;
+	
+	public RockPaperScissors(int height, int width, int winThreshold) {
 		super(height, width);
+		this.threshold = winThreshold;
 	}
 
+	
 	@Override
 	protected void setupCells(int currentRow, int currentColumn) {
-
+		if (currentRow > grid[0].length / 2) {
+			if (currentColumn < grid.length / 2) {
+				State rock = new Rock(threshold);
+				grid[currentRow][currentColumn] = rock;
+			}
+			else {
+				State scissors = new Scissors(threshold);
+				grid[currentRow][currentColumn] = scissors;
+			}
+		}
+		else {
+			if (currentColumn > currentRow - grid[0].length && currentColumn < grid.length / 2) {
+				State rock = new Rock(threshold);
+				grid[currentRow][currentColumn] = rock;
+			}
+			else if (currentColumn < currentRow - grid[0].length && currentColumn > grid.length / 2) {
+				State scissors = new Scissors(threshold);
+				grid[currentRow][currentColumn] = scissors;
+			}
+			else {
+				State paper = new Paper(threshold);
+				grid[currentRow][currentColumn] = paper;
+			}
+		}
 	}
 
+	
 	@Override
 	public List<State> getNeighbors(int currentStateRow, int currentStateColumn) {
 		List<State> neighbors = new ArrayList<State>();
