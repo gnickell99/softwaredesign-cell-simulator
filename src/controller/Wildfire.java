@@ -20,10 +20,10 @@ public class Wildfire extends Controller {
 	private static final double VALUE_OF_ONE_DOUBLE = 1.0;
 	private static final int  VALUE_OF_TWO = 2;
 	private static final int VALUE_OF_A_HUNDRED = 100;
-	public int burnTime;
-	public double spreadProbability;
-	public double forestDensity;
-	public int burningTrees;
+	private int burnTime;
+	private double spreadProbability;
+	private double forestDensity;
+	private int burningTrees;
 
 	public Wildfire(int height, int width, int burnTime, double spreadProbability, double forestDensity, int burningTrees) {
 		super(height, width);
@@ -50,13 +50,13 @@ public class Wildfire extends Controller {
 			// These are the mutable states
 			// checks if the tree is should tree should be on fire
 			if (burningTrees != VALUE_OF_ZERO && random.nextDouble() < BURN_CHANCE) {
-				State burningTree = new BurningTree(currentRow, currentColumn, burnTime);
+				State burningTree = new BurningTree(burnTime);
 				burningTrees--;
 				grid[currentRow][currentColumn] = burningTree;
 			}
 			// If not then spawn a normal tree
 			else {
-				State liveTree = new LiveTree(currentRow, currentColumn, burnTime, spreadProbability);
+				State liveTree = new LiveTree(burnTime, spreadProbability);
 				grid[currentRow][currentColumn] = liveTree;
 			}
 		}

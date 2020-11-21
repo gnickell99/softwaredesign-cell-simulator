@@ -18,8 +18,8 @@ import states.State;
 
 public class BurningTree extends WildFireMutables {
 	
-	public BurningTree(int currentStateRow, int currentStateColumn, int burnTime) {
-		super(currentStateRow, currentStateColumn, burnTime);
+	public BurningTree(int burnTime) {
+		super(burnTime);
 		cellColor = Color.RED;
 	}
 

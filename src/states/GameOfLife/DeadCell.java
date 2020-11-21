@@ -1,30 +1,25 @@
 package states.GameOfLife;
 
 import java.util.List;
-
 import javafx.scene.paint.Color;
-import states.MutableState;
 import states.State;
 
-public class DeadCell extends MutableState{
+public class DeadCell extends GameOfLifeMutables{
 	
-	public DeadCell(int currentStateRow, int currentStateColumn) {
-		super(currentStateRow, currentStateColumn);
+	public DeadCell() {
+		super();
 		cellColor = Color.WHITE;
 	}
 
 	@Override
 	public State act(List<State> neighbors) {
-		int liveNeighbors = 0;
-		for (State neighbor : neighbors) {
-			if (neighbor.cellColor.equals(Color.LIGHTBLUE)) {
-				liveNeighbors++;
-			}
-		}
+		int liveNeighbors = countLiveNeighbors(neighbors);
 		if (liveNeighbors == 3) {
-			return new AliveCell(this.currentRow, this.currentColumn);
+			return new AliveCell();
 		}
-		return this;
+		else {
+			return this;
+		}
 	}
 
 }

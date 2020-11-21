@@ -7,8 +7,8 @@ import states.State;
 
 public class Water extends WaterWorldMutables {
 
-	public Water(int currentStateRow, int currentStateColumn, double starveTime, double breedTime) {
-		super(currentStateRow, currentStateColumn, starveTime, breedTime);
+	public Water() {
+		super();
 		cellColor = Color.BLUE;
 	}
 

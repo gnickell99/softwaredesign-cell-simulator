@@ -1,17 +1,14 @@
 package states.Wildfire;
 
-import java.util.ArrayList;
-import java.util.List;
+import states.State;
 
-import states.MutableState;
-
-public abstract class WildFireMutables extends MutableState {
+public abstract class WildFireMutables extends State {
 	
 	protected int burnTimer;
 	protected double chanceToBurn;
 	
-	public WildFireMutables(int currentStateRow, int currentStateColumn, int burnTime) {
-		super(currentStateRow, currentStateColumn);
+	public WildFireMutables(int burnTime) {
+		super();
 		burnTimer = burnTime;
 	}
 

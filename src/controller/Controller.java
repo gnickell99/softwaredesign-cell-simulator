@@ -48,6 +48,7 @@ public abstract class Controller {
 	/** updateGrid
 	 * 
 	 * The update grid method updates the grid by redrawing the states in the grid double array
+	 * 
 	 * @param grid
 	 */
 	public void updateGrid(GridPane gridPane) {
@@ -104,14 +105,16 @@ public abstract class Controller {
 	/** setupCells
 	 * 
 	 * The setupCells method places a state object at the given index
+	 * using logic to the specific inheriting cell simulation
 	 * 
 	 * @param currentRow
 	 * @param currentColumn
 	 */
 	protected abstract void setupCells(int currentRow, int currentColumn);
 
-	/** toListNeighbors
+	/** getNeighbors
 	 * This method creates an array list of neighbors for a mutable state
+	 * the layout of what is considered  neighbor is defined in the subclass
 	 * 
 	 * @param currentStateRow - the current row for the particular state, used to find neighbors
 	 * @param currentStateColumn - the current column for the particular state, used to find neighbors

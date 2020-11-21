@@ -13,13 +13,8 @@ package states;
 
 public abstract class MutableState extends State{
 	
-	protected int currentRow;
-	protected int currentColumn;
-	
-	public MutableState(int currentStateRow, int currentStateColumn) {
+	public MutableState() {
 		super();
-		currentRow = currentStateRow;
-		currentColumn = currentStateColumn;
 	}
 	
 }

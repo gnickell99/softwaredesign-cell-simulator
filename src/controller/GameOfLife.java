@@ -27,8 +27,7 @@ public class GameOfLife extends Controller {
 		super(gridHeight, gridWidth);
 	}
 
-	/**
-	 * setupCells
+	/** setupCells
 	 * 
 	 * The setupCells method places a state object at the given index The state can
 	 * be either a infected cell that contains a bacteria or an empty cell that does not contain a bacteria
@@ -45,21 +44,19 @@ public class GameOfLife extends Controller {
 
 		// Logic for determining which cells start as infected
 		if(infectedCellProbability < BACTERIA_PROBABILITY) {
-			State AliveCell = new AliveCell(currentRow, currentColumn);
+			State AliveCell = new AliveCell();
 			grid[currentRow][currentColumn] = AliveCell;
 		}
 
 		// if the cell should not be infected/alive then it will be a dead/empty cell
 		else{ 
-			State DeadCell = new DeadCell(currentRow, currentColumn);
+			State DeadCell = new DeadCell();
 			grid[currentRow][currentColumn] = DeadCell;
 		}
 
 	}
 
 	/** getNeighbors
-	 * 
-	 * 
 	 * 
 	 */
 	@Override

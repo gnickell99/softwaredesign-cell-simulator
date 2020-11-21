@@ -1,18 +1,25 @@
 package states.GameOfLife;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javafx.scene.paint.Color;
+import states.State;
 
-import controller.GameOfLife;
-import states.MutableState;
-
-public abstract class GameOfLifeMutables extends MutableState {
+public abstract class GameOfLifeMutables extends State {
 	Random RNG = new Random();
-	GameOfLife golController;
 	
-	public GameOfLifeMutables(int currentStateRow, int currentStateColumn) {
-		super(currentStateRow, currentStateColumn);
+	public GameOfLifeMutables() {
+		super();
+	}
+	
+	int countLiveNeighbors(List<State> neighbors) {
+		int liveNeighbors = 0;
+		for (State neighbor : neighbors) {
+			if (neighbor.cellColor.equals(Color.LIGHTBLUE)) {
+				liveNeighbors++;
+			}
+		}
+		return liveNeighbors;
 	}
 
 }

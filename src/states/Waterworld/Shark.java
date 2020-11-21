@@ -6,10 +6,13 @@ import javafx.scene.paint.Color;
 import states.State;
 
 public class Shark extends WaterWorldMutables {
+	
+	int starveTimer;
 
-	public Shark(int currentStateRow, int currentStateColumn, double starveTime, double breedTime) {
-		super(currentStateRow, currentStateColumn, starveTime, breedTime);
+	public Shark(int starveTime) {
+		super();
 		cellColor = Color.YELLOW;
+		starveTimer = starveTime;
 	}
 
 	@Override

@@ -21,8 +21,8 @@ import states.State;
 public class LiveTree extends WildFireMutables{
 	Random RNG = new Random();
 	
-	public LiveTree(int currentStateRow, int currentStateColumn, int burnTime, double burnProbability) {
-		super(currentStateRow, currentStateColumn, burnTime);
+	public LiveTree(int burnTime, double burnProbability) {
+		super(burnTime);
 		cellColor = Color.GREEN;
 		chanceToBurn = burnProbability;
 	}
@@ -32,7 +32,7 @@ public class LiveTree extends WildFireMutables{
 		for (State neighbor : neighbors) {
 			if (neighbor.cellColor.equals(Color.RED)) {
 				if ((double) RNG.nextDouble() <= chanceToBurn) {
-					return new BurningTree(this.currentRow, this.currentColumn, this.burnTimer);
+					return new BurningTree(this.burnTimer);
 				}
 			}
 		}

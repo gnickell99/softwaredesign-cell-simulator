@@ -1,8 +1,7 @@
 package states.RockPaperScissors;
 
 import java.util.List;
-import states.MutableState;
-import states.State;
+import states.*;
 
 /***
  * 
@@ -16,11 +15,11 @@ import states.State;
  *
  */
 
-public abstract class RPSMutables extends MutableState {
+public abstract class RPSMutables extends State {
 	int winThreshold;
 	
-	public RPSMutables(int currentStateRow, int currentStateColumn, int threshold) {
-		super(currentStateRow, currentStateColumn);
+	public RPSMutables(int threshold) {
+		super();
 		winThreshold = threshold;
 	}
 	

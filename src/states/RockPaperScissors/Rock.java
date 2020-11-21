@@ -17,15 +17,15 @@ import states.State;
 
 public class Rock extends RPSMutables {
 
-	public Rock(int currentStateRow, int currentStateColumn, int threshold) {
-		super(currentStateRow, currentStateColumn, threshold);
+	public Rock(int threshold) {
+		super(threshold);
 		cellColor = Color.RED;
 	}
 
 	@Override
 	public State act(List<State> neighbors) {
 		if (countEnemyNeighbors(neighbors) >= winThreshold) {
-			return new Paper(this.currentRow, this.currentColumn, this.winThreshold);
+			return new Paper(this.winThreshold);
 		}
 		return this;
 	}

@@ -6,17 +6,21 @@ import javafx.scene.paint.Color;
 import states.State;
 
 public class Fish extends WaterWorldMutables {
+	
+	int breedTimer;
 
-	public Fish(int currentStateRow, int currentStateColumn, double starveTime, double breedTime) {
-		super(currentStateRow, currentStateColumn, starveTime, breedTime);
+	public Fish(int breedTime) {
+		super();
 		cellColor = Color.GREEN;
+		breedTimer = breedTime;
 	}
 
 	@Override
 	public State act(List<State> neighbors) {
 		for (State neighbor : neighbors) {
-			if (neighbor.cellColor.equals(Color.BLUE)) {
-				
+			WaterWorldMutables waterNeighbor = (WaterWorldMutables)neighbor;
+			if (waterNeighbor.cellColor.equals(Color.BLUE)) {
+				waterNeighbor.setNext(new Fish(this.breedTimer));
 			}
 		}
 		return this;
