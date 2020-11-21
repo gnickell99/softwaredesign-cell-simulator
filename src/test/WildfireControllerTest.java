@@ -66,20 +66,6 @@ public class WildfireControllerTest {
 		}
 	}
 
-//	//Make sure the right number of trees are actual trees when set - good
-//	@Test
-//	public void forestDensityTest() {
-//		int liveTreeCount = 0;
-//		for(int i = 0; i < wildfireControl.grid.length; i++) {
-//			for(int j = 0; j < wildfireControl.grid[0].length; j++) {
-//				if(wildfireControl.grid[i][j].getType().equals("live tree")) {
-//					liveTreeCount++;
-//				}
-//			}
-//		}
-//		assertSame(liveTreeCount,8); //Compares to ensure 8 trees are live with 1 burning //add constant
-//	}
-
 	//Test 1: make sure the fire is spreading correctly
 	//Points (1,1), (2,2), (3,1) should turn red. (2,1) should stay red
 	@Test
