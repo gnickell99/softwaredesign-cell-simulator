@@ -10,7 +10,9 @@ import states.GameOfLife.DeadCell;
 
 /***
  * 
- * @author  Jazz Harris
+ * @author Grant Nickell
+ * @author Jazz Harris
+ * @author Kimberly Jones
  * GameOfLife - Sub Class Controller for Game of Life
  * 
  * Based on wildfire's cell simulation previous code merged with the use of states for GOL simulation code
@@ -72,4 +74,19 @@ public class GameOfLife extends Controller {
 		neighbors.add(SOUTH_EAST_NEIGHBOR, grid[currentStateRow+1][currentStateColumn+1]);
 		return neighbors;
 	}
+
+
+	
+	//Methods to help test
+	public void infectCell(int currentRow, int currentColumn) {
+		State AliveCell = new AliveCell();
+		grid[currentRow][currentColumn] = AliveCell;
+	}
+	
+	public void killCell(int currentRow, int currentColumn) {
+		State DeadCell = new DeadCell();
+		grid[currentRow][currentColumn] = DeadCell;
+	}
+
 }
+

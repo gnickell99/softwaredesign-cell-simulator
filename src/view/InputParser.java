@@ -10,43 +10,63 @@ import javafx.scene.control.TextField;
 
 public class InputParser {
 	
-	public int parseIntegerValue(TextField userInput)	{
-		int userValue = (int) Double.parseDouble(userInput.getPromptText().substring(1, 4));
-		int tempUserValue = 0;
-		if(userInput.getText() != null)	{
-			try	{
-				tempUserValue = Integer.parseInt(userInput.getText());
-				if(tempUserValue > 0 )	{
-					userValue = tempUserValue;
-				}
-				else	{
-					System.out.println("Value out of range: Using default value");
-				}
-			}
-			catch(Exception e)	{
-				System.out.println("Value not valid: Using default value");
-			}
-		}
-		return userValue;
-	}
-	
-	public double parseDoubleValue(TextField userInput)	{
-		double userValue = Double.parseDouble(userInput.getPromptText().substring(1, 4));
+	private final String OUT_OF_RANGE = "Value out of range: Using default value";
+	private final String VALUE_NOT_VALID = "Value not valid: Using default value";
+	private final int DEFAULT_VALUE_START_INDEX = 1;
+	private final int DEFAULT_VALUE_END_INDEX = 4;
+	private double defaultValue;
+		
+	public double parseDoubleValue(TextField userInput) {
+		defaultValue = getDefaultValue(userInput);
 		double tempUserValue = 0;
 		if(userInput.getText() != null)	{
 			try	{
 				tempUserValue = Double.parseDouble(userInput.getText());
-				if(tempUserValue > 0 && tempUserValue <= 1.0) {
-					userValue = tempUserValue;
-				}
-				else	{
-					System.out.println("Value out of range: Using default value");
-				}
+				checkValue(tempUserValue);
 			}
 			catch(Exception e)	{
-				System.out.println("Value not valid: Using default value");
+				System.out.println(VALUE_NOT_VALID);
 			}
 		}
-		return userValue;
+		return defaultValue;
 	}
+	
+	public int parseIntValue(TextField userInput) {
+		defaultValue = getDefaultValue(userInput);
+		int tempUserValue = 0;
+		if(userInput.getText() != null) {
+			try	{
+				tempUserValue = Integer.parseInt(userInput.getText());
+				checkValue(tempUserValue);
+			}
+			catch(Exception e) {
+				System.out.println(VALUE_NOT_VALID);
+			}
+		}
+		return (int)defaultValue;
+	}
+	
+	public double getDefaultValue(TextField userInput)	{
+		return Double.parseDouble(userInput.getPromptText().substring(DEFAULT_VALUE_START_INDEX, DEFAULT_VALUE_END_INDEX));
+	}
+	
+	public void checkValue(double userInput) {	
+		if (userInput > 0 && userInput <= 1.0)	{
+			defaultValue = userInput;
+		}
+		else	{
+			System.out.println(OUT_OF_RANGE);
+		}
+	}
+	
+	public void checkValue(int userInput) {
+		if(userInput > 0 && userInput <=50)	{
+			defaultValue = userInput;
+		}
+		else	{
+			System.out.println(OUT_OF_RANGE);
+		}
+	}
+	
+	
 }

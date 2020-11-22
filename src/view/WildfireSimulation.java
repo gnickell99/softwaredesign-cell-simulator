@@ -1,5 +1,7 @@
 package view;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -9,118 +11,107 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import controller.*;
 
-public class WildfireSimulation {
-	
+/***
+ * 
+ * @author Chris 
+ * WildfireSimulation - Set up for Wildfire Simulation display
+ *
+ */
+
+public class WildfireSimulation extends View {
+
 	GridPane setUpFireScene = new GridPane();
 	public static final int SIZE = 600;
-	public int gridWidth;
-	public int gridHeight;
+	private final int MILLISECOND_DELAY = 150;
 	public double spreadProbability;
 	public double forestDensity;
 	public int burningTrees;
 	public int burnTime;
-	public Wildfire wildFireController;
-	public static final String TITLE = "WildFire Simulator";
+	private static final String TITLE = "WildFire Simulator";
 	public static final int COLUMNSPAN = 20;
-	private boolean paused = false;		
-	private Button pauseButton;
-	private Color BACKGROUND = Color.LIGHTSLATEGRAY;
 	InputParser validator = new InputParser();
-	
-	public WildfireSimulation(int gridWidth, int gridHeight)	{
-		this.gridWidth = gridWidth;
-		this.gridWidth = gridHeight;
-	}
-	
-	public void setUpWildFireScene(Paint background) {
-		 Scene secondScene = setupWindow();
-	     Stage newWindow = new Stage();
-	     newWindow.setTitle(TITLE);
-	     newWindow.setScene(secondScene);
-		
-		final TextField gridWidth = new TextField();
-		gridWidth.setPromptText("(4.0 = Default) Enter Grid Width.");
-		GridPane.setConstraints(gridWidth, 0, 0);
-		GridPane.setColumnSpan(gridWidth, COLUMNSPAN);
-		setUpFireScene.getChildren().add(gridWidth);
+	private Wildfire wildFireController = new Wildfire(0, 0, 0, 0, 0, 0);
 
-		final TextField gridHeight = new TextField();
-		gridHeight.setPromptText("(4.0 = Default) Enter Grid Height.");
-		GridPane.setConstraints(gridHeight, 0, 1);
-		GridPane.setColumnSpan(gridHeight, COLUMNSPAN);
-		setUpFireScene.getChildren().add(gridHeight);
-		final TextField burnTime = new TextField();
+	public WildfireSimulation(int gridWidth, int gridHeight)	{
+		//this.gridWidth = gridWidth;
+		//this.gridHeight = gridHeight;
+	}
+
+	public void setUpWildFireScene(Paint background) {
+		Scene secondScene = setUpScene(setUpFireScene);
+		Stage newWindow = new Stage();
+		newWindow.setTitle(TITLE);
+		newWindow.setScene(secondScene);
+
 		
+		
+		TextField burnTime = new TextField();
 		burnTime.setPromptText("(1.0 = Default) Enter Burn Time.");
 		GridPane.setConstraints(burnTime, 0, 2);
 		GridPane.setColumnSpan(burnTime, COLUMNSPAN);
 		setUpFireScene.getChildren().add(burnTime);
 
-		final TextField spreadProbability = new TextField();
+		TextField spreadProbability = new TextField();
 		spreadProbability.setPromptText("(0.4 = Default) Enter Spread Probability.");
 		GridPane.setConstraints(spreadProbability, 0, 3);
 		GridPane.setColumnSpan(spreadProbability, COLUMNSPAN);
 		setUpFireScene.getChildren().add(spreadProbability);
 
-		final TextField forestDensity = new TextField();
+		TextField forestDensity = new TextField();
 		forestDensity.setPromptText("(1.0 = Default) Enter Forest Density.");
-		GridPane.setConstraints(forestDensity, 0, 3);
+		GridPane.setConstraints(forestDensity, 0, 4);
 		GridPane.setColumnSpan(forestDensity, COLUMNSPAN);
 		setUpFireScene.getChildren().add(forestDensity);
-		
-		final TextField burningTreesNumber = new TextField();
+
+		TextField burningTreesNumber = new TextField();
 		burningTreesNumber.setPromptText("(1.0 = Default) Enter Burning Tree Number.");
-		GridPane.setConstraints(burningTreesNumber, 0, 4);
+		GridPane.setConstraints(burningTreesNumber, 0, 5);
 		GridPane.setColumnSpan(burningTreesNumber, COLUMNSPAN);
 		setUpFireScene.getChildren().add(burningTreesNumber);
 
 
 		Button newSimulationButton = new Button("New Simulation");
-		GridPane.setConstraints(newSimulationButton, 0 , 5);
+		GridPane.setConstraints(newSimulationButton, 0 , 6);
 		setUpFireScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
-			this.gridHeight = validator.parseIntegerValue(gridHeight);
-			this.gridWidth = validator.parseIntegerValue(gridWidth);
-			this.burningTrees = validator.parseIntegerValue(burningTreesNumber);
-			this.spreadProbability = validator.parseDoubleValue(spreadProbability);
-			this.burnTime = validator.parseIntegerValue(burnTime);
-			this.forestDensity = validator.parseDoubleValue(forestDensity);
-			wildFireController = new Wildfire(this.gridHeight, this.gridWidth, this.burnTime, this.spreadProbability, this.forestDensity, this.burningTrees);
+			
+			int height = Integer.parseInt(gridHeightText.getText());
+			int width = Integer.parseInt(gridWidthText.getText());
+			int burnTimeForTrees = Integer.parseInt(burnTime.getText());
+			double spreadProbabilityForTrees = Double.parseDouble(spreadProbability.getText());
+			int forestDensityOfTrees = Integer.parseInt(forestDensity.getText());
+			int rateOfBurningTrees = Integer.parseInt(burningTreesNumber.getText());
+			
+//			this.gridHeight = validator.parseIntValue(gridHeight);
+//			this.gridWidth = validator.parseIntValue(gridWidth);
+//			this.burningTrees = validator.parseIntValue(burningTreesNumber);
+//			this.spreadProbability = validator.parseDoubleValue(spreadProbability);
+//			this.burnTime = validator.parseIntValue(burnTime);
+//			this.forestDensity = validator.parseDoubleValue(forestDensity);
+			
+			wildFireController = new Wildfire(height, width, burnTimeForTrees, spreadProbabilityForTrees, forestDensityOfTrees, rateOfBurningTrees);
 			setUpNewSimulation(wildFireController);
 
 		});
 
-		pauseButton = new Button("Pause Simulation");
-		GridPane.setConstraints(pauseButton, 0, 6);
-		setUpFireScene.getChildren().add(pauseButton);
-		pauseButton.setOnAction((ActionEvent e) -> {
-			pressPause();
+		
+		// Makes the animation happen.  Will call "step" method repeatedly.
+		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(MILLISECOND_DELAY));
+		Timeline animation = new Timeline();
+		animation.setCycleCount(Timeline.INDEFINITE);
+		animation.getKeyFrames().add(frame);
+		animation.play();
 
-		});
-		
-		Button step = new Button("Step");
-		GridPane.setConstraints(step, 0, 7);
-		GridPane.setColumnSpan(step, 3);
-		setUpFireScene.getChildren().add(step);
-		
-		step.setOnAction((ActionEvent s) -> {
-			step(0);
-		});
-		
-		 newWindow.show();
+		newWindow.show();
+
+
+
 	}
-	
-	public Scene setupWindow() {
-		setUpFireScene.setPadding(new Insets(10, 10, 10, 10));
-		setUpFireScene.setVgap(10);
-		setUpFireScene.setHgap(10);
-		
-		Scene scene = new Scene(setUpFireScene, SIZE, SIZE, BACKGROUND);
-		return scene;
-	}
-	
+
+
 	/** setUpNewSimulation
 	 * 
 	 * Sets up a new simulation with inputs from gridWith and gridHeight
@@ -129,40 +120,7 @@ public class WildfireSimulation {
 	private void setUpNewSimulation(Wildfire wildFireController) {
 		wildFireController.generateGrid(setUpFireScene);
 	}
-	
-	/** pressPause
-	 * 
-	 * Toggle the pause button
-	 */
-	private void pressPause() {
-		this.paused = !this.paused;
-		if(this.paused){
-			pauseButton.setText("Resume");
-		}
-		else{
-			pauseButton.setText("Pause");
-		}
 
-	}
-
-	/** pauseIt
-	 * 
-	 * Pause the animation (regardless of current state of pause button)
-	 */
-	public void pauseIt(){
-		this.paused = true;
-		pauseButton.setText("Resume");
-	}
-
-	/** step
-	 * 
-	 * Does a step in the search only if not paused.
-	 */
-	public void step(double elapsedTime){
-		if(!paused && wildFireController != null) {
-			doOneStep(elapsedTime);
-		}
-	}
 	
 	/*doOneStep
 	 * 
@@ -170,6 +128,12 @@ public class WildfireSimulation {
 	 */
 	public void doOneStep(double elapsedTime){
 		wildFireController.updateGrid(setUpFireScene);
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

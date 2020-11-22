@@ -22,5 +22,4 @@ public class AliveCell extends GameOfLifeMutables{
 		}
 	}
 
-
 }

@@ -6,6 +6,7 @@ import java.util.Random;
 
 import states.*;
 import states.Wildfire.BurningTree;
+import states.Wildfire.BurntDownTree;
 import states.Wildfire.Empty;
 import states.Wildfire.LiveTree;
 
@@ -108,6 +109,24 @@ public class Wildfire extends Controller {
 		neighbors.add(EAST_NEIGHBOR, grid[currentStateRow][currentStateColumn+1]);
 		return neighbors;
 	}
+	
+	
+	//Methods to help test
+	//Given a point position they will make the needed state for testing
+	public void setBurningTree(int currentRow, int currentColumn) {
+		State burningTree = new BurningTree(this.burnTime);
+		grid[currentRow][currentColumn] = burningTree;
+	}
+	
+	public void setBurntTree(int currentRow, int currentColumn) {
+		grid[currentRow][currentColumn] = new BurntDownTree();
+	}
+	
+	public void setLiveTree(int currentRow, int currentColumn) {
+		State liveTree = new LiveTree(this.burnTime, this.spreadProbability);
+		grid[currentRow][currentColumn] = liveTree;
+	}
+
 
 	
 }
