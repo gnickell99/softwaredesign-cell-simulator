@@ -70,6 +70,7 @@ public class WildfireControllerTest {
 	//Points (1,1), (2,2), (3,1) should turn red. (2,1) should stay red
 	@Test
 	public void testFireSpread() {
+		//Setting up grid correctly
 		setUpRule1();
 		System.out.println();
 		
@@ -101,7 +102,9 @@ public class WildfireControllerTest {
 		
 		wildfireControl.grid[2][1] = wildfireControl.grid[2][1].act(2, 1); //turns yellow
 		assertTrue(wildfireControl.grid[2][1].getType().equals("burnt down tree"));
-//		printGrid();
+		assertTrue(wildfireControl.grid[1][1].getType().equals("burning tree"));
+		assertTrue(wildfireControl.grid[2][2].getType().equals("burning tree"));
+		assertTrue(wildfireControl.grid[3][1].getType().equals("burning tree"));
 	}
 	
 }
