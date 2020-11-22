@@ -284,7 +284,7 @@ public class GameOfLifeControllerTest {
 		
 		//Check rule 4 is correct
 		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.LIGHTBLUE));
-		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.WHITE)); //Fails- should be killed
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.WHITE)); 
 		assertTrue(golControl.grid[ROW1][COL3].cellColor.equals(Color.LIGHTBLUE));
 		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.LIGHTBLUE));
 		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.LIGHTBLUE));
