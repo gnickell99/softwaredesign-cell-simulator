@@ -7,7 +7,7 @@ public class Empty extends ImmutableState{
 
 	public Empty() {
 		super();
-		cellColor = Color.BROWN;
+		cellColor = Color.SADDLEBROWN;
 	}
 
 }

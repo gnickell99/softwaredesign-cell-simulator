@@ -1,4 +1,4 @@
-package states.Waterworld;
+package states.WaterWorld;
 
 import states.*;
 

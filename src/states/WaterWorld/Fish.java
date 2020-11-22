@@ -1,4 +1,4 @@
-package states.Waterworld;
+package states.WaterWorld;
 
 import java.util.List;
 
@@ -21,6 +21,7 @@ public class Fish extends WaterWorldMutables {
 			WaterWorldMutables waterNeighbor = (WaterWorldMutables)neighbor;
 			if (waterNeighbor.cellColor.equals(Color.BLUE)) {
 				waterNeighbor.setNext(new Fish(this.breedTimer));
+				return new Water();
 			}
 		}
 		return this;
