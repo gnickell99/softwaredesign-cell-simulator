@@ -28,7 +28,7 @@ public class RPSControllerTest {
 	static GridPane gp = new GridPane();
 	
 	@BeforeClass
-	public void test() {
+	public static void test() {
 		rpsControl = new RockPaperScissors(testGridSize,testGridSize, threshold); //Make object
 		rpsControl.generateGrid(gp); //Make a new Grid
 	}
@@ -116,10 +116,11 @@ public class RPSControllerTest {
 		rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.getNeighbors(1, 1));	
 		
 		//check - should turn white
+		System.out.println(rpsControl.grid[1][1].cellColor.equals(Color.WHITE));
 		assertTrue(rpsControl.grid[1][1].cellColor.equals(Color.WHITE));
-		//assertEquals(rpsControl.grid[1][2].getColor.equals(Color.white));
-		//assertEquals(rpsControl.grid[2][2].getColor.equals(Color.white));
-		//assertEquals(rpsControl.grid[2][3].getColor.equals(Color.white));
+		assertEquals(Color.WHITE, rpsControl.grid[1][2].cellColor);
+		assertEquals(Color.WHITE, rpsControl.grid[2][2].cellColor);
+		assertEquals(Color.WHITE, rpsControl.grid[2][1].cellColor);
 	}
 	
 	//threshold not met

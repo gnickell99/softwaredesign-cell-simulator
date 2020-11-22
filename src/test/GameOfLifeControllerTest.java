@@ -378,11 +378,12 @@ public class GameOfLifeControllerTest {
 		setUpRule4b(); //Set up cells
 		
 		//Check rule 4 is set up correctly
-		assertTrue(golControl.grid[ROW1][COL1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[ROW1][COL2].getType().equals("dead cell"));
-		assertTrue(golControl.grid[ROW1][COL3].getType().equals("alive cell"));
-		assertTrue(golControl.grid[ROW2][COL1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[ROW2][COL2].getType().equals("alive cell"));
+//		assertTrue(golControl.grid[ROW1][COL1].getType().equals("alive cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.LIGHTBLUE));
+//		assertTrue(golControl.grid[ROW1][COL2].getType().equals("dead cell"));
+//		assertTrue(golControl.grid[ROW1][COL3].getType().equals("alive cell"));
+//		assertTrue(golControl.grid[ROW2][COL1].getType().equals("alive cell"));
+//		assertTrue(golControl.grid[ROW2][COL2].getType().equals("alive cell"));
 	}
 	
 	@Test
