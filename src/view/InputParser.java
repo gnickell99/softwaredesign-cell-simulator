@@ -60,7 +60,7 @@ public class InputParser {
 	}
 	
 	public void checkValue(int userInput) {
-		if(userInput > 0)	{
+		if(userInput > 0 && userInput <=50)	{
 			defaultValue = userInput;
 		}
 		else	{
