@@ -6,6 +6,7 @@ import java.util.Random;
 
 import states.*;
 import states.Wildfire.BurningTree;
+import states.Wildfire.BurntDownTree;
 import states.Wildfire.Empty;
 import states.Wildfire.LiveTree;
 
@@ -98,22 +99,6 @@ public class Wildfire extends Controller {
 			this.burningTrees = VALUE_OF_ONE;
 		}
 	}
-	
-	//Methods to help test
-	//Given a point position they will make the needed state for testing
-	public void setBurningTree(int currentRow, int currentColumn) {
-		State burningTree = new BurningTree(currentRow, currentColumn, this.burnTime, this.grid);
-		grid[currentRow][currentColumn] = burningTree;
-	}
-	
-	public void setBurntTree(int currentRow, int currentColumn) {
-		grid[currentRow][currentColumn] = new BurntDownTree();
-	}
-	
-	public void setLiveTree(int currentRow, int currentColumn) {
-		State liveTree = new LiveTree(currentRow, currentColumn, this.burnTime, this.spreadProbability, this.grid);
-		grid[currentRow][currentColumn] = liveTree;
-	}
 
 	@Override
 	public List<State> getNeighbors(int currentStateRow, int currentStateColumn) {
@@ -129,7 +114,7 @@ public class Wildfire extends Controller {
 	//Methods to help test
 	//Given a point position they will make the needed state for testing
 	public void setBurningTree(int currentRow, int currentColumn) {
-		State burningTree = new BurningTree(currentRow, currentColumn, this.burnTime, this.grid);
+		BurningTree burningTree = new BurningTree(this.burnTime);
 		grid[currentRow][currentColumn] = burningTree;
 	}
 	
@@ -138,7 +123,7 @@ public class Wildfire extends Controller {
 	}
 	
 	public void setLiveTree(int currentRow, int currentColumn) {
-		State liveTree = new LiveTree(currentRow, currentColumn, this.burnTime, this.spreadProbability, this.grid);
+		LiveTree liveTree = new LiveTree(this.burnTime, this.spreadProbability);
 		grid[currentRow][currentColumn] = liveTree;
 	}
 

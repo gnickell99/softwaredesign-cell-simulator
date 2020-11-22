@@ -69,5 +69,16 @@ public class RockPaperScissors extends Controller {
 		neighbors.add(SOUTH_EAST_NEIGHBOR, grid[currentStateRow+1][currentStateColumn+1]);
 		return neighbors;
 	}
+	
+	//Method to help test
+	public void makeRock(int currentRow, int currentColumn) {
+		Rock rock = new Rock(this.threshold);
+		grid[currentRow][currentColumn] = rock;
+	}
+	
+	public void makePaper(int currentRow, int currentColumn) {
+		Paper paper = new Paper(this.threshold);
+		grid[currentRow][currentColumn] = paper;
+	}
 
 }

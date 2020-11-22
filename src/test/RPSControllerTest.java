@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sun.prism.paint.Color;
+
+import controller.RockPaperScissors;
 import javafx.scene.layout.GridPane;
 
 /*
@@ -15,7 +18,7 @@ import javafx.scene.layout.GridPane;
 
 public class RPSControllerTest {
 
-	//static RockPaperScissors rpsControl; //not yet added
+	static RockPaperScissors rpsControl; //not yet added
 
 	static int testGridSize = 2;
 	static int firstRow = 0;
@@ -26,16 +29,16 @@ public class RPSControllerTest {
 	
 	@BeforeClass
 	public void test() {
-		//rpsControl = new RockPaperScissors(testGridSize,testGridSize); //Make object
-		//rpsControl.generateGrid(gp); //Make a new Grid
+		rpsControl = new RockPaperScissors(testGridSize,testGridSize, threshold); //Make object
+		rpsControl.generateGrid(gp); //Make a new Grid
 	}
 
 	//Test for rock below - surrounded by weakness:
 	public void setUpTest1a() {
-		//rpsControl.makeRock(1,1); //rock
-		//rpsControl.makePaper(1,2);//paper
-		//rpsControl.makePaper(2,1);//paper
-		//rpsControl.makePaper(2,2);//paper
+		rpsControl.makeRock(1,1); //rock
+		rpsControl.makePaper(1,2);//paper
+		rpsControl.makePaper(2,1);//paper
+		rpsControl.makePaper(2,2);//paper
 	}
 	
 	//Test for rock below - threshold not met:
@@ -110,10 +113,10 @@ public class RPSControllerTest {
 		setUpTest1a();// set up
 		
 		//call act on start
-		//rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.grid);	
+		rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.getNeighbors(1, 1));	
 		
 		//check - should turn white
-		//assertEquals(rpsControl.grid[1][1].getColor.equals(Color.white));
+		assertTrue(rpsControl.grid[1][1].cellColor.equals(Color.WHITE));
 		//assertEquals(rpsControl.grid[1][2].getColor.equals(Color.white));
 		//assertEquals(rpsControl.grid[2][2].getColor.equals(Color.white));
 		//assertEquals(rpsControl.grid[2][3].getColor.equals(Color.white));
