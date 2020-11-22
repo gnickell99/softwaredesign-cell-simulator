@@ -80,5 +80,10 @@ public class RockPaperScissors extends Controller {
 		Paper paper = new Paper(this.threshold);
 		grid[currentRow][currentColumn] = paper;
 	}
+	
+	public void makeScissor(int currentRow, int currentColumn) {
+		Scissors paper = new Scissors(this.threshold);
+		grid[currentRow][currentColumn] = paper;
+	}
 
 }
