@@ -20,10 +20,7 @@ public class SimulationSelector  {
 	public static final int SIZE = 600;
 	public static final String TITLE = "Cell Simulator";
 	public static final int COLUMNSPAN = 20;
-	InputParser parser = new InputParser();
-
-
-
+	
 	public Scene setupScene(Paint background) {
 		setupGrid.setPadding(new Insets(10, 10, 10, 10));
 		setupGrid.setVgap(10);

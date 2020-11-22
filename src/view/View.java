@@ -12,9 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.control.TextField; 
 
 
-
-
-
 /***
  * 
  * @author  Jazz
@@ -33,17 +30,10 @@ public abstract class View extends Application  {
 	private Button pauseButton;
 	private Color BACKGROUND = Color.LIGHTSLATEGRAY;
 	private final int MILLISECOND_DELAY = 150;
-
-
+	protected TextField gridWidthText;
+	protected TextField gridHeightText;
+	
 	GridPane setUpGrid = new GridPane();
-
-
-	public View(){
-
-		setUpGrid.setPadding(new Insets(10, 10, 10, 10));
-		setUpGrid.setVgap(10);
-		setUpGrid.setHgap(10);
-	}
 
 
 	public Scene setUpScene(GridPane setUpGrid) {
@@ -61,24 +51,24 @@ public abstract class View extends Application  {
 
 		//Setting the Grid alignment 
 		setUpGrid.setAlignment(Pos.TOP_LEFT); 
-
-
-
-		final TextField gridWidthText = new TextField();
+		
+		gridWidthText = new TextField();
 		gridWidthText.setPromptText("(4.0 = Default) Enter Grid Width.");
 		GridPane.setConstraints(gridWidthText, 0, 0);
 		GridPane.setColumnSpan(gridWidthText, WINDOW_COLUMNSPAN);
 		setUpGrid.getChildren().add(gridWidthText);
+		
+		
 
-		final TextField gridHeightText = new TextField();
+		gridHeightText = new TextField();
 		gridHeightText.setPromptText("(4.0 = Default) Enter Grid Height.");
 		GridPane.setConstraints(gridHeightText, 0, 1);
 		GridPane.setColumnSpan(gridHeightText, WINDOW_COLUMNSPAN);
 		setUpGrid.getChildren().add(gridHeightText);
-
+		
 
 		pauseButton = new Button("Pause Simulation");
-		GridPane.setConstraints(pauseButton, 3, 3);
+		GridPane.setConstraints(pauseButton, 1,6);
 		setUpGrid.getChildren().add(pauseButton);
 		pauseButton.setOnAction((ActionEvent e) -> {
 			pressPause();
@@ -86,7 +76,7 @@ public abstract class View extends Application  {
 		});
 
 		Button stepButton = new Button("Step");
-		GridPane.setConstraints(stepButton, 4, 3);
+		GridPane.setConstraints(stepButton, 2, 6);
 		setUpGrid.getChildren().add(stepButton);
 
 		stepButton.setOnAction((ActionEvent e) -> {
@@ -116,19 +106,6 @@ public abstract class View extends Application  {
 		return gridWidthText;
 
 	}
-
-
-
-	//	private Button makeGameSimulationButtonForGrid(){
-	//		Button gameSimulationButton  = new Button("");
-	//		return gameSimulationButton;
-	//
-	//	}
-	//	
-	//	private TextField makeTextField() {
-	//		 TextField baseTextField = new TextField();
-	//		return baseTextField;
-	//	 }
 
 	/**
 	 * 
