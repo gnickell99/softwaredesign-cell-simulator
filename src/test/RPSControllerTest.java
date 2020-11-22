@@ -114,7 +114,7 @@ public class RPSControllerTest {
 		
 		//check - should turn white
 		//assertEquals(rpsControl.grid[1][1].getColor.equals(Color.white));
-		//assertEquals(rpsControl.grid[2][1].getColor.equals(Color.white));
+		//assertEquals(rpsControl.grid[1][2].getColor.equals(Color.white));
 		//assertEquals(rpsControl.grid[2][2].getColor.equals(Color.white));
 		//assertEquals(rpsControl.grid[2][3].getColor.equals(Color.white));
 	}
@@ -160,7 +160,16 @@ public class RPSControllerTest {
 	//paper at point (1,1) scissors at point (2,1),(2,2),(1,2)
 	@Test
 	public void paperTest1() {
-		fail("Not yet implemented");
+		setUpTest2a();// set up
+		
+		//call act on start
+		//rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.grid);	
+		
+		//check - should turn white
+		//assertEquals(rpsControl.grid[1][1].getColor.equals(Color.blue));
+		//assertEquals(rpsControl.grid[2][1].getColor.equals(Color.blue));
+		//assertEquals(rpsControl.grid[2][2].getColor.equals(Color.blue));
+		//assertEquals(rpsControl.grid[2][3].getColor.equals(Color.blue));
 	}
 	
 	//threshold not met
@@ -168,7 +177,16 @@ public class RPSControllerTest {
 	//paper at point (1,1),(1,2) scissors at point (2,1),(2,2)
 	@Test
 	public void paperTest2() {
-		fail("Not yet implemented");
+		setUpTest2b();// set up
+		
+		//call act on start
+		//rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.grid);	
+		
+		//check - should turn white
+		//assertEquals(rpsControl.grid[1][1].getColor.equals(Color.white));
+		//assertEquals(rpsControl.grid[2][1].getColor.equals(Color.white));
+		//assertEquals(rpsControl.grid[2][2].getColor.equals(Color.blue));
+		//assertEquals(rpsControl.grid[2][3].getColor.equals(Color.blue));
 	}
 	
 	//threshold not weakness
