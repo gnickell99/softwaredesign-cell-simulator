@@ -198,6 +198,7 @@ public class GameOfLifeControllerTest {
 		golControl.grid[ROW1][COL1] = golControl.grid[ROW1][COL1].act(ROW1, COL1);	
 		
 		//Check rule 1 worked
+		//Note - getType() -> cellColor.equals()
 		assertTrue(golControl.grid[ROW1][COL1].getType().equals("dead cell"));
 		assertTrue(golControl.grid[ROW1][COL2].getType().equals("dead cell"));
 		assertTrue(golControl.grid[ROW2][COL1].getType().equals("dead cell"));
