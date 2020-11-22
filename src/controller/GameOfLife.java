@@ -74,17 +74,16 @@ public class GameOfLife extends Controller {
 		neighbors.add(SOUTH_EAST_NEIGHBOR, grid[currentStateRow+1][currentStateColumn+1]);
 		return neighbors;
 	}
-}
 
 	
 	//Methods to help test
 	public void infectCell(int currentRow, int currentColumn) {
-		State AliveCell = new AliveCell(currentRow, currentColumn, this.grid);
+		State AliveCell = new AliveCell();
 		grid[currentRow][currentColumn] = AliveCell;
 	}
 	
 	public void killCell(int currentRow, int currentColumn) {
-		State DeadCell = new DeadCell(currentRow, currentColumn, this.grid);
+		State DeadCell = new DeadCell();
 		grid[currentRow][currentColumn] = DeadCell;
 	}
 	
