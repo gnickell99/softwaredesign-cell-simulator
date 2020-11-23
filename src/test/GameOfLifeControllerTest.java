@@ -18,23 +18,24 @@ import javafx.scene.paint.Color;
  * */
 
 public class GameOfLifeControllerTest {
+	//Controller
 	static GameOfLife golControl;
+	static GridPane gp = new GridPane();
 	
 	//Constants
 	static int testGridSize = 4;
 	static int firstRow = 0;
 	static int lastRow = 5;
+	//Coordinates
 	static int ROW1 = 1;
 	static int COL1 = 1;
 	static int ROW2 = 2;
 	static int COL2 = 2;
 	static int COL3 = 3;
-
+	//Colors
 	static final Color ALIVE_COLOR = Color.LIGHTBLUE;
 	static final Color DEAD_COLOR = Color.WHITE;
 	static final Color EDGE_COLOR = Color.BLACK;	
-	
-	static GridPane gp = new GridPane();
 	
 	@BeforeClass
 	public static void getController() {
