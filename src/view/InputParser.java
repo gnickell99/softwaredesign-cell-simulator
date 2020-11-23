@@ -16,12 +16,12 @@ public class InputParser {
 	private final int DEFAULT_VALUE_END_INDEX = 4;
 	private double defaultValue;
 		
-	public double parseDoubleValue(TextField userInput) {
+	public double parseDoubleValue(String userInput) {
 		defaultValue = getDefaultValue(userInput);
 		double tempUserValue = 0;
-		if(userInput.getText() != null)	{
+		if(userInput != null)	{
 			try	{
-				tempUserValue = Double.parseDouble(userInput.getText());
+				tempUserValue = Double.parseDouble(userInput);
 				checkValue(tempUserValue);
 			}
 			catch(Exception e)	{
@@ -31,12 +31,12 @@ public class InputParser {
 		return defaultValue;
 	}
 	
-	public int parseIntValue(TextField userInput) {
+	public int parseIntValue(String userInput) {
 		defaultValue = getDefaultValue(userInput);
 		int tempUserValue = 0;
-		if(userInput.getText() != null) {
+		if(userInput != null) {
 			try	{
-				tempUserValue = Integer.parseInt(userInput.getText());
+				tempUserValue = Integer.parseInt(userInput);
 				checkValue(tempUserValue);
 			}
 			catch(Exception e) {
@@ -46,8 +46,8 @@ public class InputParser {
 		return (int)defaultValue;
 	}
 	
-	public double getDefaultValue(TextField userInput)	{
-		return Double.parseDouble(userInput.getPromptText().substring(DEFAULT_VALUE_START_INDEX, DEFAULT_VALUE_END_INDEX));
+	public double getDefaultValue(String userInput)	{
+		return Double.parseDouble(userInput.substring(DEFAULT_VALUE_START_INDEX, DEFAULT_VALUE_END_INDEX));
 	}
 	
 	public void checkValue(double userInput) {	
