@@ -1,21 +1,25 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import javafx.scene.paint.Color;
-
 import controller.Wildfire;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 public class WildfireControllerTest {
 
 	static Wildfire wildfireControl;
 	static GridPane gp = new GridPane();
+	static final Color EDGE_COLOR = Color.BLACK;
+	static final Color BURNING_TREE_COLOR = Color.RED;
+	static final Color BURNT_TREE_COLOR = Color.YELLOW;
+	static final Color EMPTY_COLOR = Color.SADDLEBROWN;
+	static final Color LIVE_COLOR = Color.GREEN;
+	
 	//types are:
 	//edge
 	//burning tree
@@ -31,7 +35,7 @@ public class WildfireControllerTest {
 	public static void makeAllLiveTrees() {
 		for(int i = 0; i < wildfireControl.grid.length; i++) {
 			for(int j = 0; j < wildfireControl.grid.length; j++) {
-				if(!wildfireControl.grid[i][j].cellColor.equals(Color.BLACK)) {
+				if(!wildfireControl.grid[i][j].cellColor.equals(EDGE_COLOR)) {
 					wildfireControl.setLiveTree(i, j);
 				}
 			}
@@ -49,7 +53,7 @@ public class WildfireControllerTest {
 	public static void printGrid() {
 		for(int i = 0; i < wildfireControl.grid.length; i++) {
 			for(int j = 0; j < wildfireControl.grid.length; j++) {
-				System.out.println(wildfireControl.grid[i][j].cellColor);
+				System.out.println(wildfireControl.grid[i][j].cellColor.toString());
 			}
 		}
 	}
@@ -61,10 +65,10 @@ public class WildfireControllerTest {
 	public void edgeTest() {
 
 		for(int i = 0; i < wildfireControl.grid.length; i++) {
-			assertTrue(wildfireControl.grid[0][i].cellColor.equals(Color.BLACK));
+			assertEquals(EDGE_COLOR, wildfireControl.grid[0][i].cellColor);
 		}
 		for(int i = 0; i < wildfireControl.grid.length; i++) {
-			assertTrue(wildfireControl.grid[4][i].cellColor.equals(Color.BLACK));
+			assertEquals(EDGE_COLOR, wildfireControl.grid[4][i].cellColor);
 		}
 	}
 
@@ -78,14 +82,14 @@ public class WildfireControllerTest {
 		
 		//Calls act on neighbor cells
 		wildfireControl.grid[1][1] = wildfireControl.grid[1][1].act(wildfireControl.getNeighbors(1, 1)); //turns red
-		wildfireControl.grid[2][2] = wildfireControl.grid[2][2].act(wildfireControl.getNeighbors(2, 2)); //turns red
-		wildfireControl.grid[3][1] = wildfireControl.grid[3][1].act(wildfireControl.getNeighbors(3, 1)); //turns red
+		wildfireControl.grid[2][2] = wildfireControl.grid[2][2].act(wildfireControl.getNeighbors(2,2)); //turns red
+		wildfireControl.grid[3][1] = wildfireControl.grid[3][1].act(wildfireControl.getNeighbors(2, 1)); //turns red
 		
 		//printGrid();
-		assertTrue(wildfireControl.grid[2][1].cellColor.equals(Color.RED));
-		assertTrue(wildfireControl.grid[1][1].cellColor.equals(Color.RED));
-		assertTrue(wildfireControl.grid[2][2].cellColor.equals(Color.RED));
-		assertTrue(wildfireControl.grid[3][1].cellColor.equals(Color.RED));
+		assertTrue(wildfireControl.grid[2][1].cellColor.equals(BURNING_TREE_COLOR));
+		assertTrue(wildfireControl.grid[1][1].cellColor.equals(BURNING_TREE_COLOR));
+		assertTrue(wildfireControl.grid[2][2].cellColor.equals(BURNING_TREE_COLOR));
+		assertTrue(wildfireControl.grid[3][1].cellColor.equals(BURNING_TREE_COLOR));
 	}
 	
 	@Test
@@ -95,22 +99,20 @@ public class WildfireControllerTest {
 		
 		//Calls act on neighbor cells
 		wildfireControl.grid[1][1] = wildfireControl.grid[1][1].act(wildfireControl.getNeighbors(1, 1)); //turns red
-		wildfireControl.grid[2][2] = wildfireControl.grid[2][2].act(wildfireControl.getNeighbors(2, 2)); //turns red
-		wildfireControl.grid[3][1] = wildfireControl.grid[3][1].act(wildfireControl.getNeighbors(3, 1)); //turns red
+		wildfireControl.grid[2][2] = wildfireControl.grid[2][1].act(wildfireControl.getNeighbors(2,2)); //turns red
+		wildfireControl.grid[3][1] = wildfireControl.grid[3][1].act(wildfireControl.getNeighbors(2, 1)); //turns red
 		
 //		printGrid();
 		System.out.println();
 		
-		
 		wildfireControl.grid[2][1] = wildfireControl.grid[2][1].act(wildfireControl.getNeighbors(2, 1)); //stays red - time not at 0
-		assertTrue(wildfireControl.grid[2][1].cellColor.equals(Color.RED));
-		
+		assertTrue(wildfireControl.grid[2][1].cellColor.equals(BURNING_TREE_COLOR));
 		wildfireControl.grid[2][1] = wildfireControl.grid[2][1].act(wildfireControl.getNeighbors(2, 1)); //turns yellow
 		
-		assertTrue(wildfireControl.grid[2][1].cellColor.equals(Color.YELLOW));
-		assertTrue(wildfireControl.grid[1][1].cellColor.equals(Color.RED));
-		assertTrue(wildfireControl.grid[2][2].cellColor.equals(Color.RED));
-		assertTrue(wildfireControl.grid[3][1].cellColor.equals(Color.RED));
+		assertTrue(wildfireControl.grid[2][1].cellColor.equals(BURNT_TREE_COLOR));
+		assertTrue(wildfireControl.grid[1][1].cellColor.equals(BURNING_TREE_COLOR));
+		assertTrue(wildfireControl.grid[2][2].cellColor.equals(BURNING_TREE_COLOR));
+		assertTrue(wildfireControl.grid[3][1].cellColor.equals(BURNING_TREE_COLOR));
 	}
 	
 }
