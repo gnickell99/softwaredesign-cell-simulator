@@ -13,7 +13,6 @@ public class InputParser {
 	private final String OUT_OF_RANGE = "Value out of range: Using default value";
 	private final String VALUE_NOT_VALID = "Value not valid: Using default value";
 	private final int DEFAULT_VALUE_START_INDEX = 1;
-	private final int DEFAULT_VALUE_END_INDEX = 2;
 	private final int DEFAULT_VALUE_END_INDEX_DOUBLE = 4;
 	private double defaultValue;
 		

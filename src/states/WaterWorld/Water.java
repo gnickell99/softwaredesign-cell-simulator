@@ -14,8 +14,7 @@ public class Water extends WaterWorldMutables {
 
 	@Override
 	public State act(List<State> neighbors) {
-		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 
 }
