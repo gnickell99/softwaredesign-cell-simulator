@@ -77,20 +77,12 @@ public class WildfireSimulation extends View {
 		GridPane.setConstraints(newSimulationButton, 0 , 6);
 		setUpFireScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
-			
-			int height = Integer.parseInt(gridHeightText.getText());
-			int width = Integer.parseInt(gridWidthText.getText());
-			int burnTimeForTrees = Integer.parseInt(burnTime.getText());
-			double spreadProbabilityForTrees = Double.parseDouble(spreadProbability.getText());
-			int forestDensityOfTrees = Integer.parseInt(forestDensity.getText());
-			int rateOfBurningTrees = Integer.parseInt(burningTreesNumber.getText());
-			
-//			this.gridHeight = validator.parseIntValue(gridHeight);
-//			this.gridWidth = validator.parseIntValue(gridWidth);
-//			this.burningTrees = validator.parseIntValue(burningTreesNumber);
-//			this.spreadProbability = validator.parseDoubleValue(spreadProbability);
-//			this.burnTime = validator.parseIntValue(burnTime);
-//			this.forestDensity = validator.parseDoubleValue(forestDensity);
+			int height = validator.parseIntValue(gridHeightText.getPromptText());
+			int width = validator.parseIntValue(gridWidthText.getPromptText());
+			int burnTimeForTrees = validator.parseIntValue(burnTime.getPromptText());
+			double spreadProbabilityForTrees = validator.parseDoubleValue(spreadProbability.getPromptText());
+			double forestDensityOfTrees = validator.parseDoubleValue(forestDensity.getPromptText());
+			int rateOfBurningTrees = validator.parseIntValue(burningTreesNumber.getPromptText());
 			
 			wildFireController = new Wildfire(height, width, burnTimeForTrees, spreadProbabilityForTrees, forestDensityOfTrees, rateOfBurningTrees);
 			setUpNewSimulation(wildFireController);
