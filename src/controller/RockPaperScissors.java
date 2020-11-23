@@ -37,8 +37,8 @@ public class RockPaperScissors extends Controller {
 	@Override
 	protected void setupCells(int currentRow, int currentColumn) {
 		// RPS setupCells uses a quadrant idea on the grid to perform logic
-		if (currentRow > grid[0].length / 2) { // looks at the top two quadrants of the grid
-			if (currentColumn < grid.length / 2) { // left quadrant
+		if (currentColumn < grid.length / 2) { // looks at the top two quadrants of the grid
+			if (currentRow < grid[0].length / 2) { // left quadrant
 				State rock = new Rock(threshold);
 				grid[currentRow][currentColumn] = rock;
 			}
@@ -53,11 +53,11 @@ public class RockPaperScissors extends Controller {
 			// from there, a check is made of the value of the x (column) and y (row), where if the y is larger than the x,
 			// the particular cell must be above the diagonal line cutting through the quadrant
 			// this idea is repeated for the right quadrant as well
-			if (currentColumn > grid[0].length - currentRow && currentColumn < grid.length / 2) { //left bottom quadrant with logic
+			if (currentColumn < grid.length - currentRow) { //left bottom quadrant with logic
 				State rock = new Rock(threshold);
 				grid[currentRow][currentColumn] = rock;
 			}
-			else if (grid.length - currentColumn > grid[0].length - currentRow && currentColumn > grid.length / 2) { //right bottom quadrant with logic
+			else if (grid[0].length - currentColumn > grid.length - currentRow) { //right bottom quadrant with logic
 				State scissors = new Scissors(threshold);
 				grid[currentRow][currentColumn] = scissors;
 			}
