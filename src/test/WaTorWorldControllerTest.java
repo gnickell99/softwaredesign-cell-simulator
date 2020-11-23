@@ -207,17 +207,16 @@ public class WaTorWorldControllerTest {
 	//shark at point (1,1) Water at point (2,1),(2,2),(1,2)
 	@Test
 	public void sharkTest1() {
-		setUpRule3();
+		setUpRule4();
 		
 		//run act method
-		//wwControl.grid[1][1] = wwControl.grid[1][1].act(wwControl.grid);	
+		wwControl.grid[ROW1][COL1] = wwControl.grid[ROW1][COL1].act(wwControl.getNeighbors(ROW1, COL1));		
 				
 		//Check rule
 		//Make sure start is now water
-//		assertTrue(wwControl.grid[1][1].getType().equals("water cell"));
+		assertTrue(wwControl.grid[ROW1][COL1].cellColor.equals(EMPTY_WATER));
 		//Make sure one of neighbors is a shark
-//		assertTrue(wwControl.grid[1][2].getType().equals("shark cell") || wwControl.grid[2][1].getType().equals("shark cell") || wwControl.grid[2][2].getType().equals("shark cell"));
-	}
+		assertTrue(wwControl.grid[ROW1][COL2].cellColor.equals(SHARK_COLOR) || wwControl.grid[ROW2][COL1].cellColor.equals(SHARK_COLOR));	}
 	
 	//Test 2: Current cell should turn blue and shark should move to: (1,2) (Color will be yellow)
 	//shark at point (1,1) Water at point (1,2) Edges at point (2,1), (2,2)
