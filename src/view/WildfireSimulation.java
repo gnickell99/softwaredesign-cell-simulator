@@ -15,7 +15,7 @@ import controller.*;
 
 /***
  * 
- * @author Chris 
+ * @author Chris and Jazz Harris
  * WildfireSimulation - Set up for Wildfire Simulation display
  *
  */
@@ -37,9 +37,9 @@ public class WildfireSimulation extends View {
 	private Wildfire wildFireController = new Wildfire(0, 0, 0, 0, 0, 0);
 
 	public WildfireSimulation(int gridWidth, int gridHeight)	{
-		
+
 	}
-	
+
 	/** setUpWildFireScene
 	 * 
 	 * Creates each button needed for the wildfire simulation
@@ -56,7 +56,7 @@ public class WildfireSimulation extends View {
 		newWindow.setTitle(TITLE);
 		newWindow.setScene(secondScene);
 
-		
+
 		TextField burnTime = new TextField();
 		burnTime.setPromptText("(1.0 = Default) Enter Burn Time.");
 		GridPane.setConstraints(burnTime, 0, 2);
@@ -92,11 +92,11 @@ public class WildfireSimulation extends View {
 			double spreadProbabilityForTrees = validator.parseDoubleValue(spreadProbability);
 			double forestDensityOfTrees = validator.parseDoubleValue(forestDensity);
 			int rateOfBurningTrees = validator.parseIntValue(burningTreesNumber);
-			
+
 			wildFireController = new Wildfire(height, width, burnTimeForTrees, spreadProbabilityForTrees, forestDensityOfTrees, rateOfBurningTrees);
 			setUpNewSimulation(wildFireController);
 		});
-		
+
 		//This only works when the simulation is paused
 		Button clearButton = new Button("Clear Simulation");
 		GridPane.setConstraints(clearButton, 2, 7);
@@ -105,7 +105,7 @@ public class WildfireSimulation extends View {
 			setUpFireScene.getChildren().remove(GRID_INDEX_START, setUpFireScene.getChildren().size());
 		});
 
-		
+
 		// Makes the animation happen.  Will call "step" method repeatedly.
 		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(MILLISECOND_DELAY));
 		Timeline animation = new Timeline();
@@ -129,7 +129,7 @@ public class WildfireSimulation extends View {
 		wildFireController.generateGrid(setUpFireScene);
 	}
 
-	
+
 	/*doOneStep
 	 * 
 	 * Does a step in the search regardless of pause status. Uses controller to make step
@@ -142,8 +142,8 @@ public class WildfireSimulation extends View {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }
 

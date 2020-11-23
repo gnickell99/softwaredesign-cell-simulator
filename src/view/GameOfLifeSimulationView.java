@@ -32,7 +32,7 @@ public class GameOfLifeSimulationView extends View {
 
 	public GameOfLifeSimulationView(int gridHeight, int gridWidth)
 	{
-		
+
 	}
 
 	/** setUpGameOfLifeScene
@@ -57,21 +57,21 @@ public class GameOfLifeSimulationView extends View {
 		setUpLifeScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
 
-		int height = validator.parseIntValue(gridHeightText);
-		int width = validator.parseIntValue(gridWidthText);
-		gameOfLifeController = new GameOfLife(height, width);
+			int height = validator.parseIntValue(gridHeightText);
+			int width = validator.parseIntValue(gridWidthText);
+			gameOfLifeController = new GameOfLife(height, width);
 
-		setUpNewSimulation(gameOfLifeController);
+			setUpNewSimulation(gameOfLifeController);
 
 		});
-		
+
 		//This only works when the simulation is paused, but clears any current simulation on the scene
 		Button clearButton = new Button("Clear Simulation");
 		GridPane.setConstraints(clearButton, 2, 7);
 		setUpLifeScene.getChildren().add(clearButton);
 		clearButton.setOnAction((ActionEvent e) -> {
-		setUpLifeScene.getChildren().remove(GRID_INDEX_START, setUpLifeScene.getChildren().size());
-				});
+			setUpLifeScene.getChildren().remove(GRID_INDEX_START, setUpLifeScene.getChildren().size());
+		});
 
 
 		// Makes the animation happen.  Will call "step" method repeatedly.
