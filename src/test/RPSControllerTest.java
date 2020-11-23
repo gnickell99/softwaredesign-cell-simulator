@@ -11,7 +11,7 @@ import controller.RockPaperScissors;
 import javafx.scene.layout.GridPane;
 
 /*
- * @author Kim Jones
+ * @author Kim Jones 
  * This class test the Rock Paper Scissors methods, it makes sure everything gets set up properly and rules are accurate
  * 
  * */
