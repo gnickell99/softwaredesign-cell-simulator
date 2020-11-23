@@ -35,6 +35,10 @@ public class SimulationSelector  {
 		Button gameOfLife = new Button("Game Of Life");
 		GridPane.setConstraints(gameOfLife, 2, 0);
 		setupGrid.getChildren().add(gameOfLife);
+		
+		Button rockPaperScissors = new Button("Rock Paper Scissors");
+		GridPane.setConstraints(rockPaperScissors, 3, 0);
+		setupGrid.getChildren().add(rockPaperScissors);
 
 		wildFire.setOnAction((ActionEvent e) -> {
 
@@ -48,6 +52,14 @@ public class SimulationSelector  {
 			GameOfLifeSimulationView gameOfLifeSimulation = new GameOfLifeSimulationView(10,10);
 
 			gameOfLifeSimulation.setUpGameOfLifeScene(background);
+
+		});
+		
+		rockPaperScissors.setOnAction((ActionEvent e) -> {
+
+			RPSView rpsSimulation = new RPSView(10,10);
+
+			rpsSimulation.setUpRpsScene(background);
 
 		});
 

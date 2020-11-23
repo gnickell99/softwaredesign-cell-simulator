@@ -3,12 +3,10 @@ package view;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -32,12 +30,10 @@ public class WildfireSimulation extends View {
 	public int burnTime;
 	private static final String TITLE = "WildFire Simulator";
 	public static final int COLUMNSPAN = 20;
-	InputParser validator = new InputParser();
 	private Wildfire wildFireController = new Wildfire(0, 0, 0, 0, 0, 0);
 
 	public WildfireSimulation(int gridWidth, int gridHeight)	{
-		//this.gridWidth = gridWidth;
-		//this.gridHeight = gridHeight;
+
 	}
 
 	public void setUpWildFireScene(Paint background) {
