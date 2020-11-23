@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -23,6 +24,7 @@ import controller.*;
 
 public class WildfireSimulation extends View {
 
+	private static final int GRID_INDEX_START = 10;
 	GridPane setUpFireScene = new GridPane();
 	public static final int SIZE = 600;
 	private final int MILLISECOND_DELAY = 150;
@@ -77,24 +79,23 @@ public class WildfireSimulation extends View {
 		GridPane.setConstraints(newSimulationButton, 0 , 6);
 		setUpFireScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
-			
-			int height = Integer.parseInt(gridHeightText.getText());
-			int width = Integer.parseInt(gridWidthText.getText());
-			int burnTimeForTrees = Integer.parseInt(burnTime.getText());
-			double spreadProbabilityForTrees = Double.parseDouble(spreadProbability.getText());
-			int forestDensityOfTrees = Integer.parseInt(forestDensity.getText());
-			int rateOfBurningTrees = Integer.parseInt(burningTreesNumber.getText());
-			
-//			this.gridHeight = validator.parseIntValue(gridHeight);
-//			this.gridWidth = validator.parseIntValue(gridWidth);
-//			this.burningTrees = validator.parseIntValue(burningTreesNumber);
-//			this.spreadProbability = validator.parseDoubleValue(spreadProbability);
-//			this.burnTime = validator.parseIntValue(burnTime);
-//			this.forestDensity = validator.parseDoubleValue(forestDensity);
+			int height = validator.parseIntValue(gridHeightText);
+			int width = validator.parseIntValue(gridWidthText);
+			int burnTimeForTrees = validator.parseIntValue(burnTime);
+			double spreadProbabilityForTrees = validator.parseDoubleValue(spreadProbability);
+			double forestDensityOfTrees = validator.parseDoubleValue(forestDensity);
+			int rateOfBurningTrees = validator.parseIntValue(burningTreesNumber);
 			
 			wildFireController = new Wildfire(height, width, burnTimeForTrees, spreadProbabilityForTrees, forestDensityOfTrees, rateOfBurningTrees);
 			setUpNewSimulation(wildFireController);
-
+		});
+		
+		//This only works when the simulation is paused
+		Button clearButton = new Button("Clear Simulation");
+		GridPane.setConstraints(clearButton, 0 , 7);
+		setUpFireScene.getChildren().add(clearButton);
+		clearButton.setOnAction((ActionEvent e) -> {
+			setUpFireScene.getChildren().remove(GRID_INDEX_START, setUpFireScene.getChildren().size());
 		});
 
 		
@@ -135,5 +136,5 @@ public class WildfireSimulation extends View {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }
