@@ -69,7 +69,7 @@ public abstract class View extends Application  {
 
 
 		pauseButton = new Button("Pause Simulation");
-		GridPane.setConstraints(pauseButton, 1,6);
+		GridPane.setConstraints(pauseButton, 1,7);
 		setUpGrid.getChildren().add(pauseButton);
 		pauseButton.setOnAction((ActionEvent e) -> {
 			pressPause();
@@ -78,7 +78,9 @@ public abstract class View extends Application  {
 
 
 		Button stepButton = new Button("Step");
-		GridPane.setConstraints(stepButton, 3, 6);
+
+		GridPane.setConstraints(stepButton, 3, 7);
+
 		setUpGrid.getChildren().add(stepButton);
 
 		stepButton.setOnAction((ActionEvent e) -> {

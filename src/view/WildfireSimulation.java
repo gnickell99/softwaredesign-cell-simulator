@@ -83,7 +83,7 @@ public class WildfireSimulation extends View {
 
 
 		Button newSimulationButton = new Button("New Simulation");
-		GridPane.setConstraints(newSimulationButton, 0 , 6);
+		GridPane.setConstraints(newSimulationButton, 0 , 7);
 		setUpFireScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
 			int height = validator.parseIntValue(gridHeightText);
@@ -99,7 +99,9 @@ public class WildfireSimulation extends View {
 		
 		//This only works when the simulation is paused
 		Button clearButton = new Button("Clear Simulation");
-		GridPane.setConstraints(clearButton, 2, 6);
+
+		GridPane.setConstraints(clearButton, 2, 7);
+
 		setUpFireScene.getChildren().add(clearButton);
 		clearButton.setOnAction((ActionEvent e) -> {
 			setUpFireScene.getChildren().remove(GRID_INDEX_START, setUpFireScene.getChildren().size());
