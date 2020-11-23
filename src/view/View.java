@@ -32,7 +32,8 @@ public abstract class View extends Application  {
 	private final int MILLISECOND_DELAY = 150;
 	protected TextField gridWidthText;
 	protected TextField gridHeightText;
-	
+
+	//Sets up the inital display for all simulations to be displayed off of
 	GridPane setUpGrid = new GridPane();
 
 
@@ -51,21 +52,21 @@ public abstract class View extends Application  {
 
 		//Setting the Grid alignment 
 		setUpGrid.setAlignment(Pos.TOP_LEFT); 
-		
+
 		gridWidthText = new TextField();
 		gridWidthText.setPromptText("(4.0 = Default) Enter Grid Width.");
 		GridPane.setConstraints(gridWidthText, 0, 0);
 		GridPane.setColumnSpan(gridWidthText, WINDOW_COLUMNSPAN);
 		setUpGrid.getChildren().add(gridWidthText);
-		
-		
+
+
 
 		gridHeightText = new TextField();
 		gridHeightText.setPromptText("(4.0 = Default) Enter Grid Height.");
 		GridPane.setConstraints(gridHeightText, 0, 1);
 		GridPane.setColumnSpan(gridHeightText, WINDOW_COLUMNSPAN);
 		setUpGrid.getChildren().add(gridHeightText);
-		
+
 
 		pauseButton = new Button("Pause Simulation");
 		GridPane.setConstraints(pauseButton, 1,6);
@@ -75,8 +76,9 @@ public abstract class View extends Application  {
 
 		});
 
+
 		Button stepButton = new Button("Step");
-		GridPane.setConstraints(stepButton, 2, 6);
+		GridPane.setConstraints(stepButton, 3, 6);
 		setUpGrid.getChildren().add(stepButton);
 
 		stepButton.setOnAction((ActionEvent e) -> {
@@ -87,20 +89,26 @@ public abstract class View extends Application  {
 		});
 
 
-
-
 		Scene scene = new Scene(setUpGrid, WINDOW_SIZE, WINDOW_SIZE, BACKGROUND);
 		return scene;
 
 
 	}
 
+	/**getHeigthInput
+	 * 
+	 * returns the height input from the user's input
+	 */
 	public TextField getHeightInput(TextField gridHeightText) {
 
 		return gridHeightText;
 
 	}
 
+	/**getWidthInput
+	 * 
+	 * returns the width input from the user's input
+	 */
 	public TextField getWidthInput(TextField gridWidthText) {
 
 		return gridWidthText;

@@ -22,6 +22,7 @@ import controller.*;
 
 public class WildfireSimulation extends View {
 
+	// constants
 	private static final int GRID_INDEX_START = 10;
 	GridPane setUpFireScene = new GridPane();
 	public static final int SIZE = 600;
@@ -36,17 +37,25 @@ public class WildfireSimulation extends View {
 	private Wildfire wildFireController = new Wildfire(0, 0, 0, 0, 0, 0);
 
 	public WildfireSimulation(int gridWidth, int gridHeight)	{
-		//this.gridWidth = gridWidth;
-		//this.gridHeight = gridHeight;
+		
 	}
-
+	
+	/** setUpWildFireScene
+	 * 
+	 * Creates each button needed for the wildfire simulation
+	 * and adds them to the grid pane to be displayed to the user
+	 * @param gridHeightText 
+	 * @param gridHeight 
+	 * @param gridWidth 
+	 * @returns scene for wild fire visuals
+	 * 
+	 */
 	public void setUpWildFireScene(Paint background) {
 		Scene secondScene = setUpScene(setUpFireScene);
 		Stage newWindow = new Stage();
 		newWindow.setTitle(TITLE);
 		newWindow.setScene(secondScene);
 
-		
 		
 		TextField burnTime = new TextField();
 		burnTime.setPromptText("(1.0 = Default) Enter Burn Time.");
@@ -90,7 +99,7 @@ public class WildfireSimulation extends View {
 		
 		//This only works when the simulation is paused
 		Button clearButton = new Button("Clear Simulation");
-		GridPane.setConstraints(clearButton, 0 , 7);
+		GridPane.setConstraints(clearButton, 2, 6);
 		setUpFireScene.getChildren().add(clearButton);
 		clearButton.setOnAction((ActionEvent e) -> {
 			setUpFireScene.getChildren().remove(GRID_INDEX_START, setUpFireScene.getChildren().size());
@@ -125,6 +134,7 @@ public class WildfireSimulation extends View {
 	 * 
 	 * Does a step in the search regardless of pause status. Uses controller to make step
 	 */
+	@Override
 	public void doOneStep(double elapsedTime){
 		wildFireController.updateGrid(setUpFireScene);
 	}

@@ -20,7 +20,8 @@ import javafx.util.Duration;
  *
  */
 public class RPSView extends View {
-
+	
+	private static final int GRID_INDEX_START = 10;
 	GridPane setUpRpsScene = new GridPane();
 	private final int MILLISECOND_DELAY = 150;
 	public static final int SIZE = 600;
@@ -60,7 +61,14 @@ public class RPSView extends View {
 		setUpNewSimulation(rpsController);
 
 		});
-
+		
+		//This only works when the simulation is paused, but clears any current simulation on the scene
+				Button clearButton = new Button("Clear Simulation");
+				GridPane.setConstraints(clearButton, 2, 6);
+				setUpRpsScene.getChildren().add(clearButton);
+				clearButton.setOnAction((ActionEvent e) -> {
+				setUpRpsScene.getChildren().remove(GRID_INDEX_START, setUpRpsScene.getChildren().size());
+						});
 
 		// Makes the animation happen.  Will call "step" method repeatedly.
 		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(MILLISECOND_DELAY));
@@ -72,12 +80,20 @@ public class RPSView extends View {
 		newWindow.show();
 
 	}
-	
+	/** setUpNewSimulation
+	 * 
+	 * Sets up a new simulation with inputs from gridWith and gridHeight
+	 * @param rpsController 
+	 */
 	public void setUpNewSimulation(RockPaperScissors rpsController) {
 		rpsController.generateGrid(setUpRpsScene);
 
 	}
 	
+	/*doOneStep
+	 * 
+	 * Does a step in the search regardless of pause status. Uses controller to make step
+	 */
 	@Override
 	public void doOneStep(double elapsedTime) {
 		rpsController.updateGrid(setUpRpsScene);
