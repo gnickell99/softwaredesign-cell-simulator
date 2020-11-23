@@ -84,9 +84,10 @@ public class RPSView extends View {
 	/** setUpNewSimulation
 	 * 
 	 * Sets up a new simulation with inputs from gridWith and gridHeight
+	 * @param rpsController2 
 	 * @param rpsController 
 	 */
-	public void setUpNewSimulation(RockPaperScissors rpsController) {
+	public void setUpNewSimulation(RockPaperScissors rpsController2) {
 		rpsController.generateGrid(setUpRpsScene);
 
 	}
@@ -107,5 +108,6 @@ public class RPSView extends View {
 		// TODO Auto-generated method stub
 
 	}
+
 
 }

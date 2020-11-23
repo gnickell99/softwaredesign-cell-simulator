@@ -1,6 +1,5 @@
 package view;
 
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets; 
@@ -9,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.scene.control.TextField; 
 
 
@@ -32,13 +32,16 @@ public abstract class View extends Application  {
 	private final int MILLISECOND_DELAY = 150;
 	protected TextField gridWidthText;
 	protected TextField gridHeightText;
+	Scene scene;
 
 	//Sets up the inital display for all simulations to be displayed off of
 	GridPane setUpGrid = new GridPane();
 
 
 	public Scene setUpScene(GridPane setUpGrid) {
-
+		Stage newWindow = new Stage();
+		newWindow.setTitle(WINDOW_TITLE);
+		newWindow.setScene(scene);
 
 		//Setting size for the pane  
 		setUpGrid.setMinSize(400, 200); 
@@ -93,12 +96,14 @@ public abstract class View extends Application  {
 		});
 
 
-		Scene scene = new Scene(setUpGrid, WINDOW_SIZE, WINDOW_SIZE, BACKGROUND);
+		scene = new Scene(setUpGrid, WINDOW_SIZE, WINDOW_SIZE, BACKGROUND);
 		return scene;
 
 
 	}
-
+	
+	
+	
 	/**getHeigthInput
 	 * 
 	 * returns the height input from the user's input
@@ -162,6 +167,8 @@ public abstract class View extends Application  {
 	 */
 
 	abstract public void doOneStep(double elapsedTime);
+
+	
 
 
 

@@ -22,7 +22,6 @@ public class SimulationSelector  {
 
 	GridPane setupGrid = new GridPane();
 	public static final int SIZE = 600;
-	public static final String TITLE = "Cell Simulator";
 	public static final int COLUMNSPAN = 20;
 
 	public Scene setupScene(Paint background) {
@@ -48,7 +47,6 @@ public class SimulationSelector  {
 		Button rockPaperScissors = new Button("Rock Paper Scissors");
 		GridPane.setConstraints(rockPaperScissors, 3, 0);
 		setupGrid.getChildren().add(rockPaperScissors);
-
 
 
 		// Set up for the rock paper scissors Button that choose the rock paper scissors simulation
