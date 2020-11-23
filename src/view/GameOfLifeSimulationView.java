@@ -53,7 +53,7 @@ public class GameOfLifeSimulationView extends View {
 		newWindow.setScene(secondScene);
 
 		Button newSimulationButton = new Button("New Simulation");
-		GridPane.setConstraints(newSimulationButton, 0 , 6);
+		GridPane.setConstraints(newSimulationButton, 0 , 7);
 		setUpLifeScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
 
@@ -67,7 +67,7 @@ public class GameOfLifeSimulationView extends View {
 		
 		//This only works when the simulation is paused, but clears any current simulation on the scene
 		Button clearButton = new Button("Clear Simulation");
-		GridPane.setConstraints(clearButton, 2, 6);
+		GridPane.setConstraints(clearButton, 2, 7);
 		setUpLifeScene.getChildren().add(clearButton);
 		clearButton.setOnAction((ActionEvent e) -> {
 		setUpLifeScene.getChildren().remove(GRID_INDEX_START, setUpLifeScene.getChildren().size());
