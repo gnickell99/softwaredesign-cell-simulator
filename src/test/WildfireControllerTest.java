@@ -99,7 +99,7 @@ public class WildfireControllerTest {
 		wildfireControl.grid[ROW2][COL2] = wildfireControl.grid[ROW2][COL2].act(wildfireControl.getNeighbors(ROW2,ROW2)); //turns red
 		wildfireControl.grid[ROW3][COL1] = wildfireControl.grid[ROW3][COL1].act(wildfireControl.getNeighbors(ROW2, ROW1)); //turns red
 		
-		//printGrid();
+		//Check rule
 		assertTrue(wildfireControl.grid[ROW2][COL1].cellColor.equals(BURNING_TREE_COLOR));
 		assertTrue(wildfireControl.grid[ROW1][ROW1].cellColor.equals(BURNING_TREE_COLOR));
 		assertTrue(wildfireControl.grid[ROW2][COL2].cellColor.equals(BURNING_TREE_COLOR));
@@ -114,16 +114,16 @@ public class WildfireControllerTest {
 		
 		//Calls act on neighbor cells
 		wildfireControl.grid[ROW1][COL1] = wildfireControl.grid[ROW1][COL1].act(wildfireControl.getNeighbors(ROW1, COL1)); //turns red
-		wildfireControl.grid[ROW2][COL2] = wildfireControl.grid[ROW2][COL1].act(wildfireControl.getNeighbors(ROW2,COL2)); //turns red
-		wildfireControl.grid[ROW3][COL1] = wildfireControl.grid[ROW3][COL1].act(wildfireControl.getNeighbors(ROW2, COL1)); //turns red
+		wildfireControl.grid[ROW2][COL2] = wildfireControl.grid[ROW2][COL2].act(wildfireControl.getNeighbors(ROW2,COL2)); //turns red
+		wildfireControl.grid[ROW3][COL1] = wildfireControl.grid[ROW3][COL1].act(wildfireControl.getNeighbors(ROW3, COL1)); //turns red
 		
-//		printGrid();
 		System.out.println();
 		
 		wildfireControl.grid[ROW2][COL1] = wildfireControl.grid[ROW2][COL1].act(wildfireControl.getNeighbors(ROW2, COL1)); //stays red - time not at 0
-		assertTrue(wildfireControl.grid[ROW2][COL1].cellColor.equals(BURNING_TREE_COLOR));
+		assertTrue(wildfireControl.grid[ROW2][COL1].cellColor.equals(BURNING_TREE_COLOR));//call rule
 		wildfireControl.grid[ROW2][COL1] = wildfireControl.grid[ROW2][COL1].act(wildfireControl.getNeighbors(ROW2, COL1)); //turns yellow
 		
+		//Check rules
 		assertTrue(wildfireControl.grid[ROW2][COL1].cellColor.equals(BURNT_TREE_COLOR));
 		assertTrue(wildfireControl.grid[ROW1][COL1].cellColor.equals(BURNING_TREE_COLOR));
 		assertTrue(wildfireControl.grid[ROW2][COL2].cellColor.equals(BURNING_TREE_COLOR));
