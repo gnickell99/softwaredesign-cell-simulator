@@ -5,8 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-
+import controller.WaterWorld;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 /*
  * @author Kim Jones
@@ -16,68 +17,99 @@ import javafx.scene.layout.GridPane;
 
 public class WaTorWorldControllerTest {
 	
-	//static WaterWorld wwControl; //not yet added
-
-	static int testGridSize = 4;
-	static int firstRow = 0;
-	static int lastRow = 5;
-	
+	//Controller
+	static WaterWorld wwControl; //not yet added
 	static GridPane gp = new GridPane();
+	
+	//Constants
+	static final int TEST_GRID_SIZE = 2;
+	static final int FIRST_ROW = 0;
+	static final int LAST_ROW = 4;
+	//Colors
+	static final Color EDGE_COLOR = Color.BLACK;
+	static final Color FISH_COLOR = Color.GREEN;
+	static final Color SHARK_COLOR = Color.YELLOW;
+	static final Color EMPTY_WATER = Color.BLUE;
+	//Coordinates
+	static int ROW1 = 1;
+	static int ROW2 = 2;
+	static int ROW3 = 3;
+	static int COL1 = 1;
+	static int COL2 = 2;
+	static int COL3 = 3;
 
 	@BeforeClass
 	public static void test() {
-		//wwControl = new WaterWorld(testGridSize,testGridSize); //Make object
-		//wwControl.generateGrid(gp); //Make a new Grid
+		wwControl = new WaterWorld(TEST_GRID_SIZE, TEST_GRID_SIZE, 1,1,1,1,1); //Make object
+		wwControl.generateGrid(gp); //Make a new Grid
 	}
 	
 	//Helper methods to setup
 	
-	//Make 1st cell green and all neighbors blue
+	//Set up fish rules below:
+	//Make 1st cell green and all neighbors blue (Fish with 3 options - movement test)
 	public static void setUpRule1() {
-//		wwControl.plantFish(1, 1); //green
-//		wwControl.makeWater(1, 2); // blue
-//		wwControl.makeWater(2, 1); // blue
-//		wwControl.makeWater(2, 2); // blue
+		wwControl.plantFish(ROW1, COL1); //green
+		wwControl.makeWater(ROW1, COL2); // blue
+		wwControl.makeWater(ROW2, COL1); // blue
+		wwControl.makeWater(ROW2, COL2); // blue
 	}
 	
-	//Make 1st cell green and 2 neighbors edges
+	//Make 1st cell green and 2 neighbors edges (Fish with only 1 option - movement test)
 	public static void setUpRule2() {
-//		wwControl.plantFish(1, 1); //green
-//		wwControl.makeWater(1, 2); // blue
-//		wwControl.makeEdge(2, 1); // black
-//		wwControl.makeEdge(2, 2); // black
+		wwControl.plantFish(ROW1, COL1); //green
+		wwControl.makeWater(ROW1, COL2); // blue
+		wwControl.makeEdge(ROW2, COL1); // black
+		wwControl.makeEdge(ROW2, COL2); // black
 	}
 	
-	//Make 1st cell yellow and all neighbors blue
+	//Make 1st cell green and 2 neighbors edges (Fish with only 1 breeding option - breeding test)
 	public static void setUpRule3() {
-//		wwControl.plantShark(1, 1); //yellow
-//		wwControl.makeWater(1, 2); // blue
-//		wwControl.makeWater(2, 1); // blue
-//		wwControl.makeWater(2, 2); // blue
+		wwControl.plantFish(ROW1, COL1); //green
+		wwControl.makeWater(ROW1, COL2); // blue
+		wwControl.makeEdge(ROW2, COL1); // black
+		wwControl.makeEdge(ROW2, COL2); // black
 	}
 	
-	//Make 1st cell yellow and 2 neighbors edges
+	//Set up shark rules below:
+	//Make 1st cell yellow and all neighbors blue (Shark with 3 options - movement test)
 	public static void setUpRule4() {
-//		wwControl.plantShark(1, 1); //yellow
-//		wwControl.makeWater(1, 2); // blue
-//		wwControl.makeEdge(2, 1); // black
-//		wwControl.makeEdge(2, 2); // black
+		wwControl.plantShark(ROW1, COL1); //yellow
+		wwControl.makeWater(ROW1, COL2); // blue
+		wwControl.makeWater(ROW2, COL1); // blue
+		wwControl.makeWater(ROW2, COL2); // blue
 	}
 
-	//Make 1st cell yellow and 2 neighbors water, 1 neighbor fish
+	//Make 1st cell yellow and 2 neighbors edges (Shark with only 1 option - movement test)
 	public static void setUpRule5() {
-//		wwControl.plantShark(1, 1); //yellow
-//		wwControl.makeWater(1, 2); // blue
-//		wwControl.makeWater(2, 1); // blue
-//		wwControl.makeFish(2, 2); // green
+		wwControl.plantShark(ROW1, COL1); //yellow
+		wwControl.makeWater(ROW1, COL2); // blue
+		wwControl.makeEdge(ROW2, COL1); // black
+		wwControl.makeEdge(ROW2, COL2); // black
+	}
+
+	//Make 1st cell yellow and 2 neighbors water, 1 neighbor fish (Shark with only 1 choice - eating test)
+	public static void setUpRule6() {
+		wwControl.plantShark(ROW1, COL1); //yellow
+		wwControl.makeWater(ROW1, COL2); // blue
+		wwControl.makeWater(ROW2, COL1); // blue
+		wwControl.plantFish(ROW2, COL2); // green
 	}
 	
-	//Make 1st cell yellow and 1 neighbor water, 2 neighbors fish
-	public static void setUpRule6() {
-//		wwControl.plantShark(1, 1); //yellow
-//		wwControl.makeFish(1, 2); // green
-//		wwControl.makeWater(2, 1); // blue
-//		wwControl.makeFish(2, 2); // green
+	//Make 1st cell yellow and 1 neighbor water, 2 neighbors fish (Shark with 2 options - eating test)
+	public static void setUpRule7() {
+		wwControl.plantShark(ROW1, COL1); //yellow
+		wwControl.plantFish(ROW1, COL2); // green
+		wwControl.makeWater(ROW2, COL1); // blue
+		wwControl.plantFish(ROW2, COL2); // green
+	}
+	
+	//Make 1st cell yellow and 1 neighbor water, 2 neighbors fish (Shark with 2 options - eating test)
+	public static void setUpRule8() {
+		wwControl.plantShark(ROW1, COL1); //yellow
+		wwControl.plantFish(ROW1, COL2); // green
+		wwControl.makeWater(ROW2, COL1); // blue
+		wwControl.plantFish(ROW2, COL2); // green
 	}
 	
 	
@@ -92,13 +124,18 @@ public class WaTorWorldControllerTest {
 		setUpRule1();
 		
 		//run act method
-		//wwControl.grid[1][1] = wwControl.grid[1][1].act(wwControl.grid);	
+		wwControl.grid[ROW1][COL1] = wwControl.grid[ROW1][COL1].act(wwControl.getNeighbors(ROW1, COL1));	
+		
+//		System.out.println(wwControl.grid[ROW1][COL1].cellColor); //should be blue
+//		System.out.println(wwControl.grid[ROW1][COL2].cellColor); //could be a fish
+//		System.out.println(wwControl.grid[ROW2][COL1].cellColor); //could be a fish
+//		System.out.println(wwControl.grid[ROW2][COL2].cellColor); //should be water
 		
 		//Check rule
 		//Make sure start is now water
-//		assertTrue(wwControl.grid[1][1].getType().equals("water cell"));
+		assertTrue(wwControl.grid[ROW1][COL1].cellColor.equals(EMPTY_WATER));
 		//Make sure one of neighbors is a fish
-//		assertTrue(wwControl.grid[1][2].getType().equals("fish cell") || wwControl.grid[2][1].getType().equals("fish cell") || wwControl.grid[2][2].getType().equals("fish cell"));
+		assertTrue(wwControl.grid[ROW1][COL2].cellColor.equals(FISH_COLOR) || wwControl.grid[ROW2][COL1].cellColor.equals(FISH_COLOR));
 
 	}
 	
@@ -109,13 +146,18 @@ public class WaTorWorldControllerTest {
 		setUpRule2();
 		
 		//run act method
-		//wwControl.grid[1][1] = wwControl.grid[1][1].act(wwControl.grid);	
+		wwControl.grid[ROW1][COL1] = wwControl.grid[ROW1][COL1].act(wwControl.getNeighbors(ROW1, COL1));	
+		
+//		System.out.println(wwControl.grid[ROW1][COL1].cellColor); //should be blue
+//		System.out.println(wwControl.grid[ROW1][COL2].cellColor); //should be a fish
+//		System.out.println(wwControl.grid[ROW2][COL1].cellColor); //should be water
+//		System.out.println(wwControl.grid[ROW2][COL2].cellColor); //should be water
 		
 		//Check rule
-//		assertTrue(golControl.grid[1][1].getType().equals("water cell"));
-//		assertTrue(golControl.grid[1][2].getType().equals("fish cell"));
-//		assertTrue(golControl.grid[2][1].getType().equals("edge cell"));
-//		assertTrue(golControl.grid[2][2].getType().equals("edge cell"));
+		assertTrue(wwControl.grid[ROW1][COL1].cellColor.equals(EMPTY_WATER));
+		assertTrue(wwControl.grid[ROW1][COL2].cellColor.equals(FISH_COLOR));
+		assertTrue(wwControl.grid[ROW2][COL1].cellColor.equals(EDGE_COLOR));
+		assertTrue(wwControl.grid[ROW2][COL2].cellColor.equals(EDGE_COLOR));
 		
 	}
 	
@@ -124,15 +166,22 @@ public class WaTorWorldControllerTest {
 	//Fish at point (1,1) Water at point (1,2), (2,1), (2,2)
 	@Test
 	public void fishTest3() {
-		setUpRule1();
+		setUpRule2();
 		
-		//run act method
-		//wwControl.grid[1][1] = wwControl.grid[1][1].act(wwControl.grid);	
+		//run act method - fish shouldn't breed - should move (1,2)
+		wwControl.grid[ROW1][COL1] = wwControl.grid[ROW1][COL1].act(wwControl.getNeighbors(ROW1, COL1));	
+		//fish should breed - new fish at (1,1)
+		wwControl.grid[ROW1][COL1] = wwControl.grid[ROW1][COL1].act(wwControl.getNeighbors(ROW1, COL1));
 		
-		//Make sure start is still fish
-//		assertTrue(wwControl.grid[1][1].getType().equals("fish cell"));
-//		/Make sure one of neighbors is a fish
-//		assertTrue(wwControl.grid[1][2].getType().equals("fish cell") || wwControl.grid[2][1].getType().equals("fish cell") || wwControl.grid[2][2].getType().equals("fish cell"));
+//		System.out.println(wwControl.grid[ROW1][COL1].cellColor); //should be a fish
+//		System.out.println(wwControl.grid[ROW1][COL2].cellColor); //should be a fish
+//		System.out.println(wwControl.grid[ROW2][COL1].cellColor); //should be edge
+//		System.out.println(wwControl.grid[ROW2][COL2].cellColor); //should be edge
+		
+		//Make sure start is fish
+		assertTrue(wwControl.grid[ROW1][COL1].cellColor.equals(FISH_COLOR));
+		//Make sure other space is fish
+		wwControl.grid[ROW1][COL2].cellColor.equals(FISH_COLOR);
 	}
 	
 	//Test 4: Current cell stay green and fish should give birth at: (1,2) (Color will be green)
