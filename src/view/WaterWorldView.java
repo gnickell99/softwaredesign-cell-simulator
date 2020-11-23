@@ -33,7 +33,10 @@ public class WaterWorldView extends View {
 	private WaterWorld waterWorldController = new WaterWorld(0, 0, 0, 0, 0, 0, 0);
 
 
+
 	public  WaterWorldView()	{
+
+
 	}
 	/** setUpWildFireScene
 	 * 

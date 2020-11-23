@@ -67,6 +67,7 @@ public class RPSView extends View {
 
 				GridPane.setConstraints(clearButton, 2, 7);
 
+
 				setUpRpsScene.getChildren().add(clearButton);
 				clearButton.setOnAction((ActionEvent e) -> {
 				setUpRpsScene.getChildren().remove(GRID_INDEX_START, setUpRpsScene.getChildren().size());

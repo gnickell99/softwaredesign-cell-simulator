@@ -90,6 +90,8 @@ public class SimulationSelector  {
 
 		});
 
+
+
 		//Returns the scene
 		Scene scene = new Scene(setupGrid, SIZE, SIZE, background);
 		return scene;
