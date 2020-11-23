@@ -23,7 +23,6 @@ import controller.*;
 public class WildfireSimulation extends View {
 
 	// constants
-	private static final int GRID_INDEX_START = 10;
 	GridPane setUpFireScene = new GridPane();
 	public static final int SIZE = 600;
 	private final int MILLISECOND_DELAY = 150;
@@ -97,18 +96,6 @@ public class WildfireSimulation extends View {
 			setUpNewSimulation(wildFireController);
 		});
 
-		//This only works when the simulation is paused
-		Button clearButton = new Button("Clear Simulation");
-
-
-		GridPane.setConstraints(clearButton, 2, 7);
-
-
-		setUpFireScene.getChildren().add(clearButton);
-		clearButton.setOnAction((ActionEvent e) -> {
-			setUpFireScene.getChildren().remove(GRID_INDEX_START, setUpFireScene.getChildren().size());
-		});
-
 
 		// Makes the animation happen.  Will call "step" method repeatedly.
 		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(MILLISECOND_DELAY));
@@ -118,8 +105,6 @@ public class WildfireSimulation extends View {
 		animation.play();
 
 		newWindow.show();
-
-
 
 	}
 

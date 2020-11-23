@@ -21,7 +21,6 @@ import javafx.util.Duration;
 public class GameOfLifeSimulationView extends View {
 
 	// constants
-	private static final int GRID_INDEX_START = 6;
 	GridPane setUpLifeScene = new GridPane();
 	private final int MILLISECOND_DELAY = 150;
 	public static final int SIZE = 600;
@@ -64,19 +63,6 @@ public class GameOfLifeSimulationView extends View {
 			setUpNewSimulation(gameOfLifeController);
 
 		});
-
-		//This only works when the simulation is paused, but clears any current simulation on the scene
-		Button clearButton = new Button("Clear Simulation");
-
-
-		GridPane.setConstraints(clearButton, 2, 7);
-
-
-		setUpLifeScene.getChildren().add(clearButton);
-		clearButton.setOnAction((ActionEvent e) -> {
-			setUpLifeScene.getChildren().remove(GRID_INDEX_START, setUpLifeScene.getChildren().size());
-		});
-
 
 		// Makes the animation happen.  Will call "step" method repeatedly.
 		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(MILLISECOND_DELAY));
