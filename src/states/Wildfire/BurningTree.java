@@ -1,7 +1,10 @@
-package states;
+package states.Wildfire;
+
+import java.util.List;
 
 //import controller.Controller;
 import javafx.scene.paint.Color;
+import states.State;
 
 /***
  * 
@@ -13,26 +16,21 @@ import javafx.scene.paint.Color;
  *
  */
 
-public class BurningTree extends WildFireMutables{
-
-	public BurningTree(int currentStateRow, int currentStateColumn, int burnTime, State[][] allStates) {
-		super(currentStateRow, currentStateColumn, burnTime, allStates);
+public class BurningTree extends WildFireMutables {
+	
+	public BurningTree(int burnTime) {
+		super(burnTime);
 		cellColor = Color.RED;
 	}
 
 	@Override
-	public State act(int currentStateRow, int currentStateColumn) {
+	public State act(List<State> neighbors) {
 		if (burnTimer == 0) {
 			return new BurntDownTree();
 		}
 		this.burnTimer--;
 		return this;
 		
-	}
-
-	@Override
-	public String getType() {
-		return "burning tree";
 	}
 
 }

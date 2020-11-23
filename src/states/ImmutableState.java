@@ -1,5 +1,7 @@
 package states;
 
+import java.util.List;
+
 /***
  * 
  * @author Grant Nickell
@@ -21,7 +23,7 @@ public abstract class ImmutableState extends State{
 	}
 	
 	@Override
-	public State act(int currentStateRow, int currentStateColumn) {
+	public State act(List<State> neighbors) {
 		return this;
 	}
 

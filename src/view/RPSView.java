@@ -1,6 +1,5 @@
 package view;
 
-import controller.GameOfLife;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;

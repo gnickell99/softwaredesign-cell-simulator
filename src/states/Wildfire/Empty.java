@@ -1,19 +1,14 @@
-package states;
+package states.Wildfire;
 
 import javafx.scene.paint.Color;
+import states.ImmutableState;
 
 public class Empty extends ImmutableState{
 
 	public Empty() {
 		super();
-		cellColor = Color.BROWN;
+		cellColor = Color.SADDLEBROWN;
 	}
-
-	@Override
-	public String getType() {
-		return this.EMPTY_CELL;
-	}
-
 
 }
 

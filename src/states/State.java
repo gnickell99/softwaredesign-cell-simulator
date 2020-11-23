@@ -1,5 +1,7 @@
 package states;
 
+import java.util.List;
+
 import javafx.scene.Node;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -19,11 +21,6 @@ public abstract class State {
 	Shape state;
 	public Paint cellColor;
 	private static final int CELL_SIZE = 10;
-
-	public final int NORTH_NEIGHBOR = 0;
-	public final int SOUTH_NEIGHBOR = 1;
-	public final int WEST_NEIGHBOR = 2;
-	public final int EAST_NEIGHBOR = 3;
 	
 	public State() {
 		state = new Rectangle(CELL_SIZE, CELL_SIZE);
@@ -39,13 +36,7 @@ public abstract class State {
 	 * @param allStates - the 2D array of all other states
 	 * @return act will return a new state if the conditions for a change are met, otherwise it will return the current state
 	 */
-	public abstract State act(int currentStateRow, int currentStateColumn);
-	
-	/** getType
-	 * 
-	 * @return - returns the name of the state as a string, see constants above
-	 */
-	public abstract String getType();
+	public abstract State act(List<State> neighbors);
 
 	public Node getState() {
 		return state;

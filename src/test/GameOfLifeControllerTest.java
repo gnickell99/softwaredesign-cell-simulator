@@ -2,13 +2,14 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import controller.GameOfLife;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import states.AliveCell;
 
 /*
  * @author Kim Jones
@@ -18,10 +19,20 @@ import states.AliveCell;
 
 public class GameOfLifeControllerTest {
 	static GameOfLife golControl;
-
+	
+	//Constants
 	static int testGridSize = 4;
 	static int firstRow = 0;
 	static int lastRow = 5;
+	static int ROW1 = 1;
+	static int COL1 = 1;
+	static int ROW2 = 2;
+	static int COL2 = 2;
+	static int COL3 = 3;
+
+	static final Color ALIVE_COLOR = Color.LIGHTBLUE;
+	static final Color DEAD_COLOR = Color.WHITE;
+	static final Color EDGE_COLOR = Color.BLACK;	
 	
 	static GridPane gp = new GridPane();
 	
@@ -31,116 +42,117 @@ public class GameOfLifeControllerTest {
 		golControl.generateGrid(gp); //Make a new Grid
 	}
 	
+	//Makes blue cells
+	public static void makePattern1() {
+		golControl.infectCell(ROW1, COL1); //blue
+		golControl.infectCell(ROW1, COL2); // blue
+		golControl.infectCell(ROW2, COL1); // blue
+		golControl.infectCell(ROW2, COL2); // blue
+	}
+	
+	//Makes 1st cell white and 2nd blue
+	public static void  makePattern2() {
+		golControl.killCell(ROW1, COL1); //white
+		golControl.infectCell(ROW1, COL2); // blue
+	}
+	
+	//Makes last 2 cells blue
+	public static void makePattern3() {
+		golControl.infectCell(ROW2, COL1); // blue
+		golControl.infectCell(ROW2, COL2); // blue
+	}
+	
 	//Methods for first round of testing
 	//Make 1st cell blue and all neighbors white
 	public static void setUpRule1() {
-		golControl.infectCell(1, 1); //blue
-		golControl.killCell(1, 2); // white
-		golControl.killCell(2, 1); // white
-		golControl.killCell(2, 2); // white
+		golControl.infectCell(ROW1, COL1); //blue
+		golControl.killCell(ROW1, COL2); // white
+		golControl.killCell(ROW2, COL1); // white
+		golControl.killCell(ROW2, COL2); // white
 	}
 	
 	//Make 1st cell blue and 2 neighbors blue
 	public static void setUpRule2() {
-		golControl.infectCell(1, 1); //blue
-		golControl.infectCell(1, 2); // blue
-		golControl.killCell(2, 1); // white
-		golControl.infectCell(2, 2); // blue
+		golControl.infectCell(ROW1, COL1); //blue
+		golControl.infectCell(ROW1, COL2); // blue
+		golControl.killCell(ROW2, COL1); // white
+		golControl.infectCell(ROW2, COL2); // blue
 	}
 	
 	//Make 1st cell blue and 3 neighbors blue
 	public static void setUpRule3() {
-		golControl.infectCell(1, 1); //blue
-		golControl.infectCell(1, 2); // blue
-		golControl.infectCell(2, 1); // blue
-		golControl.infectCell(2, 2); // blue
+		makePattern1();
 	}
 	
 	//Make 2nd cell blue and 4 neighbors blue
 	public static void setUpRule4() {
-		golControl.infectCell(1, 1); //blue
-		golControl.infectCell(1, 2); // blue
-		golControl.infectCell(1, 3); //blue
-		golControl.infectCell(2, 1); // blue
-		golControl.infectCell(2, 2); // blue
+		makePattern1();
+		golControl.infectCell(ROW1, COL3); //blue
 	}
 	
 	//Methods for second round of testing
 	//Make 1st cell white and 1 neighbor blue, rest white
 	public static void setUpRule1b() {
-		golControl.killCell(1, 1); //white
-		golControl.infectCell(1, 2); // blue
-		golControl.killCell(2, 1); // white
-		golControl.killCell(2, 2); // white
+		makePattern2();
+		golControl.killCell(ROW2, COL1); // white
+		golControl.killCell(ROW2, COL2); // white
 	}
 	
 	//Make 1st cell white and 2 neighbors blue, last one white
 	public static void setUpRule2b() {
-		golControl.killCell(1, 1); //white
-		golControl.infectCell(1, 2); // blue
-		golControl.infectCell(2, 1); // blue
-		golControl.killCell(2, 2); // white
+		makePattern2();
+		golControl.infectCell(ROW2, COL1); // blue
+		golControl.killCell(ROW2, COL2); // white
 	}
 	
 	//Make 1st cell white and 3 neighbors blue
 	public static void setUpRule3b() {
-		golControl.killCell(1, 1); //white
-		golControl.infectCell(1, 2); // blue
-		golControl.infectCell(2, 1); // blue
-		golControl.infectCell(2, 2); // blue
+		makePattern2();
+		makePattern3();
 	}
 	
 	//Make 2nd cell white and 3 neighbors blue
 	public static void setUpRule4b() {
-		golControl.infectCell(1, 1); //blue
-		golControl.killCell(1, 2); // white
-		golControl.infectCell(1, 3); //blue
-		golControl.infectCell(2, 1); // blue
-		golControl.infectCell(2, 2); // blue
+		golControl.infectCell(ROW1, COL1); //blue
+		golControl.killCell(ROW1, COL2); // white
+		golControl.infectCell(ROW1, COL3); //blue
+		makePattern3();
 	}
 	
 	//Test of edge pieces:
 	//Make sure the top row is all edge cells
 	@Test
 	public void topEdgeTest() {
-		String expected = "edge";
-		
 		//Loop through all cells in first row and make sure they are type edge
 		for(int i = 0; i < golControl.grid.length; i++) {
-			assertEquals(expected, golControl.grid[firstRow][i].getType());
+			assertEquals(Color.BLACK, golControl.grid[firstRow][i].cellColor);
 		}
 	}
 	
 	//Make sure the bottom row is all edge cells
 	@Test
 	public void bottomEdgeTest() {
-		String expected = "edge";
-		
 		//Loop through all cells in last row and make sure they are type edge
 		for(int i = 0; i < golControl.grid.length; i++) {
-			assertEquals(expected, golControl.grid[lastRow][i].getType());
+			assertEquals(Color.BLACK, golControl.grid[lastRow][i].cellColor);
 		}
 	}
 	
 	//Make sure the left column is all edge cells
 	@Test
 	public void leftEdgeTest() {
-		String expected = "edge";
-		
 		//Loop through all cells in last row and make sure they are type edge
 		for(int i = 0; i < golControl.grid.length; i++) {
-			assertEquals(expected, golControl.grid[i][firstRow].getType());
+			assertEquals(Color.BLACK, golControl.grid[i][firstRow].cellColor);
 		}
 	}
 	
 	//Make sure the right column is all edge cells
 	@Test
 	public void rightEdgeTest() {
-		String expected = "edge";
-		
 		//Loop through all cells in last row and make sure they are type edge
 		for(int i = 0; i < golControl.grid.length; i++) {
-			assertEquals(expected, golControl.grid[i][lastRow].getType());
+			assertEquals(Color.BLACK, golControl.grid[i][lastRow].cellColor);
 		}
 	}
 	
@@ -149,7 +161,7 @@ public class GameOfLifeControllerTest {
 	public void noEdgeInside() {
 		for(int i = 1; i < golControl.grid.length-1; i++) {
 			for(int j = 1; j < golControl.grid.length-1; j++) {
-				assertTrue(!golControl.grid[i][j].getType().equals("edge"));
+				assertTrue(!golControl.grid[i][j].cellColor.equals(Color.BLACK));
 			}
 		}
 	}
@@ -162,16 +174,13 @@ public class GameOfLifeControllerTest {
 	public void rule1preTest() {
 		setUpRule1(); //Set up cells
 		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
-		
 		//Check rule 1 is set up correctly
-		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("dead cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("dead cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("dead cell"));
+
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.WHITE));
+
 	}
 	
 	@Test
@@ -180,18 +189,19 @@ public class GameOfLifeControllerTest {
 		setUpRule1();
 		
 		//Call act method and save the update
-		golControl.grid[1][1] = golControl.grid[1][1].act(1, 1);		
-		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
+		//Note - after merge with refactoring change (1,1) to .act(golControl.grid)
+
+		golControl.grid[ROW1][COL1] = golControl.grid[ROW1][COL1].act(golControl.getNeighbors(ROW1, COL1));
+
 		
 		//Check rule 1 worked
-		assertTrue(golControl.grid[1][1].getType().equals("dead cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("dead cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("dead cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("dead cell"));
+		//Note - getType() -> cellColor.equals()
+
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.WHITE));
+
 	}
 	
 	//Rule 2: good
@@ -199,16 +209,12 @@ public class GameOfLifeControllerTest {
 	public void rule2preTest() {
 		setUpRule2(); //Set up cells
 		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
-		
 		//Check rule 2 is set up correctly
-		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("dead cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
+
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.LIGHTBLUE));
 	}
 	
 	@Test
@@ -217,18 +223,14 @@ public class GameOfLifeControllerTest {
 		setUpRule2(); 
 		
 		//Call act method
-		golControl.grid[1][1] = golControl.grid[1][1].act(1, 1);	
-		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
+
+		golControl.grid[ROW1][COL1] = golControl.grid[ROW1][COL1].act(golControl.getNeighbors(ROW1, COL1));	
 		
 		//Check rule 2 is set up correctly - should be same
-		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("dead cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.LIGHTBLUE));
 	}
 	
 	//Rule 3: good
@@ -236,16 +238,11 @@ public class GameOfLifeControllerTest {
 	public void rule3preTest() {
 		setUpRule3(); //Set up cells
 		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
-		
 		//Check rule 3 is set up correctly
-		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.LIGHTBLUE));
 	}
 	
 	@Test
@@ -254,18 +251,13 @@ public class GameOfLifeControllerTest {
 		setUpRule3(); 
 		
 		//Call act method
-		golControl.grid[1][1] = golControl.grid[1][1].act(1, 1);	
-		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
+		golControl.grid[ROW1][COL1] = golControl.grid[ROW1][COL1].act(golControl.getNeighbors(ROW1, COL1));	
 		
 		//Check rule 3 is correct
-		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.LIGHTBLUE));
 	}
 	
 	//Rule 4: good
@@ -273,18 +265,12 @@ public class GameOfLifeControllerTest {
 	public void rule4preTest() {
 		setUpRule4(); //Set up cells
 		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[1][3].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
-		
 		//Check rule 4 is set up correctly
-		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
-		assertTrue(golControl.grid[1][3].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW1][COL3].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.LIGHTBLUE));
 	}
 		
 	@Test
@@ -293,20 +279,15 @@ public class GameOfLifeControllerTest {
 		setUpRule4(); 
 		
 		//Call act method
-		golControl.grid[1][2] = golControl.grid[1][2].act(1, 2);	
-		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[1][3].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
+
+		golControl.grid[ROW1][COL2] = golControl.grid[ROW1][COL2].act(golControl.getNeighbors(ROW1, COL2));	
 		
 		//Check rule 4 is correct
-		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("dead cell")); //Fails- should be killed
-		assertTrue(golControl.grid[1][3].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.WHITE)); 
+		assertTrue(golControl.grid[ROW1][COL3].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.LIGHTBLUE));
 	}
 	
 	//Test of rules for white cells:
@@ -317,16 +298,11 @@ public class GameOfLifeControllerTest {
 	public void rule1bpreTest() {
 		setUpRule1b(); //Set up cells
 		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
-		
 		//Check rule 1 is set up correctly
-		assertTrue(golControl.grid[1][1].getType().equals("dead cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("dead cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("dead cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.WHITE));
 	}
 	
 	@Test
@@ -335,18 +311,14 @@ public class GameOfLifeControllerTest {
 		setUpRule1b();
 		
 		//Call act method and save the update
-		golControl.grid[1][1] = golControl.grid[1][1].act(1, 1);		
-		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
+
+		golControl.grid[ROW1][COL1] = golControl.grid[ROW1][COL1].act(golControl.getNeighbors(ROW1, COL1));		
 		
 		//Check rule 1 worked
-		assertTrue(golControl.grid[1][1].getType().equals("dead cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("dead cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("dead cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.WHITE));
 	}
 	
 	//Rule 2: good
@@ -354,16 +326,11 @@ public class GameOfLifeControllerTest {
 	public void rule2bpreTest() {
 		setUpRule2b(); //Set up cells
 		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
-		
 		//Check rule 2 is set up correctly
-		assertTrue(golControl.grid[1][1].getType().equals("dead cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("dead cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.WHITE));
 	}
 	
 	@Test
@@ -372,18 +339,14 @@ public class GameOfLifeControllerTest {
 		setUpRule2b();
 		
 		//Call act method and save the update
-		golControl.grid[1][1] = golControl.grid[1][1].act(1, 1);		
-		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
+
+		golControl.grid[ROW1][COL1] = golControl.grid[ROW1][COL1].act(golControl.getNeighbors(ROW1, COL1));		
 		
 		//Check rule 2 worked
-		assertTrue(golControl.grid[1][1].getType().equals("dead cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("dead cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.WHITE));
 	}
 	
 	//Rule 3: good
@@ -391,16 +354,11 @@ public class GameOfLifeControllerTest {
 	public void rule3bpreTest() {
 		setUpRule3b(); //Set up cells
 		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
-		
 		//Check rule 3 is set up correctly
-		assertTrue(golControl.grid[1][1].getType().equals("dead cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.LIGHTBLUE));
 	}
 	
 	@Test
@@ -409,18 +367,12 @@ public class GameOfLifeControllerTest {
 		setUpRule3b();
 		
 		//Call act method and save the update
-		golControl.grid[1][1] = golControl.grid[1][1].act(1, 1);		
-		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
-		
+		golControl.grid[ROW1][COL1] = golControl.grid[ROW1][COL1].act(golControl.getNeighbors(ROW1, COL1));		
 		//Check rule 3 worked
-		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.LIGHTBLUE));
 	}
 	
 	//Rule 4: good
@@ -428,18 +380,13 @@ public class GameOfLifeControllerTest {
 	public void rule4bpreTest() {
 		setUpRule4b(); //Set up cells
 		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[1][3].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
-		
 		//Check rule 4 is set up correctly
-		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("dead cell"));
-		assertTrue(golControl.grid[1][3].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
+
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW1][COL3].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.LIGHTBLUE));
 	}
 	
 	@Test
@@ -448,20 +395,14 @@ public class GameOfLifeControllerTest {
 		setUpRule4b();
 		
 		//Call act method and save the update
-		golControl.grid[1][2] = golControl.grid[1][2].act(1, 2);		
-		
-//		System.out.println(golControl.grid[1][1].getType());
-//		System.out.println(golControl.grid[1][2].getType());
-//		System.out.println(golControl.grid[1][3].getType());
-//		System.out.println(golControl.grid[2][1].getType());
-//		System.out.println(golControl.grid[2][2].getType());
+		golControl.grid[ROW1][COL2] = golControl.grid[ROW1][COL2].act(golControl.getNeighbors(ROW1, COL2));;		
 		
 		//Check rule 4 worked
-		assertTrue(golControl.grid[1][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[1][2].getType().equals("dead cell"));
-		assertTrue(golControl.grid[1][3].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][1].getType().equals("alive cell"));
-		assertTrue(golControl.grid[2][2].getType().equals("alive cell"));
+		assertTrue(golControl.grid[ROW1][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW1][COL2].cellColor.equals(Color.WHITE));
+		assertTrue(golControl.grid[ROW1][COL3].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL1].cellColor.equals(Color.LIGHTBLUE));
+		assertTrue(golControl.grid[ROW2][COL2].cellColor.equals(Color.LIGHTBLUE));
 	}
 	
 }

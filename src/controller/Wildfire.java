@@ -1,20 +1,17 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import states.*;
+import states.Wildfire.BurningTree;
+import states.Wildfire.BurntDownTree;
+import states.Wildfire.Empty;
+import states.Wildfire.LiveTree;
 
 public class Wildfire extends Controller {
 
-	/***
-	 * 
-	 * @author Camyrn and Grant
-	 * Wildfire - Sub class controller for wildfire
-	 * 
-	 * Based on previous wildfire cell simulation code
-	 *
-	 */
-	
 	//Constants
 	private static final double BURN_CHANCE = 0.40;
 	private static final double DEFAULT_SPREADPROBABILITY = .40;
@@ -24,10 +21,10 @@ public class Wildfire extends Controller {
 	private static final double VALUE_OF_ONE_DOUBLE = 1.0;
 	private static final int  VALUE_OF_TWO = 2;
 	private static final int VALUE_OF_A_HUNDRED = 100;
-	public int burnTime;
-	public double spreadProbability;
-	public double forestDensity;
-	public int burningTrees;
+	private int burnTime;
+	private double spreadProbability;
+	private double forestDensity;
+	private int burningTrees;
 
 	public Wildfire(int height, int width, int burnTime, double spreadProbability, double forestDensity, int burningTrees) {
 		super(height, width);
@@ -46,7 +43,6 @@ public class Wildfire extends Controller {
 	 * @param currentRow
 	 * @param currentColumn
 	 */
-
 	@Override
 	protected void setupCells(int currentRow, int currentColumn) {
 		Random random = new Random();
@@ -55,13 +51,13 @@ public class Wildfire extends Controller {
 			// These are the mutable states
 			// checks if the tree is should tree should be on fire
 			if (burningTrees != VALUE_OF_ZERO && random.nextDouble() < BURN_CHANCE) {
-				State burningTree = new BurningTree(currentRow, currentColumn, burnTime, this.grid);
+				State burningTree = new BurningTree(burnTime);
 				burningTrees--;
 				grid[currentRow][currentColumn] = burningTree;
 			}
 			// If not then spawn a normal tree
 			else {
-				State liveTree = new LiveTree(currentRow, currentColumn, burnTime, spreadProbability, this.grid);
+				State liveTree = new LiveTree(burnTime, spreadProbability);
 				grid[currentRow][currentColumn] = liveTree;
 			}
 		}
@@ -102,6 +98,34 @@ public class Wildfire extends Controller {
 		} else {
 			this.burningTrees = VALUE_OF_ONE;
 		}
+	}
+
+	@Override
+	public List<State> getNeighbors(int currentStateRow, int currentStateColumn) {
+		List<State> neighbors = new ArrayList<State>();
+		neighbors.add(NORTH_NEIGHBOR, grid[currentStateRow-1][currentStateColumn]);
+		neighbors.add(SOUTH_NEIGHBOR, grid[currentStateRow+1][currentStateColumn]);
+		neighbors.add(WEST_NEIGHBOR, grid[currentStateRow][currentStateColumn-1]);
+		neighbors.add(EAST_NEIGHBOR, grid[currentStateRow][currentStateColumn+1]);
+		return neighbors;
+	}
+	
+	
+	//Methods to help test
+	//Given a point position they will make the needed state for testing
+	public void setBurningTree(int currentRow, int currentColumn) {
+
+		State burningTree = new BurningTree(this.burnTime);
+		grid[currentRow][currentColumn] = burningTree;
+	}
+	
+	public void setBurntTree(int currentRow, int currentColumn) {
+		grid[currentRow][currentColumn] = new BurntDownTree();
+	}
+	
+	public void setLiveTree(int currentRow, int currentColumn) {
+		State liveTree = new LiveTree(this.burnTime, this.spreadProbability);
+		grid[currentRow][currentColumn] = liveTree;
 	}
 
 	

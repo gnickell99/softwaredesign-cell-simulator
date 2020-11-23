@@ -1,10 +1,11 @@
-package states;
+package states.Wildfire;
 
 import java.util.List;
 import java.util.Random;
 
 //import controller.Controller;
 import javafx.scene.paint.Color;
+import states.State;
 
 /***
  * 
@@ -20,29 +21,23 @@ import javafx.scene.paint.Color;
 public class LiveTree extends WildFireMutables{
 	Random RNG = new Random();
 	
-	public LiveTree(int currentStateRow, int currentStateColumn, int burnTime, double burnProbability, State[][] allStates) {
-		super(currentStateRow, currentStateColumn, burnTime, allStates);
+	public LiveTree(int burnTime, double burnProbability) {
+		super(burnTime);
 		cellColor = Color.GREEN;
 		chanceToBurn = burnProbability;
 	}
 
 	@Override
-	public State act(int currentStateRow, int currentStateColumn) {
-		List<State> neighbors = toListNeighbors(currentStateRow, currentStateColumn, this.allCells);
+	public State act(List<State> neighbors) {
 		for (State neighbor : neighbors) {
 			if (neighbor.cellColor.equals(Color.RED)) {
 				if ((double) RNG.nextDouble() <= chanceToBurn) {
-					return new BurningTree(currentStateRow, currentStateColumn, this.burnTimer, this.allCells);
+					return new BurningTree(this.burnTimer);
 				}
 			}
 		}
 		return this;
 	}
 
-	@Override
-	public String getType() {
-		return "live tree";
-	}
 	
-
 }

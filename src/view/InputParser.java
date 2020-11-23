@@ -13,13 +13,13 @@ public class InputParser {
 	private final String OUT_OF_RANGE = "Value out of range: Using default value";
 	private final String VALUE_NOT_VALID = "Value not valid: Using default value";
 	private final int DEFAULT_VALUE_START_INDEX = 1;
-	private final int DEFAULT_VALUE_END_INDEX = 4;
+	private final int DEFAULT_VALUE_END_INDEX_DOUBLE = 4;
 	private double defaultValue;
 		
 	public double parseDoubleValue(TextField userInput) {
 		defaultValue = getDefaultValue(userInput);
 		double tempUserValue = 0;
-		if(userInput.getText() != null)	{
+		if(userInput != null)	{
 			try	{
 				tempUserValue = Double.parseDouble(userInput.getText());
 				checkValue(tempUserValue);
@@ -34,7 +34,7 @@ public class InputParser {
 	public int parseIntValue(TextField userInput) {
 		defaultValue = getDefaultValue(userInput);
 		int tempUserValue = 0;
-		if(userInput.getText() != null) {
+		if(userInput != null) {
 			try	{
 				tempUserValue = Integer.parseInt(userInput.getText());
 				checkValue(tempUserValue);
@@ -47,7 +47,7 @@ public class InputParser {
 	}
 	
 	public double getDefaultValue(TextField userInput)	{
-		return Double.parseDouble(userInput.getPromptText().substring(DEFAULT_VALUE_START_INDEX, DEFAULT_VALUE_END_INDEX));
+		return Double.parseDouble(userInput.getPromptText().substring(DEFAULT_VALUE_START_INDEX, DEFAULT_VALUE_END_INDEX_DOUBLE));
 	}
 	
 	public void checkValue(double userInput) {	

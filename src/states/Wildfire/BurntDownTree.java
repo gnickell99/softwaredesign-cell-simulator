@@ -1,17 +1,13 @@
-package states;
+package states.Wildfire;
 
 import javafx.scene.paint.Color;
+import states.ImmutableState;
 
 public class BurntDownTree extends ImmutableState{
 
 	public BurntDownTree() {
 		super();
 		cellColor = Color.YELLOW;
-	}
-
-	@Override
-	public String getType() {
-		return this.BURNT_DOWN_TREE;
 	}
 
 }
