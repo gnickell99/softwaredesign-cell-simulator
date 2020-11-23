@@ -39,7 +39,7 @@ public abstract class Controller {
 	public final int SOUTH_EAST_NEIGHBOR = 7;
 
 	//height width flipped?
-	public Controller(int height, int width) {	
+	public Controller(int width, int height) {	
 		grid = new State[height + VALUE_OF_TWO][width + VALUE_OF_TWO];
 		originalGridPane = new GridPane();
 		generateGrid(originalGridPane);
