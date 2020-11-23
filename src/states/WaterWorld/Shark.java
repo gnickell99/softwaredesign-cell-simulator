@@ -24,20 +24,22 @@ public class Shark extends WaterWorldMutables {
 	@Override
 	public State act(List<State> neighbors) {
 		for (State neighbor : neighbors) {
-			WaterWorldMutables waTorNeighbor = (WaterWorldMutables) neighbor;
-			if (waTorNeighbor.cellColor.equals(Color.BLUE)) {
-				if (currentBreedTime == 0) {
-					waTorNeighbor.setNext(new Shark(this.breedTimer, this.starveTimer));
-					return new Shark(this.currentBreedTime-1, this.currentStarveTime-1);
+			if (!neighbor.cellColor.equals(Color.BLACK)) {
+				WaterWorldMutables waTorNeighbor = (WaterWorldMutables) neighbor;
+				if (waTorNeighbor.cellColor.equals(Color.BLUE)) {
+					if (currentBreedTime == 0) {
+						waTorNeighbor.setNext(new Shark(this.breedTimer, this.starveTimer));
+						return new Shark(this.currentBreedTime-1, this.currentStarveTime-1);
+					}
+					else {
+						waTorNeighbor.setNext(new Shark(this.currentBreedTime-1, currentStarveTime-1));
+						return new Water();
+					}
 				}
-				else {
-					waTorNeighbor.setNext(new Shark(this.currentBreedTime-1, currentStarveTime-1));
-					return new Water();
+				else if (waTorNeighbor.cellColor.equals(Color.GREEN)) {
+					waTorNeighbor.setNext(new Water());
+					return new Shark(this.currentBreedTime-1, this.starveTimer);
 				}
-			}
-			else if (waTorNeighbor.cellColor.equals(Color.GREEN)) {
-				waTorNeighbor.setNext(new Water());
-				return new Shark(this.currentBreedTime-1, this.starveTimer);
 			}
 		}
 		currentBreedTime--;
