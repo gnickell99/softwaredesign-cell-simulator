@@ -64,7 +64,9 @@ public class RPSView extends View {
 		
 		//This only works when the simulation is paused, but clears any current simulation on the scene
 				Button clearButton = new Button("Clear Simulation");
+
 				GridPane.setConstraints(clearButton, 2, 7);
+
 				setUpRpsScene.getChildren().add(clearButton);
 				clearButton.setOnAction((ActionEvent e) -> {
 				setUpRpsScene.getChildren().remove(GRID_INDEX_START, setUpRpsScene.getChildren().size());

@@ -78,7 +78,9 @@ public abstract class View extends Application  {
 
 
 		Button stepButton = new Button("Step");
+
 		GridPane.setConstraints(stepButton, 3, 7);
+
 		setUpGrid.getChildren().add(stepButton);
 
 		stepButton.setOnAction((ActionEvent e) -> {
