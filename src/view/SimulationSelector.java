@@ -48,6 +48,13 @@ public class SimulationSelector  {
 		GridPane.setConstraints(rockPaperScissors, 3, 0);
 		setupGrid.getChildren().add(rockPaperScissors);
 
+
+		// Set up for the rock paper scissors Button that choose the rock paper scissors simulation
+		Button waterWorld = new Button("Water World");
+		GridPane.setConstraints(waterWorld, 4, 0);
+		setupGrid.getChildren().add(waterWorld);
+
+
 		// Sets up the wildfire simulation view when button is pressed
 		wildFire.setOnAction((ActionEvent e) -> {
 
@@ -73,6 +80,16 @@ public class SimulationSelector  {
 			rpsSimulation.setUpRpsScene(background);
 
 		});
+		
+		// Sets up the rock paper scissors simulation view when button is pressed
+		waterWorld.setOnAction((ActionEvent e) -> {
+
+			WaterWorldView waterWorldSimulation = new WaterWorldView();
+
+			waterWorldSimulation.setUpWaterScene(background);
+
+		});
+
 
 
 		//Returns the scene

@@ -49,7 +49,7 @@ public class RPSView extends View {
 		setUpRpsScene.getChildren().add(winThresholdText);
 
 		Button newSimulationButton = new Button("New Simulation");
-		GridPane.setConstraints(newSimulationButton, 0 , 6);
+		GridPane.setConstraints(newSimulationButton, 0 , 7);
 		setUpRpsScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
 
@@ -64,7 +64,10 @@ public class RPSView extends View {
 		
 		//This only works when the simulation is paused, but clears any current simulation on the scene
 				Button clearButton = new Button("Clear Simulation");
-				GridPane.setConstraints(clearButton, 2, 6);
+
+				GridPane.setConstraints(clearButton, 2, 7);
+
+
 				setUpRpsScene.getChildren().add(clearButton);
 				clearButton.setOnAction((ActionEvent e) -> {
 				setUpRpsScene.getChildren().remove(GRID_INDEX_START, setUpRpsScene.getChildren().size());
