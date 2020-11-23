@@ -20,7 +20,6 @@ public class AliveCell extends GameOfLifeMutables{
 		else {
 			return this;
 		}
-  }
-
+	}
 
 }
