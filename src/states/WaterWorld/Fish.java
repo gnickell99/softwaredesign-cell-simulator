@@ -21,6 +21,7 @@ public class Fish extends WaterWorldMutables {
 	@Override
 	public State act(List<State> neighbors) {
 		for (State neighbor : neighbors) {
+			//If it's not an edge
 			if (!neighbor.cellColor.equals(Color.BLACK)) {
 				WaterWorldMutables waterNeighbor = (WaterWorldMutables) neighbor;
 				if (waterNeighbor.cellColor.equals(Color.BLUE) ) {
