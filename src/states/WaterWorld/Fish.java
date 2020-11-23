@@ -21,15 +21,17 @@ public class Fish extends WaterWorldMutables {
 	@Override
 	public State act(List<State> neighbors) {
 		for (State neighbor : neighbors) {
-			WaterWorldMutables waterNeighbor = (WaterWorldMutables) neighbor;
-			if (waterNeighbor.cellColor.equals(Color.BLUE)) {
-				if (currentBreedTime == 0) {
-					waterNeighbor.setNext(new Fish(this.breedTimer));
-					return new Fish(this.breedTimer);
-				}
-				else {
-					waterNeighbor.setNext(new Fish(this.currentBreedTime-1));
-					return new Water();
+			if (!neighbor.cellColor.equals(Color.BLACK)) {
+				WaterWorldMutables waterNeighbor = (WaterWorldMutables) neighbor;
+				if (waterNeighbor.cellColor.equals(Color.BLUE) ) {
+					if (currentBreedTime == 0) {
+						waterNeighbor.setNext(new Fish(this.breedTimer));
+						return new Fish(this.breedTimer);
+					}
+					else {
+						waterNeighbor.setNext(new Fish(this.currentBreedTime-1));
+						return new Water();
+					}
 				}
 			}
 		}
