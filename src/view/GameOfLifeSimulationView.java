@@ -55,8 +55,8 @@ public class GameOfLifeSimulationView extends View {
 		setUpLifeScene.getChildren().add(newSimulationButton);
 		newSimulationButton.setOnAction((ActionEvent e) -> {
 
-		int height = validator.parseIntValue(gridHeightText.getPromptText());
-		int width = validator.parseIntValue(gridWidthText.getPromptText());
+		int height = validator.parseIntValue(gridHeightText);
+		int width = validator.parseIntValue(gridWidthText);
 		gameOfLifeController = new GameOfLife(height, width);
 
 		setUpNewSimulation(gameOfLifeController);
