@@ -20,6 +20,7 @@ import javafx.util.Duration;
  */
 public class GameOfLifeSimulationView extends View {
 
+	// constants
 	private static final int GRID_INDEX_START = 6;
 	GridPane setUpLifeScene = new GridPane();
 	private final int MILLISECOND_DELAY = 150;
@@ -36,7 +37,7 @@ public class GameOfLifeSimulationView extends View {
 
 	/** setUpGameOfLifeScene
 	 * 
-	 * Creates each button need for the game of life simulation
+	 * Creates each button needed for the game of life simulation
 	 * and adds them to the grid pane to be displayed to the user
 	 * @param gridHeightText 
 	 * @param gridHeight 
@@ -64,9 +65,9 @@ public class GameOfLifeSimulationView extends View {
 
 		});
 		
-		//This only works when the simulation is paused
+		//This only works when the simulation is paused, but clears any current simulation on the scene
 		Button clearButton = new Button("Clear Simulation");
-		GridPane.setConstraints(clearButton, 0 , 7);
+		GridPane.setConstraints(clearButton, 2, 6);
 		setUpLifeScene.getChildren().add(clearButton);
 		clearButton.setOnAction((ActionEvent e) -> {
 		setUpLifeScene.getChildren().remove(GRID_INDEX_START, setUpLifeScene.getChildren().size());
@@ -84,14 +85,20 @@ public class GameOfLifeSimulationView extends View {
 
 	}
 
-
+	/*doOneStep
+	 * 
+	 * Does a step in the search regardless of pause status. Uses controller to make step
+	 */
 	@Override
 	public void doOneStep(double elapsedTime) {
 		gameOfLifeController.updateGrid(setUpLifeScene);
 
 	}
 
-
+	/**setUpNewSimulation
+	 * 
+	 * sets up a new scene for the game of life simulation
+	 */
 	public void setUpNewSimulation(GameOfLife gameOfLifeController) {
 		gameOfLifeController.generateGrid(setUpLifeScene);
 
