@@ -19,6 +19,7 @@ public class SimulationSelector  {
 	 * 
 	 * Displays the inital loading screen to choose any of the simulations
 	 */
+
 	GridPane setupGrid = new GridPane();
 	public static final int SIZE = 600;
 	public static final String TITLE = "Cell Simulator";
@@ -47,6 +48,7 @@ public class SimulationSelector  {
 		Button rockPaperScissors = new Button("Rock Paper Scissors");
 		GridPane.setConstraints(rockPaperScissors, 3, 0);
 		setupGrid.getChildren().add(rockPaperScissors);
+
 
 
 		// Set up for the rock paper scissors Button that choose the rock paper scissors simulation
@@ -80,8 +82,8 @@ public class SimulationSelector  {
 			rpsSimulation.setUpRpsScene(background);
 
 		});
-		
-		// Sets up the rock paper scissors simulation view when button is pressed
+
+		// Sets up the water world simulation view when button is pressed
 		waterWorld.setOnAction((ActionEvent e) -> {
 
 			WaterWorldView waterWorldSimulation = new WaterWorldView();

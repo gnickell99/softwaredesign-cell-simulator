@@ -38,7 +38,7 @@ public class WaterWorldView extends View {
 
 
 	}
-	/** setUpWildFireScene
+	/** setUpWaterWorldScene
 	 * 
 	 * Creates each button needed for the wildfire simulation
 	 * and adds them to the grid pane to be displayed to the user
