@@ -57,7 +57,7 @@ public class RockPaperScissors extends Controller {
 				State rock = new Rock(threshold);
 				grid[currentRow][currentColumn] = rock;
 			}
-			else if (grid[0].length - currentColumn > grid.length - currentRow) { //right bottom quadrant with logic
+			else if (grid[0].length - currentColumn >= grid.length - currentRow) { //right bottom quadrant with logic
 				State scissors = new Scissors(threshold);
 				grid[currentRow][currentColumn] = scissors;
 			}
