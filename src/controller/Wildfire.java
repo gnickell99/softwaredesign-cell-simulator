@@ -37,8 +37,8 @@ public class Wildfire extends Controller {
 	/**
 	 * setupCells
 	 * 
-	 * The setupCells method places a state object at the given index The state can
-	 * be either a live tree, a burning tree, or an empty space
+	 * The setupCells method places a state object at the given index
+	 * The state can be either a live tree, a burning tree, or an empty space
 	 * 
 	 * @param currentRow
 	 * @param currentColumn
@@ -68,6 +68,22 @@ public class Wildfire extends Controller {
 		}
 	}
 
+	
+	/** getNeighbors
+	 * 
+	 * The neighbors for game of life is defined as only adjacent cells
+	 */
+	@Override
+	public List<State> getNeighbors(int currentStateRow, int currentStateColumn) {
+		List<State> neighbors = new ArrayList<State>();
+		neighbors.add(NORTH_NEIGHBOR, grid[currentStateRow-1][currentStateColumn]);
+		neighbors.add(SOUTH_NEIGHBOR, grid[currentStateRow+1][currentStateColumn]);
+		neighbors.add(WEST_NEIGHBOR, grid[currentStateRow][currentStateColumn-1]);
+		neighbors.add(EAST_NEIGHBOR, grid[currentStateRow][currentStateColumn+1]);
+		return neighbors;
+	}
+	
+	
 	public void setBurnTime(int burnTime) {
 		if (burnTime > VALUE_OF_ZERO) {
 			this.burnTime = burnTime;
@@ -98,16 +114,6 @@ public class Wildfire extends Controller {
 		} else {
 			this.burningTrees = VALUE_OF_ONE;
 		}
-	}
-
-	@Override
-	public List<State> getNeighbors(int currentStateRow, int currentStateColumn) {
-		List<State> neighbors = new ArrayList<State>();
-		neighbors.add(NORTH_NEIGHBOR, grid[currentStateRow-1][currentStateColumn]);
-		neighbors.add(SOUTH_NEIGHBOR, grid[currentStateRow+1][currentStateColumn]);
-		neighbors.add(WEST_NEIGHBOR, grid[currentStateRow][currentStateColumn-1]);
-		neighbors.add(EAST_NEIGHBOR, grid[currentStateRow][currentStateColumn+1]);
-		return neighbors;
 	}
 	
 	

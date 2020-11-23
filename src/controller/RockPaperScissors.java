@@ -26,36 +26,54 @@ public class RockPaperScissors extends Controller {
 		this.threshold = winThreshold;
 	}
 
-	
+	/** setupCells
+	 * 
+	 * The setupCells method places a state object at the given index
+	 * The state can be either rock, paper, or scissors
+	 * 
+	 * @param currentRow
+	 * @param currentColumn
+	 */
 	@Override
 	protected void setupCells(int currentRow, int currentColumn) {
-		if (currentRow > grid[0].length / 2) {
-			if (currentColumn < grid.length / 2) {
+		// RPS setupCells uses a quadrant idea on the grid to perform logic
+		if (currentRow > grid[0].length / 2) { // looks at the top two quadrants of the grid
+			if (currentColumn < grid.length / 2) { // left quadrant
 				State rock = new Rock(threshold);
 				grid[currentRow][currentColumn] = rock;
 			}
-			else {
+			else { // right quadrant
 				State scissors = new Scissors(threshold);
 				grid[currentRow][currentColumn] = scissors;
 			}
 		}
-		else {
-			if (currentColumn > currentRow - grid[0].length && currentColumn < grid.length / 2) {
+		else { // looks at the bottom two quadrant of the grid
+			// The idea here is to look at the diagonal of the rows and columns much like on a mathematical graph
+			// currentRow (mathematical equivalent of y value) is subtracted from the total length to set the bottom row as the 0 value
+			// from there, a check is made of the value of the x (column) and y (row), where if the y is larger than the x,
+			// the particular cell must be above the diagonal line cutting through the quadrant
+			// this idea is repeated for the right quadrant as well
+			if (currentColumn > grid[0].length - currentRow && currentColumn < grid.length / 2) { //left bottom quadrant with logic
 				State rock = new Rock(threshold);
 				grid[currentRow][currentColumn] = rock;
 			}
-			else if (currentColumn < currentRow - grid[0].length && currentColumn > grid.length / 2) {
+			else if (grid.length - currentColumn > grid[0].length - currentRow && currentColumn > grid.length / 2) { //right bottom quadrant with logic
 				State scissors = new Scissors(threshold);
 				grid[currentRow][currentColumn] = scissors;
 			}
-			else {
+			else { // everything else is set to paper
 				State paper = new Paper(threshold);
 				grid[currentRow][currentColumn] = paper;
 			}
 		}
 	}
 
-	
+
+	/** getNeighbors
+	 * 
+	 * The neighbors for rock paper scissors is defined as all surrounding cells:
+	 * adjacent and immediately diagonal
+	 */
 	@Override
 	public List<State> getNeighbors(int currentStateRow, int currentStateColumn) {
 		List<State> neighbors = new ArrayList<State>();
