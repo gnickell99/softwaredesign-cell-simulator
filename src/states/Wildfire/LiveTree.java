@@ -27,6 +27,12 @@ public class LiveTree extends WildFireMutables{
 		chanceToBurn = burnProbability;
 	}
 
+	/**
+	 * checks if its neighbor is burning
+	 * and performs a random check to
+	 * determine if it starts burning
+	 * based on the spread probability
+	 */
 	@Override
 	public State act(List<State> neighbors) {
 		for (State neighbor : neighbors) {
