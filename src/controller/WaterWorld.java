@@ -9,12 +9,10 @@ public class WaterWorld extends Controller {
 
 	public WaterWorld(int height, int width) {
 		super(height, width);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void setupCells(int currentRow, int currentColumn) {
-		// TODO Auto-generated method stub
 
 	}
 
