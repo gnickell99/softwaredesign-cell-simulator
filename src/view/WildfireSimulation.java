@@ -99,7 +99,11 @@ public class WildfireSimulation extends View {
 
 		//This only works when the simulation is paused
 		Button clearButton = new Button("Clear Simulation");
+
+
 		GridPane.setConstraints(clearButton, 2, 7);
+
+
 		setUpFireScene.getChildren().add(clearButton);
 		clearButton.setOnAction((ActionEvent e) -> {
 			setUpFireScene.getChildren().remove(GRID_INDEX_START, setUpFireScene.getChildren().size());

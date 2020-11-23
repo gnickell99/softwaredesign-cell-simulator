@@ -71,7 +71,7 @@ public class Wildfire extends Controller {
 	
 	/** getNeighbors
 	 * 
-	 * The neighbors for game of life is defined as only adjacent cells
+	 * The neighbors for wild fire is defined as only adjacent cells
 	 */
 	@Override
 	public List<State> getNeighbors(int currentStateRow, int currentStateColumn) {

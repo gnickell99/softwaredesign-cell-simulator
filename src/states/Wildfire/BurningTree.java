@@ -23,6 +23,10 @@ public class BurningTree extends WildFireMutables {
 		cellColor = Color.RED;
 	}
 
+	/**
+	 * If the burn timer has reached 0, the burning tree will burn down
+	 * (enter the burnt down tree state) and no longer be able to spread fire
+	 */
 	@Override
 	public State act(List<State> neighbors) {
 		if (burnTimer == 0) {

@@ -30,6 +30,8 @@ public class WaterWorld extends Controller {
 	public double waterDensity;
 	public int starveTime;
 	public int breedTime;
+	private int fishCount = 0;
+	private int sharkCount = 0;
 	
 	public WaterWorld(int height, int width, double fishDensity, double sharkDensity, double waterDensity, int starveTime, int breedTime) {
 		super(height, width);
@@ -43,23 +45,24 @@ public class WaterWorld extends Controller {
 	@Override
 	protected void setupCells(int currentRow, int currentColumn) {
 		Random random = new Random();
-		double currRandom = random.nextInt(VALUE_OF_A_HUNDRED);
 		// checks fish density to determine if fish should spawn
-		if (currRandom < (fishDensity * VALUE_OF_A_HUNDRED)) {
-			// check to see if shark should spawn
-			if (currRandom > (sharkDensity * VALUE_OF_A_HUNDRED)) {
-				State shark = new Shark(breedTime, starveTime);
-				grid[currentRow][currentColumn] = shark;
-			}
-			// If not then spawn water
-			else {
-				State water = new Water();
-				grid[currentRow][currentColumn] = water;
-			}
-		}
-		else {
+		if (random.nextInt(VALUE_OF_A_HUNDRED) >= (fishDensity * VALUE_OF_A_HUNDRED) 
+				&& fishCount < (fishDensity*grid.length*grid.length)) {
+			fishCount++;
 			State fish = new Fish(breedTime);
 			grid[currentRow][currentColumn] = fish;
+		}
+		// check to see if shark should spawn
+		else if (random.nextInt(VALUE_OF_A_HUNDRED) >= (sharkDensity * VALUE_OF_A_HUNDRED)
+				&& sharkCount < (sharkDensity*grid.length*grid.length)) {
+			sharkCount++;
+			State shark = new Shark(breedTime, starveTime);
+			grid[currentRow][currentColumn] = shark;
+		}
+		// If not then spawn water
+		else {
+			State water = new Water();
+			grid[currentRow][currentColumn] = water;
 		}
 	}
 
@@ -72,5 +75,7 @@ public class WaterWorld extends Controller {
 		neighbors.add(EAST_NEIGHBOR, grid[currentStateRow][currentStateColumn+1]);
 		return neighbors;
 	}
+	
+	
 	
 }

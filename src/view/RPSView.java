@@ -34,7 +34,7 @@ public class RPSView extends View {
 	{
 
 	}
-	
+
 	/** setUpRpsScene
 	 * 
 	 * Creates each button needed for the rps simulation
@@ -73,12 +73,15 @@ public class RPSView extends View {
 		});
 
 		//This only works when the simulation is paused, but clears any current simulation on the scene
+
 		Button clearButton = new Button("Clear Simulation");
 		GridPane.setConstraints(clearButton, 2, 7);
 		setUpRpsScene.getChildren().add(clearButton);
 		clearButton.setOnAction((ActionEvent e) -> {
 			setUpRpsScene.getChildren().remove(GRID_INDEX_START, setUpRpsScene.getChildren().size());
 		});
+
+
 
 		// Makes the animation happen.  Will call "step" method repeatedly.
 		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(MILLISECOND_DELAY));

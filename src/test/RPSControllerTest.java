@@ -18,91 +18,104 @@ import javafx.scene.layout.GridPane;
 
 public class RPSControllerTest {
 
-	static RockPaperScissors rpsControl; //not yet added
-
-	static int testGridSize = 2;
-	static int firstRow = 0;
-	static int lastRow = 5;
-	static int threshold = 3;
-
+	//Controller
+	static RockPaperScissors rpsControl;
 	static GridPane gp = new GridPane();
+
+	//Constants
+	static final int TEST_GRID_SIZE = 2;
+	static final int FIRST_ROW = 0;
+	static final int LAST_ROW = 4;
+	static final int WIN_THRESHOLD = 3;
+	//Colors
+	static final Color ROCK = Color.RED;
+	static final Color PAPER = Color.WHITE;
+	static final Color SCISSORS = Color.BLUE;
+	//Coordinates
+	static int ROW1 = 1;
+	static int COL1 = 1;
+	static int ROW2 = 2;
+	static int ROW3 = 3;
+	static int COL2 = 2;
+	static int COL3 = 3;
+	
 
 	@BeforeClass
 	public static void test() {
-		rpsControl = new RockPaperScissors(testGridSize,testGridSize, threshold); //Make object
+		rpsControl = new RockPaperScissors(TEST_GRID_SIZE,TEST_GRID_SIZE, WIN_THRESHOLD); //Make object
 		rpsControl.generateGrid(gp); //Make a new Grid
 	}
 
 	//Test for rock below - surrounded by weakness:
 	public void setUpTest1a() {
-		rpsControl.makeRock(1,1); //rock
-		rpsControl.makePaper(1,2);//paper
-		rpsControl.makePaper(2,1);//paper
-		rpsControl.makePaper(2,2);//paper
+		rpsControl.makeRock(ROW1,COL1); //rock
+		rpsControl.makePaper(ROW1,COL2);//paper
+		rpsControl.makePaper(ROW2,COL1);//paper
+		rpsControl.makePaper(ROW2,COL2);//paper
 	}
 
 	//Test for rock below - threshold not met:
 	public void setUpTest1b() {
-		rpsControl.makeRock(1,1); //rock
-		rpsControl.makeRock(1,2); //rock
-		rpsControl.makePaper(2,1); //paper
-		rpsControl.makePaper(2,2); //paper
+		rpsControl.makeRock(ROW1,COL1); //rock
+		rpsControl.makeRock(ROW1,COL2); //rock
+		rpsControl.makePaper(ROW2,COL1); //paper
+		rpsControl.makePaper(ROW2,COL2); //paper
 	}
 
 	//Test for rock below - surrounded by other:
 	public void setUpTest1c() {
-		rpsControl.makeRock(1,1); //rock
-		rpsControl.makeScissor(1,2); //scissor
-		rpsControl.makeScissor(2,1); //scissor
-		rpsControl.makeScissor(2,2); //scissor
+		rpsControl.makeRock(ROW1,COL1); //rock
+		rpsControl.makeScissor(ROW1,COL2); //scissor
+		rpsControl.makeScissor(ROW2,COL1); //scissor
+		rpsControl.makeScissor(ROW2,COL2); //scissor
 	}
 
 	//Test for Paper below - surrounded by weakness:
 	public void setUpTest2a() {
-		rpsControl.makePaper(1,1); //paper
-		rpsControl.makeScissor(1,2);//scissor
-		rpsControl.makeScissor(2,1);//scissor
-		rpsControl.makeScissor(2,2);//scissor
+		rpsControl.makePaper(ROW1,COL1); //paper
+		rpsControl.makeScissor(ROW1,COL2);//scissor
+		rpsControl.makeScissor(ROW2,COL1);//scissor
+		rpsControl.makeScissor(ROW2,COL2);//scissor
 	}
 
 	//Test for Paper below - threshold not met:
 	public void setUpTest2b() {
-		rpsControl.makePaper(1,1); //paper
-		rpsControl.makePaper(1,2);//paper
-		rpsControl.makeScissor(2,1);//scissor
-		rpsControl.makeScissor(2,2);//scissor
+		rpsControl.makePaper(ROW1,COL1); //paper
+		rpsControl.makePaper(ROW1,COL2);//paper
+		rpsControl.makeScissor(ROW2,COL1);//scissor
+		rpsControl.makeScissor(ROW2,COL2);//scissor
 	}
 
 	//Test for Paper below - surrounded by other:
 	public void setUpTest2c() {
-		rpsControl.makePaper(1,1); //paper
-		rpsControl.makeRock(1,2);//rock
-		rpsControl.makeRock(2,1);//rock
-		rpsControl.makeRock(2,2);//rock
+		rpsControl.makePaper(ROW1,COL1); //paper
+		rpsControl.makeRock(ROW1,COL2);//rock
+		rpsControl.makeRock(ROW2,ROW1);//rock
+		rpsControl.makeRock(ROW2,COL2);//rock
 	}
 
 	//Test for Scissors below - threshold not met:
 	public void setUpTest3a() {
-		rpsControl.makeScissor(1,1); //scissor
-		rpsControl.makeRock(1,2);//rock
-		rpsControl.makeRock(2,1);//rock
-		rpsControl.makeRock(2,2);//rock
+		rpsControl.makeScissor(ROW1,COL1); //scissor
+		rpsControl.makeRock(ROW1,COL2);//rock
+		rpsControl.makeRock(ROW2,COL1);//rock
+		rpsControl.makeRock(ROW2,COL2);//rock
 	}
 
 	//Test for Scissors below - threshold not met:
 	public void setUpTest3b() {
-		rpsControl.makeScissor(1,1); //scissor
-		rpsControl.makeRock(1,2);//rock
-		rpsControl.makeScissor(2,1);//scissor
-		rpsControl.makeRock(2,2);//rock
+		rpsControl.makeScissor(ROW1,COL1); //scissor
+		rpsControl.makeRock(ROW1,COL2);//rock
+		rpsControl.makeScissor(ROW2,COL1);//scissor
+		rpsControl.makeRock(ROW2,COL2);//rock
 	}
 
 	//Test for Scissors below - surrounded by other:
 	public void setUpTest3c() {
-		rpsControl.makeScissor(1,1); //scissor
-		rpsControl.makePaper(1,2);//paper
-		rpsControl.makePaper(2,1);//paper
-		rpsControl.makePaper(2,2);//paper
+		rpsControl.makeScissor(ROW1,COL1); //scissor
+		rpsControl.makePaper(ROW1,COL2);//paper
+		rpsControl.makePaper(ROW2,COL1);//paper
+		rpsControl.makePaper(ROW2,COL2);//paper
 	}
 
 	//Paper beats rock
@@ -113,13 +126,13 @@ public class RPSControllerTest {
 		setUpTest1a();// set up
 
 		//call act on start
-		rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.getNeighbors(1, 1));	
+		rpsControl.grid[ROW1][COL1] = rpsControl.grid[ROW1][COL1].act(rpsControl.getNeighbors(ROW1, COL1));	
 
 		//check - should turn white
-		assertTrue(rpsControl.grid[1][1].cellColor.equals(Color.WHITE));
-		assertTrue(rpsControl.grid[1][2].cellColor.equals(Color.WHITE));
-		assertTrue(rpsControl.grid[2][1].cellColor.equals(Color.WHITE));
-		assertTrue(rpsControl.grid[2][2].cellColor.equals(Color.WHITE));
+		assertTrue(rpsControl.grid[ROW1][COL1].cellColor.equals(PAPER));
+		assertTrue(rpsControl.grid[ROW1][COL2].cellColor.equals(PAPER));
+		assertTrue(rpsControl.grid[ROW2][COL1].cellColor.equals(PAPER));
+		assertTrue(rpsControl.grid[ROW2][COL2].cellColor.equals(PAPER));
 	}
 
 	//threshold not met
@@ -130,13 +143,13 @@ public class RPSControllerTest {
 		setUpTest1b(); //set up
 
 		//call act on start
-		rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.getNeighbors(1, 1));	
+		rpsControl.grid[ROW1][COL1] = rpsControl.grid[ROW1][COL1].act(rpsControl.getNeighbors(ROW1, COL1));	
 
 		//check - should stay red
-		assertTrue(rpsControl.grid[1][1].cellColor.equals(Color.RED));
-		assertTrue(rpsControl.grid[1][2].cellColor.equals(Color.RED));
-		assertTrue(rpsControl.grid[2][1].cellColor.equals(Color.WHITE));
-		assertTrue(rpsControl.grid[2][2].cellColor.equals(Color.WHITE));
+		assertTrue(rpsControl.grid[ROW1][COL1].cellColor.equals(ROCK));
+		assertTrue(rpsControl.grid[ROW1][COL2].cellColor.equals(ROCK));
+		assertTrue(rpsControl.grid[ROW2][COL1].cellColor.equals(PAPER));
+		assertTrue(rpsControl.grid[ROW2][COL2].cellColor.equals(PAPER));
 	}
 
 	//threshold not weakness
@@ -150,10 +163,10 @@ public class RPSControllerTest {
 		rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.getNeighbors(1, 1));	
 
 		//check
-		assertTrue(rpsControl.grid[1][1].cellColor.equals(Color.RED));
-		assertTrue(rpsControl.grid[1][2].cellColor.equals(Color.BLUE));
-		assertTrue(rpsControl.grid[2][1].cellColor.equals(Color.BLUE));
-		assertTrue(rpsControl.grid[2][2].cellColor.equals(Color.BLUE));
+		assertTrue(rpsControl.grid[ROW1][COL1].cellColor.equals(ROCK));
+		assertTrue(rpsControl.grid[ROW1][COL2].cellColor.equals(SCISSORS));
+		assertTrue(rpsControl.grid[ROW2][COL1].cellColor.equals(SCISSORS));
+		assertTrue(rpsControl.grid[ROW2][COL2].cellColor.equals(SCISSORS));
 	}
 
 	//Test for paper below:
@@ -166,13 +179,13 @@ public class RPSControllerTest {
 		setUpTest2a();// set up
 
 		//call act on start
-		rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.getNeighbors(1, 1));	
+		rpsControl.grid[ROW1][COL1] = rpsControl.grid[ROW1][COL1].act(rpsControl.getNeighbors(ROW1, COL1));	
 
 		//check - should turn blue
-		assertTrue(rpsControl.grid[1][1].cellColor.equals(Color.BLUE));
-		assertTrue(rpsControl.grid[1][2].cellColor.equals(Color.BLUE));
-		assertTrue(rpsControl.grid[2][1].cellColor.equals(Color.BLUE));
-		assertTrue(rpsControl.grid[2][2].cellColor.equals(Color.BLUE));
+		assertTrue(rpsControl.grid[ROW1][COL1].cellColor.equals(SCISSORS));
+		assertTrue(rpsControl.grid[ROW1][COL2].cellColor.equals(SCISSORS));
+		assertTrue(rpsControl.grid[ROW2][COL1].cellColor.equals(SCISSORS));
+		assertTrue(rpsControl.grid[ROW2][COL2].cellColor.equals(SCISSORS));
 	}
 
 	//threshold not met
@@ -186,10 +199,10 @@ public class RPSControllerTest {
 		rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.getNeighbors(1, 1));	
 
 		//check - should stay white
-		assertTrue(rpsControl.grid[1][1].cellColor.equals(Color.WHITE));
-		assertTrue(rpsControl.grid[1][2].cellColor.equals(Color.WHITE));
-		assertTrue(rpsControl.grid[2][1].cellColor.equals(Color.BLUE));
-		assertTrue(rpsControl.grid[2][2].cellColor.equals(Color.BLUE));
+		assertTrue(rpsControl.grid[ROW1][COL1].cellColor.equals(PAPER));
+		assertTrue(rpsControl.grid[ROW1][COL2].cellColor.equals(PAPER));
+		assertTrue(rpsControl.grid[ROW2][COL1].cellColor.equals(SCISSORS));
+		assertTrue(rpsControl.grid[ROW2][COL2].cellColor.equals(SCISSORS));
 	}
 
 	//threshold not weakness
@@ -200,13 +213,13 @@ public class RPSControllerTest {
 		setUpTest2c(); //set up
 
 		//call act on start
-		rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.getNeighbors(1, 1));	
+		rpsControl.grid[ROW1][COL1] = rpsControl.grid[ROW1][COL1].act(rpsControl.getNeighbors(ROW1, COL1));	
 
 		//check - should stay white
-		assertTrue(rpsControl.grid[1][1].cellColor.equals(Color.WHITE));
-		assertTrue(rpsControl.grid[1][2].cellColor.equals(Color.RED));
-		assertTrue(rpsControl.grid[2][1].cellColor.equals(Color.RED));
-		assertTrue(rpsControl.grid[2][2].cellColor.equals(Color.RED));
+		assertTrue(rpsControl.grid[ROW1][COL1].cellColor.equals(PAPER));
+		assertTrue(rpsControl.grid[ROW1][COL2].cellColor.equals(ROCK));
+		assertTrue(rpsControl.grid[ROW2][COL1].cellColor.equals(ROCK));
+		assertTrue(rpsControl.grid[ROW2][COL2].cellColor.equals(ROCK));
 	}
 
 	//Test for Scissors below:
@@ -222,10 +235,10 @@ public class RPSControllerTest {
 		rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.getNeighbors(1, 1));	
 
 		//check - should turn red
-		assertTrue(rpsControl.grid[1][1].cellColor.equals(Color.RED));
-		assertTrue(rpsControl.grid[1][2].cellColor.equals(Color.RED));
-		assertTrue(rpsControl.grid[2][1].cellColor.equals(Color.RED));
-		assertTrue(rpsControl.grid[2][2].cellColor.equals(Color.RED));
+		assertTrue(rpsControl.grid[ROW1][COL1].cellColor.equals(ROCK));
+		assertTrue(rpsControl.grid[ROW1][COL2].cellColor.equals(ROCK));
+		assertTrue(rpsControl.grid[ROW2][COL1].cellColor.equals(ROCK));
+		assertTrue(rpsControl.grid[ROW2][COL2].cellColor.equals(ROCK));
 	}
 
 	//threshold not met
@@ -236,13 +249,13 @@ public class RPSControllerTest {
 		setUpTest3b(); //set up
 
 		//call act on start
-		rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.getNeighbors(1, 1));	
+		rpsControl.grid[1][1] = rpsControl.grid[ROW1][COL1].act(rpsControl.getNeighbors(ROW1, COL1));	
 
 		//check - should stay blue
-		assertTrue(rpsControl.grid[1][1].cellColor.equals(Color.BLUE));
-		assertTrue(rpsControl.grid[1][2].cellColor.equals(Color.RED));
-		assertTrue(rpsControl.grid[2][1].cellColor.equals(Color.BLUE));
-		assertTrue(rpsControl.grid[2][2].cellColor.equals(Color.RED));
+		assertTrue(rpsControl.grid[ROW1][COL1].cellColor.equals(SCISSORS));
+		assertTrue(rpsControl.grid[ROW1][COL2].cellColor.equals(ROCK));
+		assertTrue(rpsControl.grid[ROW2][COL1].cellColor.equals(SCISSORS));
+		assertTrue(rpsControl.grid[ROW2][COL2].cellColor.equals(ROCK));
 	}
 
 	//threshold not weakness
@@ -253,13 +266,13 @@ public class RPSControllerTest {
 		setUpTest3c(); //set up
 
 		//call act on start
-		rpsControl.grid[1][1] = rpsControl.grid[1][1].act(rpsControl.getNeighbors(1, 1));	
+		rpsControl.grid[ROW1][COL1] = rpsControl.grid[ROW1][COL1].act(rpsControl.getNeighbors(ROW1, COL1));	
 
 		//check - should stay blue
-		assertTrue(rpsControl.grid[1][1].cellColor.equals(Color.BLUE));
-		assertTrue(rpsControl.grid[1][2].cellColor.equals(Color.WHITE));
-		assertTrue(rpsControl.grid[2][1].cellColor.equals(Color.WHITE));
-		assertTrue(rpsControl.grid[2][2].cellColor.equals(Color.WHITE));
+		assertTrue(rpsControl.grid[ROW1][COL1].cellColor.equals(SCISSORS));
+		assertTrue(rpsControl.grid[ROW1][COL2].cellColor.equals(PAPER));
+		assertTrue(rpsControl.grid[ROW2][COL1].cellColor.equals(PAPER));
+		assertTrue(rpsControl.grid[ROW2][COL2].cellColor.equals(PAPER));
 	}
 
 }
