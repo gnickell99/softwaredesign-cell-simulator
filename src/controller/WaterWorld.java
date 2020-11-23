@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import states.WaterWorld.*;
+import states.Wildfire.BurningTree;
+import states.Wildfire.BurntDownTree;
+import states.Wildfire.LiveTree;
+import states.Edge;
 import states.State;
 
 /***
@@ -30,7 +34,7 @@ public class WaterWorld extends Controller {
 	public double waterDensity;
 	public int starveTime;
 	public int breedTime;
-	
+
 	public WaterWorld(int height, int width, double fishDensity, double sharkDensity, double waterDensity, int starveTime, int breedTime) {
 		super(height, width);
 		this.fishDensity = fishDensity / (fishDensity + sharkDensity + waterDensity);
@@ -72,5 +76,28 @@ public class WaterWorld extends Controller {
 		neighbors.add(EAST_NEIGHBOR, grid[currentStateRow][currentStateColumn+1]);
 		return neighbors;
 	}
+
+	//Methods to help test
+	//Given a point position they will make the needed state for testing
+
+	public void plantFish(int currentRow, int currentColumn) {
+		State fish = new Fish(this.breedTime);
+		grid[currentRow][currentColumn] = fish;
+	}
+
+	public void plantShark(int currentRow, int currentColumn) {
+		State shark = new Shark(this.breedTime, this.starveTime);
+		grid[currentRow][currentColumn] = shark;
+	}
+
+	public void makeWater(int currentRow, int currentColumn) {
+		State water = new Water();
+		grid[currentRow][currentColumn] = water;
+	}
 	
+	public void makeEdge(int currentRow, int currentColumn) {
+		State edge = new Edge();
+		grid[currentRow][currentColumn] = edge;
+	}
+
 }
