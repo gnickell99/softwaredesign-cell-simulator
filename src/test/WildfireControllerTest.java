@@ -105,8 +105,10 @@ public class WildfireControllerTest {
 //		printGrid();
 		System.out.println();
 		
-		
+		wildfireControl.grid[2][1] = wildfireControl.grid[2][1].act(wildfireControl.getNeighbors(2, 1)); //stays red - time not at 0
+		assertTrue(wildfireControl.grid[2][1].cellColor.equals(BURNING_TREE_COLOR));
 		wildfireControl.grid[2][1] = wildfireControl.grid[2][1].act(wildfireControl.getNeighbors(2, 1)); //turns yellow
+		
 		assertTrue(wildfireControl.grid[2][1].cellColor.equals(BURNT_TREE_COLOR));
 		assertTrue(wildfireControl.grid[1][1].cellColor.equals(BURNING_TREE_COLOR));
 		assertTrue(wildfireControl.grid[2][2].cellColor.equals(BURNING_TREE_COLOR));

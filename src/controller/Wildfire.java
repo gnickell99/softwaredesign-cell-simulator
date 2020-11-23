@@ -114,6 +114,7 @@ public class Wildfire extends Controller {
 	//Methods to help test
 	//Given a point position they will make the needed state for testing
 	public void setBurningTree(int currentRow, int currentColumn) {
+
 		State burningTree = new BurningTree(this.burnTime);
 		grid[currentRow][currentColumn] = burningTree;
 	}
