@@ -4,6 +4,18 @@ import java.util.List;
 import javafx.scene.paint.Color;
 import states.State;
 
+/**
+ * 
+ * @author Grant Nickell
+ * @author Kim Jones
+ * 
+ * The Alive Cell is representative of an alive bacteria
+ * If it has 0 or 1 live neighbors it will die of loneliness
+ * If it has 2 or 3 live neighbors it will remain
+ * If it has 4 or more live  neighbors it will die from overcrowding
+ *
+ */
+
 public class AliveCell extends GameOfLifeMutables{
 
 	public AliveCell() {

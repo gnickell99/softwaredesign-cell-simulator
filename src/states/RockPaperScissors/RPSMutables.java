@@ -7,7 +7,7 @@ import states.*;
  * 
  * @author Grant Nickell
  * 
- * RPSMutables is an abstract super class inheriting from MutableState
+ * RPSMutables is an abstract super class inheriting from State
  * that is used by the mutable states in rock paper scissors
  * 
  * When the inheriting states act, they change state when the number
