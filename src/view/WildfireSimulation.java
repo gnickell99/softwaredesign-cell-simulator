@@ -1,3 +1,4 @@
+
 package view;
 
 import javafx.animation.KeyFrame;
@@ -31,11 +32,12 @@ public class WildfireSimulation extends View {
 	public int burnTime;
 	private static final String TITLE = "WildFire Simulator";
 	public static final int COLUMNSPAN = 20;
-	private Wildfire wildFireController = new Wildfire(0, 0, 0, 0, 0, 0);
 	InputParser validator = new InputParser();
+	private Wildfire wildFireController = new Wildfire(0, 0, 0, 0, 0, 0);
 
 	public WildfireSimulation(int gridWidth, int gridHeight)	{
-
+		//this.gridWidth = gridWidth;
+		//this.gridHeight = gridHeight;
 	}
 
 	public void setUpWildFireScene(Paint background) {
@@ -134,3 +136,4 @@ public class WildfireSimulation extends View {
 	}
 	
 }
+
